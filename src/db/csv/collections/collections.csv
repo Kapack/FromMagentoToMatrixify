@@ -1,0 +1,658 @@
+name;belongs_to;relationship_type
+12mm;Universal;Child
+14mm;Universal;Child
+16mm;Universal;Child
+17mm;Universal;Child
+18mm;Universal;Child
+19mm;Universal;Child
+20mm;Universal;Child
+22mm;Universal;Child
+24mm;Universal;Child
+Amazfit;;Grandparent
+Amazfit 1;;Child
+Amazfit 1S;;Child
+Amazfit 3;;Child
+Amazfit Ares;;Child
+Amazfit Band 5;;Child
+Amazfit Bip;Amazfit Bip Series;Child
+Amazfit Bip Lite;Amazfit Bip Series;Child
+Amazfit Bip S;Amazfit Bip Series;Child
+Amazfit Bip Series;Amazfit;Parent
+Amazfit Bip U;Amazfit Bip Series;Child
+Amazfit Cor;;Child
+Amazfit GTR 2;Amazfit GTR Series;Child
+Amazfit GTR 2e;Amazfit GTR Series;Child
+Amazfit GTR 3;Amazfit GTR Series;Child
+Amazfit GTR 3 Pro;Amazfit GTR Series;Child
+Amazfit GTR 42mm;Amazfit GTR Series;Child
+Amazfit GTR 47mm;Amazfit GTR Series;Child
+Amazfit GTR Series;Amazfit;Parent
+Amazfit GTS;Amazfit GTS Series;Child
+Amazfit GTS 2;Amazfit GTS Series;Child
+Amazfit GTS 2 Mini;Amazfit GTS Series;Child
+Amazfit GTS 2e;Amazfit GTS Series;Child
+Amazfit GTS 3;Amazfit GTS Series;Child
+Amazfit GTS Series;Amazfit;Parent
+Amazfit Neo;;Child
+Amazfit Pace;;Child
+Amazfit Pop;;Child
+Amazfit Pop Pro;;Child
+Amazfit Smartwatch 2;;Child
+Amazfit Stratos;Amazfit Stratos Series;Child
+Amazfit Stratos 2 \ 2s;Amazfit Stratos Series;Child
+Amazfit Stratos 3;Amazfit Stratos Series;Child
+Amazfit Stratos Series;Amazfit;Parent
+Amazfit T-Rex;Amazfit T-Rex Series;Child
+Amazfit T-Rex Pro;Amazfit T-Rex Series;Child
+Amazfit T-Rex Series;;Parent
+Amazfit Verge 3;;Child
+Amazfit X;;Child
+Amazfit Youth;Amazfit Youth Series;Child
+Amazfit Youth Edition 1S;Amazfit Youth Series;Child
+Amazfit Youth Series;Amazfit;Parent
+Amazon;;Grandparent
+Amazon Halo Band;;Child
+Amazon Halo View;;Child
+Apple Watch;;Grandparent
+Apple Watch 40mm;Apple Watch Series;Child
+Apple Watch 41mm;Apple Watch Series;Child
+Apple Watch 44mm;Apple Watch Series;Child
+Apple Watch 45mm;Apple Watch Series;Child
+Apple Watch SE 40mm;Apple Watch Series SE;Child
+Apple Watch SE 44mm;Apple Watch Series SE;Child
+Apple Watch Series;;Parent
+Apple Watch Series 1-3;;Parent
+Apple Watch Series 1-3 38mm;Apple Watch Series 1-3;Child
+Apple Watch Series 1-3 42mm;Apple Watch Series 1-3;Child
+Apple Watch Series 4;;Parent
+Apple Watch Series 4 40mm;Apple Watch Series 4;Child
+Apple Watch Series 4 44mm;Apple Watch Series 4;Child
+Apple Watch Series 5;;Parent
+Apple Watch Series 5 40mm;Apple Watch Series 5;Child
+Apple Watch Series 5 44mm;Apple Watch Series 5;Child
+Apple Watch Series 6;;Parent
+Apple Watch Series 6 40mm;Apple Watch Series 6;Child
+Apple Watch Series 6 44mm;Apple Watch Series 6;Child
+Apple Watch Series 7;;Parent
+Apple Watch Series 7 41mm;Apple Watch Series 7;Child
+Apple Watch Series 7 45mm;Apple Watch Series 7;Child
+Apple Watch Series SE;;Parent
+ASUS Zenwatch;;Grandparent
+ASUS Zenwatch 2 Large;;Child
+ASUS Zenwatch 2 Small;;Child
+ASUS ZenWatch 3;;Child
+Bushnell;;Grandparent
+Bushnell Neo Excel;;Child
+Bushnell Neo Ion;;Child
+Bushnell Neo Ion2;;Child
+Casio;;Grandparent
+Casio G-SHOCK DW-5600;;Child
+Casio G-SHOCK G-8900;;Child
+Casio G-SHOCK GA-110;;Child
+Coros;;Grandparent
+Coros Apex;;Child
+Coros Apex Pro;;Child
+Coros Pace 2;;Child
+Coros Vertix;;Child
+Coros Vertix 2;;Child
+Diesel;;Grandparent
+Diesel On Full Guard 2.5;;Child
+Fitbit;;Grandparent
+Fitbit Ace;Fitbit Ace Series;Child
+Fitbit Ace 2;Fitbit Ace Series;Child
+Fitbit Ace 3;Fitbit Ace Series;Child
+Fitbit Ace Series;;Parent
+Fitbit Alta;Fitbit Alta Series;Child
+Fitbit Alta HR;Fitbit Alta Series;Child
+Fitbit Alta Series;;Parent
+Fitbit Blaze;;Child
+Fitbit Charge;Fitbit Charge Series;Child
+Fitbit Charge 2;Fitbit Charge Series;Child
+Fitbit Charge 3;Fitbit Charge Series;Child
+Fitbit Charge 4;Fitbit Charge Series;Child
+Fitbit Charge 5;Fitbit Charge Series;Child
+Fitbit Charge HR;Fitbit Charge Series;Child
+Fitbit Charge Series;;Parent
+Fitbit Flex;Fitbit Flex Series;Child
+Fitbit Flex 2;Fitbit Flex Series;Child
+Fitbit Flex Series;;Parent
+Fitbit Inspire;Fitbit Inspire Series;Child
+Fitbit Inspire 2;Fitbit Inspire Series;Child
+Fitbit Inspire Series;;Parent
+Fitbit Ionic;;Child
+Fitbit Luxe;;Child
+Fitbit Sense;;Child
+Fitbit Surge;;Child
+Fitbit Versa;Fitbit Versa Series;Child
+Fitbit Versa 2;Fitbit Versa Series;Child
+Fitbit Versa 3;Fitbit Versa Series;Child
+Fitbit Versa 4;Fitbit Versa Series;Child
+Fitbit Versa Lite;Fitbit Versa Series;Child
+Fitbit Versa Series;;Parent
+Fossil;;Grandparent
+Fossil Crewmaster Hybrid;;Child
+Fossil Explorist;;Child
+Fossil Founder;Fossil Founder Series;Child
+Fossil Founder 2.0;Fossil Founder Series;Child
+Fossil Founder Series;;Parent
+Fossil Gen 3 Explorist;;Child
+Fossil Gen 4;;Parent
+Fossil Gen 4 (40mm);Fossil Gen 4;Child
+Fossil Gen 4 Explorist HR;Fossil Gen 4;Child
+Fossil Gen 4 Venture HR;Fossil Gen 4;Child
+Fossil Gen 5;Fossil Gen 5 Series;Child
+Fossil Gen 5 Carlyle HR;Fossil Gen 5 Series;Child
+Fossil Gen 5 Garrett HR;Fossil Gen 5 Series;Child
+Fossil Gen 5 Julianna HR;Fossil Gen 5 Series;Child
+Fossil Gen 5 Series;;Parent
+Fossil Gen 5E 42mm;Fossil Gen 5 Series;Child
+Fossil Gen 6;;Child
+Fossil Grant Hybrid;;Child
+Fossil Hybrid Smartwatch HR;;Child
+Fossil Marshal Touch;;Child
+Fossil Men's Sport 43mm;;Child
+Fossil Q Marshal Gen 2;;Child
+Fossil Scarlette;;Child
+Fossil Tailor Hybrid;;Child
+Fossil Venture;;Child
+Fossil Wander;;Child
+Fossil Women's Gen 4 Sport;Fossil Gen 4;Child
+Garmin;;Grandparent
+Garmin Approach;;Child
+Garmin Approach G10;;Child
+Garmin Approach G12;;Child
+Garmin Approach G30 Golf;;Child
+Garmin Approach S1;;Child
+Garmin Approach S2;;Child
+Garmin Approach S20;;Child
+Garmin Approach S3;;Child
+Garmin Approach S4;;Child
+Garmin Approach S40;;Child
+Garmin Approach S50;;Child
+Garmin Approach S6;;Child
+Garmin Approach S60;;Child
+Garmin Approach S62;;Child
+Garmin Approach X10;;Child
+Garmin Approach X40;;Child
+Garmin D2;;Child
+Garmin D2 Charlie;;Child
+Garmin D2 Delta;;Child
+Garmin Descent;;Child
+Garmin Descent G1;;Child
+Garmin Descent MK1;;Child
+Garmin Descent Mk2;;Child
+Garmin Descent Mk2i;;Child
+Garmin Descent Mk2S 43mm;;Child
+Garmin Edge;;Child
+Garmin Edge 1000;;Child
+Garmin Edge 1030;;Child
+Garmin Edge 1030 Plus;;Child
+Garmin Edge 1040;;Child
+Garmin Edge 130;;Child
+Garmin Edge 200;;Child
+Garmin Edge 25;;Child
+Garmin Edge 500;;Child
+Garmin Edge 510;;Child
+Garmin Edge 520;;Child
+Garmin Edge 530;;Child
+Garmin Edge 800 / 810;;Child
+Garmin Edge 820;;Child
+Garmin Edge 830;;Child
+Garmin Edge G80;;Child
+Garmin Enduro;;Child
+Garmin Epix;;Child
+Garmin Epix Gen 2;;Child
+Garmin Etrex;;Child
+Garmin eTrex 10;;Child
+Garmin eTrex 20;;Child
+Garmin eTrex 201x;;Child
+Garmin eTrex 209x;;Child
+Garmin eTrex 20x;;Child
+Garmin eTrex 22x;;Child
+Garmin eTrex 30;;Child
+Garmin eTrex 309x;;Child
+Garmin eTrex 30x;;Child
+Garmin eTrex 32x;;Child
+Garmin Fenix;;Child
+Garmin Fenix 3;;Child
+Garmin Fenix 5;;Child
+Garmin Fenix 5 Plus;;Child
+Garmin Fenix 5S;;Child
+Garmin Fenix 5S Plus;;Child
+Garmin Fenix 5X;;Child
+Garmin Fenix 5X Plus;;Child
+Garmin Fenix 6;;Child
+Garmin Fenix 6 Pro;;Child
+Garmin Fenix 6 Pro Solar;;Child
+Garmin Fenix 6S;;Child
+Garmin Fenix 6S Pro;;Child
+Garmin Fenix 6S Solar Pro;;Child
+Garmin Fenix 6X;;Child
+Garmin Fenix 6X Pro;;Child
+Garmin Fenix 6X Pro Solar;;Child
+Garmin Fenix 7;;Child
+Garmin Fenix 7S;;Child
+Garmin Fenix 7X;;Child
+Garmin Fenix Chronos;;Child
+Garmin ForeAthlete 35J;;Child
+Garmin Forerunner;;Child
+Garmin Forerunner 10;;Child
+Garmin Forerunner 110;;Child
+Garmin Forerunner 15;;Child
+Garmin Forerunner 158;;Child
+Garmin Forerunner 210;;Child
+Garmin Forerunner 220;;Child
+Garmin Forerunner 225;;Child
+Garmin Forerunner 230;;Child
+Garmin Forerunner 235;;Child
+Garmin Forerunner 245;;Child
+Garmin Forerunner 245 Music;;Child
+Garmin Forerunner 25 Large;;Child
+Garmin Forerunner 25 Small;;Child
+Garmin Forerunner 255;;Child
+Garmin Forerunner 255S;;Child
+Garmin Forerunner 30;;Child
+Garmin Forerunner 310XT;;Child
+Garmin Forerunner 35;;Child
+Garmin Forerunner 410;;Child
+Garmin Forerunner 45;;Child
+Garmin Forerunner 45S;;Child
+Garmin Forerunner 55;;Child
+Garmin Forerunner 610;;Child
+Garmin Forerunner 620;;Child
+Garmin Forerunner 630;;Child
+Garmin Forerunner 645;;Child
+Garmin Forerunner 645 Music;;Child
+Garmin Forerunner 735;;Child
+Garmin Forerunner 735XT;;Child
+Garmin Forerunner 745;;Child
+Garmin Forerunner 910XT;;Child
+Garmin Forerunner 920 XT;;Child
+Garmin Forerunner 935;;Child
+Garmin Forerunner 945;;Child
+Garmin Forerunner 955;;Child
+Garmin Instinct;;Child
+Garmin Instinct 2;;Child
+Garmin Instinct 2S;;Child
+Garmin Instinct Esports;;Child
+Garmin Instinct Solar;;Child
+Garmin Instinct Tactical;;Child
+Garmin Instinct Tide;;Child
+Garmin Legacy;;Child
+Garmin Legacy Hero;;Child
+Garmin Legacy Saga;;Child
+Garmin Lily;;Child
+Garmin Marq;;Child
+Garmin MARQ Adventurer;;Child
+Garmin MARQ Aviator;;Child
+Garmin MARQ Captain;;Child
+Garmin MARQ Driver;;Child
+Garmin Quatix;;Child
+Garmin Quatix 3;;Child
+Garmin Quatix 5;;Child
+Garmin Quatix 5 Sapphire;;Child
+Garmin Quatix 6;;Child
+Garmin Quatix 6X;;Child
+Garmin Quatix 7;;Child
+Garmin Running Dynamics Pod;;Child
+Garmin Swim;;Child
+Garmin Swim 2;;Child
+Garmin Tactix;;Child
+Garmin Tactix 7;;Child
+Garmin Tactix 7 Pro;;Child
+Garmin Tactix Charlie;;Child
+Garmin Tactix Delta;;Child
+Garmin Venu;;Child
+Garmin Venu 2;;Child
+Garmin Venu 2 Plus;;Child
+Garmin Venu 2S;;Child
+Garmin Venu Sq;;Child
+Garmin Vivoactive;;Child
+Garmin Vivoactive 3;;Child
+Garmin Vivoactive 3 Music;;Child
+Garmin Vivoactive 3 Trainer;;Child
+Garmin Vivoactive 4;;Child
+Garmin Vivoactive 4S;;Child
+Garmin Vivoactive Acetate;;Child
+Garmin Vivoactive HR;;Child
+Garmin Vivofit;;Child
+Garmin Vivofit 1;;Child
+Garmin Vivofit 2;;Child
+Garmin Vivofit 3;;Child
+Garmin Vivofit 4;;Child
+Garmin Vivofit JR;;Child
+Garmin Vivofit JR 2;;Child
+Garmin Vivofit Jr 3;;Child
+Garmin Vivomove;;Child
+Garmin Vivomove 3;;Child
+Garmin Vivomove 3S;;Child
+Garmin Vivomove HR;;Child
+Garmin Vivomove Luxe;;Child
+Garmin Vivomove Sport;;Child
+Garmin Vivomove Style;;Child
+Garmin Vivosmart;;Child
+Garmin Vivosmart 3;;Child
+Garmin Vivosmart 4;;Child
+Garmin Vivosmart 5;;Child
+Garmin Vivosmart HR;;Child
+Garmin Vivosmart HR+;;Child
+Garmin Vivosport;;Child
+GulfBuddy Voice 2 GPS;;Child
+GulfBuddy Voice GPS;;Child
+Haylou;;Grandparent
+Haylou GS;;Child
+Haylou GST LS09B;;Child
+Haylou LS04 Solar;;Child
+Haylou RS3;;Child
+Haylou RS4 Plus;;Child
+Haylou RT LS05S;;Child
+Haylou RT2 (LS10);;Child
+Haylou SmartWatch;;Child
+Haylou SmartWatch LS01;;Child
+Haylou SmartWatch LS02;;Child
+Haylou Smartwatch RS4;;Child
+Haylou Solar;;Child
+Haylou Solar LS05;;Child
+Honor;;Grandparent
+Honor Band Series;;Parent
+Honor Band 3;Honor Band Series;Child
+Honor Band 5;Honor Band Series;Child
+Honor Band 5i;Honor Band Series;Child
+Honor Band 6;Honor Band Series;Child
+Honor MagicWatch Series;;Parent
+Honor MagicWatch 2 42mm;Honor MagicWatch Series;Child
+Honor MagicWatch 2 46mm;Honor MagicWatch Series;Child
+Honor S1;;Child
+Honor Watch Series;;Parent
+Honor Watch Dream;Honor Watch Series;Child
+Honor Watch ES;Honor Watch Series;Child
+Honor Watch GS 3;Honor Watch Series;Child
+Honor Watch GS Pro;Honor Watch Series;Child
+Huawei;;Grandparent
+Huawei Band 2;Huawei Band 2 Series;Child
+Huawei Band 2 Pro;Huawei Band 2 Series;Child
+Huawei Band 2 Series;;Parent
+Huawei Band 3;Huawei Band 3 Series;Child
+Huawei Band 3 Pro;Huawei Band 3 Series;Child
+Huawei Band 3 Series;;Parent
+Huawei Band 4 Pro;;Child
+Huawei Band 6;Huawei Band 6 Series;Child
+Huawei Band 6 Pro;Huawei Band 6 Series;Child
+Huawei Band 6 Series;;Parent
+Huawei Band 7;;Child
+Huawei Children's Watch 4X;;Child
+Huawei Honor Band 4;;Child
+Huawei Kids Watch 3 Pro;;Child
+Huawei TalkBand B2 Active;Huawei TalkBand Series;Child
+Huawei TalkBand B3;Huawei TalkBand Series;Child
+Huawei TalkBand B5;Huawei TalkBand Series;Child
+Huawei TalkBand B6;Huawei TalkBand Series;Child
+Huawei TalkBand Series;;Parent
+Huawei Watch;;Child
+Huawei Watch 2;Huawei Watch 2 Series;Child
+Huawei Watch 2 Classic;Huawei Watch 2 Series;Child
+Huawei Watch 2 Pro;Huawei Watch 2 Series;Child
+Huawei Watch 2 Series;;Parent
+Huawei Watch 3;Huawei Watch 3 Series;Child
+Huawei Watch 3 Pro;Huawei Watch 3 Series;Child
+Huawei Watch 3 Series;;Parent
+Huawei Watch Fit;Huawei Watch Fit Series;Child
+Huawei Watch Fit Mini;Huawei Watch Fit Series;Child
+Huawei Watch Fit Series;;Parent
+Huawei Watch GT;Huawei Watch GT Series;Child
+Huawei Watch GT 2 42mm;Huawei Watch GT 2 Series;Child
+Huawei Watch GT 2 46mm;Huawei Watch GT 2 Series;Child
+Huawei Watch GT 2 Pro;Huawei Watch GT 2 Series;Child
+Huawei Watch GT 2 Series;;Parent
+Huawei Watch GT 2e;Huawei Watch GT 2 Series;Child
+Huawei Watch GT 3 (42mm);Huawei Watch GT 3 Series;Child
+Huawei Watch GT 3 (46mm);Huawei Watch GT 3 Series;Child
+Huawei Watch GT 3 Pro 43mm;Huawei Watch GT 3 Series;Child
+Huawei Watch GT 3 Pro 46mm;Huawei Watch GT 3 Series;Child
+Huawei Watch GT 3 Series;;Parent
+Huawei Watch GT Elegant Edition;Huawei Watch GT Series;Child
+Huawei Watch GT Runner;Huawei Watch GT Series;Child
+Huawei Watch GT Series;;Parent
+Huawei Watch GT2e 46mm;Huawei Watch GT 2 Series;Child
+Huawei Watch Magic;;Child
+Keep;;Grandparent
+Keep B2;;Child
+Lemfo;;Grandparent
+Lemfo LF26;;Child
+Letscom;;Grandparent
+Letscom ID205L;;Child
+Letscom ID205S;;Child
+Letscom ID216;;Child
+LG G Watch R W110;;Child
+LG G Watch W100;;Child
+LG Watch;;Grandparent
+LG Watch Sport;;Child
+LG Watch Style;;Child
+LG Watch Urbane W150;;Child
+LG Watch W7;;Child
+Meizu;;Grandparent
+Meizu Watch;;Child
+Mibro;;Grandparent
+Mibro Watch X1;;Child
+Michael Kors;;Grandparent
+Michael Kors Runway;;Child
+Misfit;;Grandparent
+Misfit Vapor;;Child
+Misfit Vapor 2;;Child
+Motorola Moto;;Grandparent
+Motorola Moto 360 - 42mm;;Child
+Motorola Moto 360 - 46mm;;Child
+Noise;;Grandparent
+Noise ColorFit Pro 2;;Child
+Noise ColorFit Pulse;;Child
+Nokia Smartwatch;;Grandparent
+Nokia Steel HR;;Child
+OnePlus;;Grandparent
+OnePlus Watch;;Child
+Oppo;;Grandparent
+Oppo Band;;Child
+Oppo Band Style;;Child
+Oppo Watch (41mm);;Child
+Oppo Watch (46mm);;Child
+Oppo Watch 2 (42mm);;Child
+Oppo Watch 2 (46mm);;Child
+Oppo Watch Free;;Child
+Pebble;;Grandparent
+Pebble 2 \ 2 SE;;Child
+Pebble Classic;;Child
+Pebble Time;;Child
+Pebble Time Round Large;;Child
+Pebble Time Steel;;Child
+Polar;;Grandparent
+Polar A;;Parent
+Polar A300;Polar A;Child
+Polar A360;Polar A;Child
+Polar A370;Polar A;Child
+Polar FT;;Parent
+Polar FT4;Polar FT;Child
+Polar FT60;Polar FT;Child
+Polar FT7;Polar FT;Child
+Polar Grit;;Parent
+Polar Grit X;Polar Grit;Child
+Polar Grit X Pro;Polar Grit;Child
+Polar Ignite;Polar Ignite Series;Child
+Polar Ignite 2;Polar Ignite Series;Child
+Polar Ignite Series;;Parent
+Polar M;;Parent
+Polar M200;Polar M;Child
+Polar M400;Polar M;Child
+Polar M430;Polar M;Child
+Polar M450;Polar M;Child
+Polar M600;Polar M;Child
+Polar Unite;;Child
+Polar V;;Parent
+Polar V650;Polar V;Child
+Polar V800;Polar V;Child
+Polar Vantage M;Polar Vantage Series;Child
+Polar Vantage M2;Polar Vantage Series;Child
+Polar Vantage Series;;Parent
+Polar Vantage V;Polar Vantage Series;Child
+Polar Vantage V2;Polar Vantage Series;Child
+Realme;;Grandparent
+Realme Band;;Child
+Realme Band 2;;Child
+Realme Watch;;Child
+Realme Watch 2;;Child
+Realme Watch 2 Pro;;Child
+Realme Watch S;;Child
+Samsung;;Grandparent
+Samsung Galaxy Fit;;Child
+Samsung Galaxy Fit 2;;Child
+Samsung Galaxy Fit-e;;Child
+Samsung Galaxy Watch (42mm);;Child
+Samsung Galaxy Watch (46mm);;Child
+Samsung Galaxy Watch 3 (41mm);;Child
+Samsung Galaxy Watch 3 (45mm);;Child
+Samsung Galaxy Watch 3 (46mm);;Child
+Samsung Galaxy Watch 4 (40mm);;Child
+Samsung Galaxy Watch 4 (44mm);;Child
+Samsung Galaxy Watch 4 Classic (42mm);;Child
+Samsung Galaxy Watch 4 Classic (46mm);;Child
+Samsung Galaxy Watch Active;;Child
+Samsung Galaxy Watch Active 2 - 40mm;;Child
+Samsung Galaxy Watch Active 2 - 44mm;;Child
+Samsung Gear;;Child
+Samsung Gear 2;;Child
+Samsung Gear Fit2;;Child
+Samsung Gear Fit2 Pro;;Child
+Samsung Gear S2;;Child
+Samsung Gear S2 Classic;;Child
+Samsung Gear S3;;Child
+Samsung Gear S3 Active;;Child
+Samsung Gear S3 Frontier;;Child
+Samsung Gear Sport;;Child
+Seiko;;Grandparent
+Seiko SUN059;;Child
+Skagen;;Grandparent
+Skagen Falster 2;;Child
+Sony SmartWatch;;Grandparent
+Sony SmartWatch 2;;Child
+Suunto;;Grandparent
+Suunto 3;Suunto 3 Series;Child
+Suunto 3 Fitness;Suunto 3 Series;Child
+Suunto 3 Series;;Parent
+Suunto 5;;Child
+Suunto 7;;Child
+Suunto 9;Suunto 9 Series;Child
+Suunto 9 Baro;Suunto 9 Series;Child
+Suunto 9 Peak;Suunto 9 Series;Child
+Suunto 9 Series;;Parent
+Suunto Ambit;Suunto Ambit Series;Child
+Suunto Ambit Series;;Parent
+Suunto Ambit2;Suunto Ambit Series;Child
+Suunto Ambit3;Suunto Ambit Series;Child
+Suunto Ambit3 Vertical;Suunto Ambit Series;Child
+Suunto Core;Suunto Core Series;Child
+Suunto Core All Black;Suunto Core Series;Child
+Suunto Core Alu Black;Suunto Core Series;Child
+Suunto Core Series;;Parent
+Suunto D4;Suunto D4 Series;Child
+Suunto D4 Series;;Parent
+Suunto D4i;Suunto D4 Series;Child
+Suunto D4i Novo;Suunto D4 Series;Child
+Suunto D5;;Child
+Suunto D6 Series;;Parent
+Suunto D6i Dive;Suunto D6 Series;Child
+Suunto D6i Novo;Suunto D6 Series;Child
+Suunto D6i Zulu;Suunto D6 Series;Child
+Suunto Essential;;Child
+Suunto Kailash;;Child
+Suunto M1 / M2 / M4 / M5;;Child
+Suunto Quest M1 / M2 / M4 / M5;;Child
+Suunto Spartan Series;;Parent
+Suunto Spartan Sport;Suunto Spartan Series;Child
+Suunto Spartan Sport Wrist HR Baro;Suunto Spartan Series;Child
+Suunto Spartan Trainer Wrist HR;Suunto Spartan Series;Child
+Suunto Spartan Ultra;Suunto Spartan Series;Child
+Suunto Traverse;;Child
+Suunto X-Lander;;Child
+Ticwatch;;Grandparent
+TicWatch 1;;Child
+TicWatch 2;;Child
+TicWatch C2 Onyx;;Child
+TicWatch C2 Platinum;;Child
+TicWatch C2 Rose Gold;;Child
+TicWatch E;;Child
+TicWatch E2;;Child
+TicWatch E3;;Child
+TicWatch GTH;;Child
+TicWatch GTX;;Child
+Ticwatch Pro;;Child
+Ticwatch Pro 3;;Child
+Ticwatch S;;Child
+Ticwatch S2;;Child
+TicWatch TicBand;;Child
+TomTom;;Grandparent
+TomTom Adventurer;;Child
+TomTom Golfer 2;;Child
+TomTom Golfer 2 SE;;Child
+TomTom Multi-Sport;;Child
+TomTom Runner;;Child
+TomTom Runner 2;;Child
+TomTom Runner 2 Cardio;;Child
+TomTom Runner 2 Cardio + Music;;Child
+TomTom Runner 2 Music;;Child
+TomTom Runner 3;;Child
+TomTom Runner 3 Cardio;;Child
+TomTom Runner 3 Cardio + Music;;Child
+TomTom Runner 3 Music;;Child
+TomTom Spark;;Child
+TomTom Spark 3;;Child
+TomTom Spark 3 Cardio;;Child
+TomTom Spark 3 Cardio + Music;;Child
+TomTom Spark 3 Music;;Child
+TomTom Spark Cardio;;Child
+TomTom Spark Cardio + Music;;Child
+TomTom Spark Music;;Child
+TomTom Touch;;Child
+Umidigi;;Grandparent
+Umidigi UFit;;Child
+Umidigi Uwatch GT;;Child
+Umidigi Uwatch3;;Child
+Universal;;Grandparent
+Vector;;Grandparent
+Vector Luna;;Child
+Verizon;;Grandparent
+Verizon GizmoWatch Disney;;Child
+Vivo Watch 2;;Child
+Vivo Watch 42mm;;Child
+Vivo Watch 46mm;;Child
+Withings;;Grandparent
+Withings Activité;;Parent
+Withings Activité Pop;Withings Activité;Child
+Withings Activité Sapphire;Withings Activité;Child
+Withings Steel;;Parent
+Withings Steel HR (36mm);Withings Steel;Child
+Withings Steel HR (40mm);Withings Steel;Child
+Withings Steel HR Sport (40mm);Withings Steel;Child
+Xiaomi;;Grandparent
+Xiaomi Imilab KW66;Xiaomi;Child
+Xiaomi Mi;Xiaomi;Parent
+Xiaomi Mi Band 2;Xiaomi Mi;Child
+Xiaomi Mi Band 3;Xiaomi Mi;Child
+Xiaomi Mi Band 5;Xiaomi Mi;Child
+Xiaomi Mi Band 7;Xiaomi Mi;Child
+Xiaomi Mi Smart Band 4;Xiaomi Mi;Child
+Xiaomi Mi Smart Band 6;Xiaomi Mi;Child
+Xiaomi Mi Watch;Xiaomi Mi;Child
+Xiaomi Mi Watch Color;Xiaomi Mi;Child
+Xiaomi Mi Watch Color Sports;Xiaomi Mi;Child
+Xiaomi Mi Watch Lite;Xiaomi Mi;Child
+Xiaomi Mi Watch Premium Edition;Xiaomi Mi;Child
+Xiaomi Redmi;;Parent
+Xiaomi Redmi Smart Band Pro;Xiaomi Redmi;Child
+Xiaomi Redmi Watch;Xiaomi Redmi;Child
+Xiaomi Redmi Watch 2;Xiaomi Redmi;Child
+Xiaomi Redmi Watch 2 Lite;Xiaomi Redmi;Child
+Xiaomi Watch;;Parent
+Xiaomi Watch Color;Xiaomi Watch;Child
+Xiaomi Watch Color 2;Xiaomi Watch;Child
+Xiaomi Watch S1;Xiaomi Watch;Child
+Xiaomi Watch S1 Active;Xiaomi Watch;Child
+Yamay;;Grandparent
+Yamay SW022;;

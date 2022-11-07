@@ -1,0 +1,7 @@
+argparse
+os
+csv
+re
+sqlite3
+python-slugify
+itertools

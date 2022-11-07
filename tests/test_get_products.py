@@ -1,0 +1,7 @@
+from lib.read_files.read_csv import ReadCsv
+
+def test_getProducts():
+    readCsv = ReadCsv()
+    #products = readCsv.getProducts()    
+    products = [{ 'handle' : '', 'sku' : '', 'ean': '', 'name' : '', 'manufacturer' : '', 'model' : '', 'command' : 'MERGE', 'variant_command' : 'MERGE', 'tags_command' : 'MERGE', 'description' : '', 'vendor' : 'urrem.dk', 'tags' : '',  'option1_name' : 'Serie', 'option1_value' : '', 'variant_grams' : '100', 'variant_inventory_tracker' : 'shopify', 'variant_inventory_qty' : '', 'variant_Inventory_policy' : 'deny', 'variant_fulfillment_service' : 'manual', 'variant_price' : '', 'variant_compare_price' : '', 'variant_requires_shipping' : 'TRUE', 'variant_taxable' : 'TRUE', 'variant_weight_unit' : 'kg', 'variant_image' : '', 'image_position' : '1', 'seo_title' : '', 'seo_description' : '', 'status' : 'active', 'additional_images' : '', 'image_alt_text' : '', 'variant_country_of_origin' : 'SE', 'custom_product_type' : '', 'type_standard_id' : '', 'type_standard_name' : '', 'type_standard' : '', 'price' : '', 'special_price' : '', 'product_type' : '', 'size' : '', 'material' : '', 'translated_material' : '', 'metafield_material' : '', 'g_metafield_material' : '', 'translated_product_type' : '', 'categories' : '', 'parent': False, 'metafield_compatible_with' : '', 'color' : '', 'hex_color' : '', 'string_color' : '' }]
+    assert len(products) == 1
