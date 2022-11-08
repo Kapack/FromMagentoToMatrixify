@@ -47,10 +47,7 @@ class SaveFiles:
                 'Metafield: custom.storrelse [single_line_text_field]',
                 'Variant Metafield: custom.farve [list.color]',
                 'Variant Metafield: color.string [single_line_text_field]',
-                'Metafield: mm-google-shopping.custom_product [string]',
-                # 'Metafield: mm-google-shopping.material [single_line_text_field]',
-                # 'Variant Metafield: mm-google-shopping.gtin [single_line_text_field]',
-                # 'Variant Metafield: mm-google-shopping.color [single_line_text_field]',                
+                'Metafield: mm-google-shopping.custom_product [string]',           
                 ]
                 
             writer = csv.DictWriter(file, fieldnames=fieldnames, delimiter=',')
@@ -98,14 +95,11 @@ class SaveFiles:
                     'Type: Standard Name' : products[product]['type_standard_name'],
                     'Type: Standard' : products[product]['type_standard'],                    
                     'Metafield: custom.compatible_with [list.single_line_text_field]' : products[product]['metafield_compatible_with'],
-                    'Metafield: custom.multiple_material [list.single_line_text_field]' : products[product]['metafield_material'],
+                    'Metafield: custom.multiple_material [list.single_line_text_field]' : products[product]['materials']['metafield'],
                     'Metafield: custom.storrelse [single_line_text_field]' : products[product]['size'],
-                    'Variant Metafield: custom.farve [list.color]' : products[product]['hex_color'],   
-                    'Variant Metafield: color.string [single_line_text_field]' : products[product]['string_color'],
+                    'Variant Metafield: custom.farve [list.color]' : products[product]['colors']['hex'],   
+                    'Variant Metafield: color.string [single_line_text_field]' : products[product]['colors']['string'],
                     'Metafield: mm-google-shopping.custom_product [string]' : 'false',
-                    # 'Metafield: mm-google-shopping.material [single_line_text_field]' : products[product]['g_metafield_material'],
-                    # 'Variant Metafield: mm-google-shopping.gtin [single_line_text_field]' : products[product]['ean'],               
-                    # 'Variant Metafield: mm-google-shopping.color [single_line_text_field]' : products[product]['string_color'],                    
                     })
         print(BGCOLORS['SUCCESS'] + 'Import file is saved' + BGCOLORS['ENDC'])
     

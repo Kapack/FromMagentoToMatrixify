@@ -15,45 +15,42 @@ class Translate:
         products = self.productTypes(products)            
         return products
     
-    def material(self, products:dict) -> dict:
-        regex = re.compile('[@_!#$%^&*()<>?/\|,}{~: ]')        
+    def material(self, products:dict) -> dict:      
         materials = self.select.materials()
-        
-        for product in products:            
-            # If there is material
-            if(products[product]['material']):
-                # Split with words ( Remember that words like "Genuine Leather" is splitted into twp)
-                materialSplit = re.split(r'(\W+)', products[product]['material'])                
-                
-                for i in range(len(materialSplit)):
-                    # If "word" is not a special char
-                    if(regex.search(materialSplit[i]) == None):
-                        # Find translated version in db
-                        # print(materialSplit[i])
-                        for material in materials:
-                            if(materialSplit[i].lower() == materials[material]['material'].lower()):
-                                # If there is a translated version
-                                if(materials[material]['dk']):
-                                    # Replace in the index from the splitted string
-                                    materialSplit[i] = materials[material]['dk']
-                                # Give user message if translated verison is missing
-                                else:
-                                   print(materials[material]['material'] + ' needs translation')
 
-                # Make list a string again
-                translated_materials =  ''.join(materialSplit)
-                products[product]['translated_material'] = translated_materials    
+        for product in products:
+            product_material = products[product]['materials']['material'].lower()            
+            translated_materials = []
+            # If product has a material
+            if(product_material):
+                # Splitting with , (Multiple materials)
+                product_material_split = product_material.split(',')
+                product_material_split = [mat.strip() for mat in product_material_split]                
+                # Loop through database
+                for i in materials:                                
+                    # If DB material exists in product_material_split list
+                    if materials[i]['material'].lower() in product_material_split:                        
+                        # If there is a translated version
+                        if(materials[i]['dk']):                            
+                            translated_materials.append(materials[i]['dk'])
+                        # Give user message if translated verison is missing
+                        else:
+                            print(materials[i]['material'] + ' needs translation')
+                                                
+                # Give products string value
+                products[product]['materials']['translated'] =  ', '.join(translated_materials)
 
         return products
     
 
     def productTypes(self, products:dict) -> dict:
         product_types = self.select.product_types()
-        for product in products:            
-            for i in product_types:                                
-                if(product_types[i]['product_type'] == products[product]['product_type']):
+        for product in products:                        
+            for i in product_types:                                                        
+                # If what is in select 
+                if(product_types[i]['product_type'] == products[product]['product_types']['product_type']):                    
                     if(product_types[i]['dk']):
-                        products[product]['translated_product_type'] = product_types[i]['dk']                    
+                        products[product]['product_types']['translate'] = product_types[i]['dk']                    
                     else:
-                        raise ValueError(product_types[i]['product_type'] + ' needs translation')            
+                        raise ValueError(product_types[i]['product_types']['product_type'] + ' needs translation')            
         return products    

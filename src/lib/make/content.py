@@ -14,27 +14,57 @@ class Content:
     
     """
     def createName(self, products:dict) -> dict:
-        productname : str
+        productname : str = ''
         addjectives = self.select.addjectives()        
 
-        for product in products:                                 
-            if products[product]['parent'] == True:                 
-                if products[product]['product_type'] == 'Watch Band':
-                    material = products[product]['translated_material']
+        for product in products:
+            # Default product name, so name wont be empty
+            productname = products[product]['name']                                 
+            
+            # Choosing on model name
+            if (products[product]['model']) and (products[product]['model'].lower() != 'n/a'):                        
+                model = products[product]['model']
+            else:                                                                                                                    
+                model = getModelName(product = products[product])
+            # Translated product type
+            translate_product_type = products[product]['product_types']['translate']
+            # Material
+            material = products[product]['materials']['translated']
+
+            if products[product]['parent'] == True:
+                if products[product]['product_types']['product_type'] == 'Watch Band':                    
                     # Remove Other material
                     if 'other' in material.lower():
                         material = material.lower().replace('other', '')                        
+                    
+                    addjective = random.choice(addjectives)
+                    productname = addjective.capitalize() + ' ' +  model +  ' ' + material + ' ' +  translate_product_type
+                
+                if products[product]['product_types']['product_type'] == 'Screen Protecter':
+                    # print(material)
+                    # print(model + ' ' + translate_product_type)
+                    # print(products[product]['product_types']['translate'])
+                    #'product_types' : {'product_type' : key['m2_type'], 'translate' : ''},
+                    # 'product_types' : {'product_type' : key['m2_type'], 'translate' : ''},
+                    pass
+                    # productname = 'asdasd'
+                
+                if products[product]['product_types']['product_type'] == 'Charger':
+                    pass
+                
+                if products[product]['product_types']['product_type'] == 'Cable':
+                    pass
+                
+                if products[product]['product_types']['product_type'] == 'Stand':
+                    pass                
 
-                    product_type = products[product]['translated_product_type']
-                    addjective = random.choice(addjectives)      
-                    # Choosing on model name
-                    if (products[product]['model']) and (products[product]['model'].lower() != 'n/a'):                        
-                        model = products[product]['model']
-                    else:                                                                                                                    
-                        model = getModelName(product = products[product])
+                if products[product]['product_types']['product_type'] == 'Stylus Pen':
+                    pass
+                
+                
+                products[product]['name'] = productname
 
-                    productname = addjective.capitalize() + ' ' +  model +  ' ' + material + ' ' +  product_type
-                    products[product]['name'] = productname                                                                           
+
         return products
 
     def createDescription(self, products:dict) -> dict:
@@ -52,7 +82,7 @@ class Content:
             endingTxt : str = ''
 
             if products[product]['parent'] == True:    
-                if products[product]['product_type'] == 'Watch Band':                    
+                if products[product]['product_types']['product_type'] == 'Watch Band':                    
                     # Append random Intro Text
                     introTxt = random.choice(introTexts)
                     if '[DEVICE]' in introTxt:                         
@@ -62,7 +92,7 @@ class Content:
                     # Append all material, Material Text
                     materialListTexts = []                    
                     for i in materialTexts:
-                        if(products[product]['material'] == materialTexts[i]['material_text']):                            
+                        if(products[product]['materials']['material'] == materialTexts[i]['material_text']):                            
                             materialListTexts.append(materialTexts[i]['material_text_dk'])                    
                             
                     # If any texts got append to materialListTexts, pick one random
@@ -128,7 +158,6 @@ class Content:
                                 next_el = self.convertInchToCm(next_el)                                                            
                             # Append to txt
                             sizeTxt += word[0].capitalize() + ' ' + next_el + '<br/>'
-
             except:
                 pass 
 

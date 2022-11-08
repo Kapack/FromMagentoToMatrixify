@@ -8,13 +8,14 @@ class Metafield:
         Hex is for shopify metafield
     """
     # Converts colors into Hexcode
-    def colors(self, products:dict) -> dict:
-        for product in products:
+    def colors(self, products:dict) -> dict:        
+        for product in products:            
             color : str
             hexColors : list
             hexcode : str = ''           
             strColor : str = ''           
-            color = products[product]['color']
+            # color = products[product]['color']            
+            color = products[product]['colors']['color']            
 
             # If color is not empty
             if color:
@@ -35,8 +36,8 @@ class Metafield:
                     strColor = HEXCOLORS[color.upper()]['dk'].capitalize()
             
                 # Assign hexcode to metafield
-                products[product]['hex_color'] = hexcode
-                products[product]['string_color'] = strColor
+                products[product]['colors']['hex'] = hexcode
+                products[product]['colors']['string'] = strColor
                 
         return products    
     
@@ -50,8 +51,8 @@ class Metafield:
         for product in products:
             if products[product]['parent'] == True:
                 # Split material
-                materialSplit = products[product]['translated_material'].split(',')
-                products[product]['metafield_material'] = ', '.join(materialSplit)                              
+                materialSplit = products[product]['materials']['translated'].split(',')
+                products[product]['materials']['metafield'] = ', '.join(materialSplit)                              
         return products
     
     def size(self, products:dict) -> dict:        

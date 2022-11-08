@@ -52,7 +52,7 @@ class Main:
         # Products
         products = readCsv.getProducts()
         # # Handle
-        products = make.handle(products = products)        
+        products = make.handle(products = products)
         # Check if product is parent
         products = make.checkIfParent(products = products)
         products = make.createOptionOne(products = products)
@@ -74,7 +74,7 @@ class Main:
         # Add Missing Content to parent products 
         products = parent.addProductTypes(products = products)
         products = parent.setVendor(products = products)
-        products = metafield.compatibleWith(products = products)          
+        products = metafield.compatibleWith(products = products)
         # Translate Attributes
         products = translate.translateAttributes(products = products)
         products = metafield.material(products = products)                

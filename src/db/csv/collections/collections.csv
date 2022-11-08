@@ -589,26 +589,31 @@ Ticwatch S2;;Child
 TicWatch TicBand;;Child
 TomTom;;Grandparent
 TomTom Adventurer;;Child
-TomTom Golfer 2;;Child
-TomTom Golfer 2 SE;;Child
+TomTom Golfer Series;;Parent
+TomTom Golfer 2;TomTom Golfer Series;Child
+TomTom Golfer 2 SE;TomTom Golfer Series;Child
 TomTom Multi-Sport;;Child
 TomTom Runner;;Child
-TomTom Runner 2;;Child
-TomTom Runner 2 Cardio;;Child
-TomTom Runner 2 Cardio + Music;;Child
-TomTom Runner 2 Music;;Child
-TomTom Runner 3;;Child
-TomTom Runner 3 Cardio;;Child
-TomTom Runner 3 Cardio + Music;;Child
-TomTom Runner 3 Music;;Child
-TomTom Spark;;Child
-TomTom Spark 3;;Child
-TomTom Spark 3 Cardio;;Child
-TomTom Spark 3 Cardio + Music;;Child
-TomTom Spark 3 Music;;Child
-TomTom Spark Cardio;;Child
-TomTom Spark Cardio + Music;;Child
-TomTom Spark Music;;Child
+TomTom Runner 2 Series;;Parent
+TomTom Runner 2;TomTom Runner 2 Series;Child
+TomTom Runner 2 Cardio;TomTom Runner 2 Series;Child
+TomTom Runner 2 Cardio + Music;TomTom Runner 2 Series;Child
+TomTom Runner 2 Music;TomTom Runner 2 Series;Child
+TomTom Runner 3 Series;;Parent
+TomTom Runner 3;TomTom Runner 3 Series;Child
+TomTom Runner 3 Cardio;TomTom Runner 3 Series;Child
+TomTom Runner 3 Cardio + Music;TomTom Runner 3 Series;Child
+TomTom Runner 3 Music;TomTom Runner 3 Series;Child
+TomTom Spark Series;;Parent
+TomTom Spark;TomTom Spark Series;Child
+TomTom Spark 3 Series;;Parent
+TomTom Spark 3;TomTom Spark 3 Series;Child
+TomTom Spark 3 Cardio;TomTom Spark 3 Series;Child
+TomTom Spark 3 Cardio + Music;TomTom Spark 3 Series;Child
+TomTom Spark 3 Music;TomTom Spark 3 Series;Child
+TomTom Spark Cardio;TomTom Spark Series;Child
+TomTom Spark Cardio + Music;TomTom Spark Series;Child
+TomTom Spark Music;TomTom Spark Series;Child
 TomTom Touch;;Child
 Umidigi;;Grandparent
 Umidigi UFit;;Child

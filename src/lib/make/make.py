@@ -132,7 +132,7 @@ class Make:
             products[product]['name'] = " ".join(products[product]['name'].split())
              
             # Adding default size
-            if (products[product]['product_type'] == 'Watch Band' and products[product]['size'] == ''):
+            if (products[product]['product_types']['product_type'] == 'Watch Band' and products[product]['size'] == ''):
                 products[product]['size'] = 'One-size'
             
             # Cast categories into string            
