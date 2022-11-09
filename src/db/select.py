@@ -185,3 +185,14 @@ class Select:
             kws.append({'device' : row[0].lower(), 'keyword' : row[1], 'volume': row[2] })
 
         return kws
+    
+    def collection_ads_keyword(self) -> list:
+        sql = "SELECT keyword FROM collection_ads_kw"
+        c.execute(sql)
+        rows = c.fetchall()
+        ads_kw : list = []
+
+        for row in rows:            
+            ads_kw.append(row[0])
+
+        return ads_kw

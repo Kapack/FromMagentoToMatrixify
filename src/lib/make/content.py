@@ -30,33 +30,34 @@ class Content:
             translate_product_type = products[product]['product_types']['translate']
             # Material
             material = products[product]['materials']['translated']
+            # Addjective
+            addjective = random.choice(addjectives)
 
             if products[product]['parent'] == True:
                 if products[product]['product_types']['product_type'] == 'Watch Band':                    
                     # Remove Other material
                     if 'other' in material.lower():
                         material = material.lower().replace('other', '')                        
-                    
-                    addjective = random.choice(addjectives)
+                                        
                     productname = addjective.capitalize() + ' ' +  model +  ' ' + material + ' ' +  translate_product_type
                 
-                if products[product]['product_types']['product_type'] == 'Screen Protecter':
-                    # print(material)
-                    # print(model + ' ' + translate_product_type)
-                    # print(products[product]['product_types']['translate'])
-                    #'product_types' : {'product_type' : key['m2_type'], 'translate' : ''},
-                    # 'product_types' : {'product_type' : key['m2_type'], 'translate' : ''},
-                    pass
-                    # productname = 'asdasd'
+                if products[product]['product_types']['product_type'] == 'Bumper':
+                    productname = addjective.capitalize() + ' ' + model + ' ' + material + ' ' + translate_product_type                    
                 
-                if products[product]['product_types']['product_type'] == 'Charger':
+                if products[product]['product_types']['product_type'] == 'Screen Protecter':
+                    productname = model + ' ' + material + ' ' + translate_product_type                    
+                
+                if products[product]['product_types']['product_type'] == 'Charger':                    
                     pass
+                    #productname = model + ' ' + translate_product_type                                    
                 
                 if products[product]['product_types']['product_type'] == 'Cable':
+                    # print(products[product]['name'])
                     pass
                 
                 if products[product]['product_types']['product_type'] == 'Stand':
-                    pass                
+                    productname = model + ' ' + material + ' ' + translate_product_type
+                    pass
 
                 if products[product]['product_types']['product_type'] == 'Stylus Pen':
                     pass

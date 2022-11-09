@@ -15,6 +15,15 @@ class Database():
         c = conn.cursor()
             
     def createAndInsertTables(self) -> None:
+        # Attributes        
+        ProductAttributes()
+        # Descriptions
+        ProductTexts()
+         # Collections
+        Collections()
+
+class ProductAttributes(Database):
+    def __init__(self):        
         self.createMaterial()
         self.insertMaterial()
         self.createColor()
@@ -23,26 +32,8 @@ class Database():
         self.insertProductType()
         self.createAddjective()
         self.insertAddjective()                
-        # Descriptions
         self.createSizes()
         self.insertSizes()
-        self.createWatchBandIntroText()
-        self.insertWatchBandIntroText()
-        self.createWatchBandMaterialText()
-        self.insertWatchBandMaterialText()
-        self.createWatchBandEndingtext()
-        self.insertWatchBandEndingText()
-        # Collections
-        self.createCollections()
-        self.insertCollections()
-        self.createCollectionPageTitles()
-        self.insertCollectionPageTitles()
-        self.createCollectionMetaDesc()
-        self.insertCollectionMetaDesc()
-        self.createCollectionDescription()
-        self.insertCollectionDescription()
-        self.createCollectionKWResearch()
-        self.insertCollectionKWResearch()
 
     def createColor(self):
         sql = 'CREATE TABLE if not exists colors (id integer primary key not null, color text, dk_singular text, dk_plural text, dk_neutrum text)'
@@ -95,8 +86,7 @@ class Database():
                 c.execute('INSERT INTO addjectives VALUES(?, ?)', (i, row['dk_addjective'] ))
                 i += 1
                 conn.commit()
-	
-    # Descriptions
+
     def createSizes(self):
         sql = 'CREATE TABLE if not exists sizes (id integer primary key not null, size text, dk text)'
         c.execute(sql)
@@ -109,6 +99,16 @@ class Database():
                 c.execute('INSERT INTO sizes VALUES(?, ?, ?)', (i, row['size'], row['dk']  ))
                 i += 1
                 conn.commit()
+
+# Descriptions
+class ProductTexts(Database):
+    def __init__(self):        
+        self.createWatchBandIntroText()
+        self.insertWatchBandIntroText()
+        self.createWatchBandMaterialText()
+        self.insertWatchBandMaterialText()
+        self.createWatchBandEndingtext()
+        self.insertWatchBandEndingText()
 
     # Specific texts
     def createWatchBandIntroText(self):
@@ -149,7 +149,23 @@ class Database():
                 c.execute('INSERT INTO watch_band_ending_texts VALUES(?, ?)', (i, row['dk']))
                 i += 1
                 conn.commit()
-    # Collections    
+
+class Collections(Database):
+    def __init__(self):        
+        self.createCollections()
+        self.insertCollections()
+        self.createCollectionPageTitles()
+        self.insertCollectionPageTitles()
+        self.createCollectionMetaDesc()
+        self.insertCollectionMetaDesc()
+        self.createCollectionDescription()
+        self.insertCollectionDescription()
+        self.createCollectionKWResearch()
+        self.insertCollectionKWResearch()
+        self.createCollectionAdsKeywords()
+        self.insertCollectionAdsKeywords()
+
+
     def createCollections(self):
       sql = 'CREATE TABLE if not exists collections (id integer primary key not null, name text, belongs_to text, relationship_type text)'
       c.execute(sql)
@@ -216,3 +232,15 @@ class Database():
                 i += 1
                 conn.commit()
 
+    def createCollectionAdsKeywords(self):
+      sql = 'CREATE TABLE if not exists collection_ads_kw (id integer primary key not null, keyword text)'
+      c.execute(sql)
+        
+    def insertCollectionAdsKeywords(self):
+        with open(DB_PATH + 'csv/collections/ads/collections-common-kw.csv', 'r') as file:
+            reader = csv.DictReader(file, delimiter=';')
+            i = 1
+            for row in reader:
+                c.execute('INSERT INTO collection_ads_kw VALUES(?,?)', (i, row['keyword']) )
+                i += 1
+                conn.commit()
