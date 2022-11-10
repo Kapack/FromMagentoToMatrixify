@@ -73,7 +73,7 @@ class Collection:
     adsKeywords = self.collectionAdsKw
     collectionNames : list[str] = collections
 
-    # if collections comes from update, we don't want dict but only a list with names
+    # if collections comes from update (dict), we don't want dict but only a list with names
     if type(collectionNames[0]) == dict:
       collectionNames = [collection['name'] for collection in collectionNames]      
 

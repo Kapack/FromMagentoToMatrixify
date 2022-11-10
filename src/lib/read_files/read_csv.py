@@ -51,12 +51,10 @@ class ReadCsv:
 					'price' : key['price'],
 					'special_price' : key['special_price'],
 					'product_types' : {'product_type' : key['m2_type'], 'translate' : ''},
-					# 'translated_product_type' : '',
 					'size' : '',
 					'materials' : {'material' : key['material'], 'translated' : '', 'metafield' : ''},
-					'colors' : {'color' : key['color'], 'hex' : key['color'], 'string' : key['color']},				
-					'categories' : key['_category'],
-					'metafield_compatible_with' : '',
+					'colors' : {'color' : key['color'], 'hex' : key['color'], 'string' : key['color']},			
+					'categories' : {'category' : key['_category'], 'metafield_compatible_with' : '' },	
 					'parent': False,
 				}
 				i += 1

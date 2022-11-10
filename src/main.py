@@ -69,12 +69,12 @@ class Main:
         productsAndCollections = make.createCategories(products = products)
         products = productsAndCollections[0]
         missingCollections = productsAndCollections[1]        
-        # Check for new categories (Collections)                
+        # # Check for new categories (Collections)                
         CreateCollection(newCollections = missingCollections)
-        # Add Missing Content to parent products 
+        # # Add Missing Content to parent products 
         products = parent.addProductTypes(products = products)
         products = parent.setVendor(products = products)
-        products = metafield.compatibleWith(products = products)
+        # products = metafield.compatibleWith(products = products)
         # Translate Attributes
         products = translate.translateAttributes(products = products)
         products = metafield.material(products = products)                

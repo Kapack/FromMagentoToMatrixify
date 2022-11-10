@@ -53,7 +53,7 @@ class SaveFiles:
             writer = csv.DictWriter(file, fieldnames=fieldnames, delimiter=',')
             writer.writeheader()            
 
-            for product in products:                      
+            for product in products:                                               
                 writer.writerow({
                     'Handle' : products[product]['handle'], 
                     'Variant SKU' : products[product]['sku'], 
@@ -64,7 +64,7 @@ class SaveFiles:
                     'Tags Command' : 'MERGE', 
                     'Body (HTML)' :  products[product]['description'], 
                     'Vendor' : products[product]['vendor'], 
-                    'Tags' :  products[product]['categories'],                     
+                    'Tags' :  products[product]['categories']['category'],                     
                     'Option1 Name' : products[product]['option1_name'], 
                     'Option1 Value' : products[product]['option1_value'],
                     'Option2 Name' : '', 
@@ -94,7 +94,7 @@ class SaveFiles:
                     'Type: Standard ID' : products[product]['type_standard_id'],
                     'Type: Standard Name' : products[product]['type_standard_name'],
                     'Type: Standard' : products[product]['type_standard'],                    
-                    'Metafield: custom.compatible_with [list.single_line_text_field]' : products[product]['metafield_compatible_with'],
+                    'Metafield: custom.compatible_with [list.single_line_text_field]' : products[product]['categories']['metafield_compatible_with'],                                        
                     'Metafield: custom.multiple_material [list.single_line_text_field]' : products[product]['materials']['metafield'],
                     'Metafield: custom.storrelse [single_line_text_field]' : products[product]['size'],
                     'Variant Metafield: custom.farve [list.color]' : products[product]['colors']['hex'],   

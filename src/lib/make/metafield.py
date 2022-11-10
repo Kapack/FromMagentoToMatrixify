@@ -42,9 +42,14 @@ class Metafield:
         return products    
     
     def compatibleWith(self, products:dict) -> dict:
-        for product in products:            
-            if products[product]['parent'] == True:                                                                  
-                products[product]['metafield_compatible_with'] = ', '.join(products[product]['categories'])
+        pass
+        """
+        look in make.createCategories
+        """
+
+        # for product in products:            
+        #     if products[product]['parent'] == True:                       
+        #         products[product]['categories']['metafield_compatible_with'] = ', '.join(products[product]['categories']['metafield_compatible_with'])
         return products
     
     def material(self, products:dict) -> dict:

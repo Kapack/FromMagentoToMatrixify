@@ -1,6 +1,7 @@
 from utils.helper import convertListToString
 from config.constants import BGCOLORS
 from db.select import Select
+from lib.make.collection.collection import CreateCollection
 
 class Make:
     def __init__(self) -> None:
@@ -66,16 +67,19 @@ class Make:
         belongsTo refers to the parent
     """
     def createCategories(self, products:dict) -> list:                
-        collections = self.select.collections()        
+        # Collections in DB
+        collections = self.select.collections()  
+        # For creating new collections      
         missingCollections : list[str] = []
 
         for product in products:            
             currentProductCategories : list[str]        
-            productCategories : list[str] = []
+            productCategories : list[str] = []   
+            productMetafield : list[str] = []             
             appendDbCollections : list[dict] = []
-
-            currentProductCategories = products[product]['categories'].split(',')                                    
-            for category in currentProductCategories:                
+ 
+            currentProductCategories = products[product]['categories']['category'].split(',')
+            for category in currentProductCategories:                                
                 categorySplit = category.split('/')
                 # Remove unwanted categories
                 unwanted = ['Lux-Case', 'Smartwatch']
@@ -97,19 +101,24 @@ class Make:
                     dbCollection = [collection for collection in collections if str(collection['name']).lower() == category.lower()]                                                
                     if dbCollection:
                         # Append all categories objects found                      
-                        appendDbCollections.append(dbCollection[0])                    
+                        appendDbCollections.append(dbCollection[0])
 
                     # Append missing categories: If category name is missing in db and not empty           
                     elif (category):
                         missingCollections.append(category)
 
-            # Appending all found collections
-            for collecion in appendDbCollections:
+            # Appending all found collections (To categores and metafiled)
+            for collection in appendDbCollections:
                 # Append brand and model
-                productCategories.append(collecion['name'])
+                productCategories.append(collection['name'])                
                 # Append Series
-                if collecion['belongs_to']:
-                    productCategories.append(collecion['belongs_to'])            
+                if collection['belongs_to']:
+                    productCategories.append(collection['belongs_to'])
+
+                # Append to metafield
+                if collection['relationship_type'].lower() == 'child':
+                    productMetafield.append(collection['name'])
+                            
                         
             # Make sure we have manufacturer as first element in categories                        
             if products[product]['manufacturer']:                                  
@@ -118,8 +127,12 @@ class Make:
             # Remove duplicates                        
             productCategories = list(dict.fromkeys(productCategories))               
             missingCollections = list(dict.fromkeys(missingCollections))  
-            # Asigning categories                     
-            products[product]['categories'] = productCategories     
+            productMetafield = list(dict.fromkeys(productMetafield))  
+            
+            # Asigning categories / Tags
+            products[product]['categories']['category'] = productCategories
+            # Asigning metafield
+            products[product]['categories']['metafield_compatible_with'] = ', '.join(productMetafield)
 
         return [products, missingCollections]
     
@@ -136,6 +149,6 @@ class Make:
                 products[product]['size'] = 'One-size'
             
             # Cast categories into string            
-            products[product]['categories'] = convertListToString(theList = products[product]['categories'])  
+            products[product]['categories']['category'] = convertListToString(theList = products[product]['categories']['category'])  
 
         return products

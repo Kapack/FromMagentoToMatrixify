@@ -14,7 +14,7 @@ class Parent:
                 # Remove manufacturer
                 products[product]['manufacturer'] = ''
                 # Remove categories
-                products[product]['categories'] = ''                       
+                products[product]['categories']['category'] = ''                       
         return products     
 
     def addProductTypes(self, products:dict) -> dict:

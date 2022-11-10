@@ -13,7 +13,7 @@ def convertListToString(theList : list) -> str:
 def getModelName(product : dict) -> str:
   modelName : str = ''
   manufacturer : str = product['manufacturer'] 
-  productCategories : list = product['categories']  
+  productCategories : list = product['categories']['category']  
   # Clean up the categories  
   while manufacturer in productCategories : productCategories.remove(manufacturer)    
       
