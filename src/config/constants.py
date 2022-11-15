@@ -1,8 +1,8 @@
 import os
 # DIRECTORIES
 DB_PATH = os.getcwd() + "/src/db/"
-CONTENT_FILES_EXPORT_FROM_MAGENTO = os.getcwd() + "/src/content_files/fromMagento.csv"
-CONTENT_DIR_IMPORT_TO_MATRIXIFY = os.getcwd() + "/src/content_files/import/"
+CONTENT_FILES_EXPORT_FROM_MAGENTO = os.getcwd() + "/src/import_files/fromMagento.csv"
+CONTENT_DIR_IMPORT_TO_MATRIXIFY = os.getcwd() + "/src/import_files/import/"
 
 # EXTERNAL LINKS
 MAGENTO_IMG_URL = 'https://lux-case.com/media/catalog/product'

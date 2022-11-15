@@ -13,8 +13,9 @@ import pandas as pd
 class Collection:
   def __init__(self) -> None:
     self.select = Select()
-    self.collectionKwResearch = self.select.collection_keyword_research()
+    self.collectionKwResearch : list[dict] = self.select.collection_keyword_research()
     self.collectionAdsKw : list = self.select.collection_ads_keyword()
+
 
   # Create default page tile      
   def collectionPageTitle(self, collectionName:str) -> str:
@@ -24,18 +25,11 @@ class Collection:
     # Get a default random kw
     randomKw = random.choice(pageTitles['kw'])
     first_pt = collectionName + ' ' + randomKw
-
-    # If name exists in keyword research, use that as a first part
-    allFirsts = {}
-    for key in self.collectionKwResearch:      
-      if key['device'].lower() == collectionName.lower():
-        # print(key['keyword'])
-        allFirsts[key['keyword']] = key['volume']
     
-    # If there's a keyword research
-    if allFirsts:
-      # Get the one with max search volume
-      first_pt = max(allFirsts, key = allFirsts.get)
+    # Using most searched keyword if it exists
+    mostSearchedKeywords = self.mostSearchedKeywords(collectionName = collectionName)
+    if mostSearchedKeywords['first']:
+      first_pt = mostSearchedKeywords['first']      
                     
     # Chose a random CTA
     randomCta = random.choice(pageTitles['cta'])
@@ -59,6 +53,7 @@ class Collection:
     
     return meta_desc
   
+  # Header Description
   def collectionDescription(self, collectionName:str) -> str:    
     description : str
     description = self.select.collection_description()
@@ -68,6 +63,39 @@ class Collection:
       description = description.replace('[DEVICE]', collectionName)
 
     return description
+
+  # Bottom SEO Text
+  def childBottomDescription(self, collection:dict):        
+    if collection['relationship_type'].lower() == 'child':
+      # Get texts
+      childDescs : list[dict] = self.select.collection_child_description()
+      # Choosing default random text
+      bottomTxt = random.choice(childDescs)
+
+      # Using most searched keyword if it exists
+      mostSearchedKeywords = self.mostSearchedKeywords(collectionName = collection['name'])            
+      if mostSearchedKeywords['second']:
+        second_most_searched = mostSearchedKeywords['second'].lower()
+        second_most_searched_as_device = second_most_searched.replace(collection['name'].lower(), '[DEVICE]')        
+
+        # If there is a second most searched. Chose a headline, where keyword exists.      
+        allSecondTxt = []        
+        for desc in childDescs:
+          # If a h2 in childDescs is same as second most search. Find all and append
+          if desc['h2'].lower() == second_most_searched_as_device.lower():
+            allSecondTxt.append(desc)          
+          # else:
+          #   print(second_most_searched_as_device + ' Does not exists as Child description')
+        
+        # Picking random
+        if allSecondTxt:
+          bottomTxt = random.choice(allSecondTxt)
+          # Create text and replace DEVICE        
+        
+      bottomTxt = '<h2>' + bottomTxt['h2'] + '</h2>' + '<p>' + bottomTxt['content'] + '</p>'
+      bottomTxt = bottomTxt.replace('[DEVICE]', collection['name'])
+        
+      return bottomTxt
 
   def createGoogleAds(self, collections) -> None:
     adsKeywords = self.collectionAdsKw
@@ -95,6 +123,28 @@ class Collection:
     df = pd.DataFrame.from_dict(collections)
     df.to_csv (CONTENT_DIR_IMPORT_TO_MATRIXIFY + filepath, index = False, header=True)  
     print(BGCOLORS['WARNING'] + warningmsg + BGCOLORS['ENDC'])
+
+  def mostSearchedKeywords(self, collectionName : str) -> dict[str]:
+    mostSearched = {'first' : '', 'second' : ''}
+
+    # If name exists in keyword research
+    searchedKws : dict[str] = {}
+    
+    for key in self.collectionKwResearch:      
+      if key['device'].lower() == collectionName.lower():
+        searchedKws[key['keyword']] = key['volume']
+        
+    # If there's a keyword research
+    if searchedKws:
+      # Get the one with max search volume
+      first = max(searchedKws, key = searchedKws.get)
+      mostSearched['first'] = first
+      # second most searched
+      for keyword, volume in searchedKws.items():        
+        if volume < searchedKws[first] and max:          
+          mostSearched['second'] = keyword
+
+    return mostSearched
     
 # Subclass
 class CreateCollection(Collection):  
@@ -148,6 +198,7 @@ class UpdateCollection(Collection):
       metaDesc = self.collectionMetaDesc(collection['name'])
       description = self.collectionDescription(collection['name'])
       templateSuffix = self.collectionTemplate(collection['relationship_type'])
+      childBottomDescription = self.childBottomDescription(collection=collection)
       
       updateCollections.append({
         'Handle' : slugify(collection['name']),  
@@ -162,6 +213,7 @@ class UpdateCollection(Collection):
         'Metafield: description_tag [string]' : metaDesc,
         'Template Suffix' : templateSuffix,
         'Metafield: custom.belongs_to [single_line_text_field]' : collection['belongs_to'],
+        'Metafield: custom.bottom_description [multi_line_text_field]' : childBottomDescription,
       })
     
     return updateCollections    

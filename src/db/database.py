@@ -2,6 +2,7 @@ from config.constants import DB_PATH
 import sqlite3
 import os
 import csv
+from pandas_ods_reader import read_ods
 
 class Database():
     def __init__(self):		
@@ -160,10 +161,13 @@ class Collections(Database):
         self.insertCollectionMetaDesc()
         self.createCollectionDescription()
         self.insertCollectionDescription()
+        self.createChildBottomDescription()
+        self.insertChildBottomDescription()
         self.createCollectionKWResearch()
         self.insertCollectionKWResearch()
         self.createCollectionAdsKeywords()
         self.insertCollectionAdsKeywords()
+
 
 
     def createCollections(self):
@@ -184,7 +188,7 @@ class Collections(Database):
       c.execute(sql)        
     
     def insertCollectionPageTitles(self):
-      with open(DB_PATH + 'csv/collections/collection-meta-title.csv', 'r') as file:
+      with open(DB_PATH + 'csv/collections/text/collection-meta-title.csv', 'r') as file:
         reader = csv.DictReader(file, delimiter=';')
         i = 1
         for row in reader:
@@ -197,7 +201,7 @@ class Collections(Database):
       c.execute(sql) 
     
     def insertCollectionMetaDesc(self):
-     with open(DB_PATH + 'csv/collections/collection-meta-title.csv', 'r') as file:
+     with open(DB_PATH + 'csv/collections/text/collection-meta-title.csv', 'r') as file:
         reader = csv.DictReader(file, delimiter=';')
         i = 1
         for row in reader:
@@ -210,13 +214,31 @@ class Collections(Database):
       c.execute(sql)
     
     def insertCollectionDescription(self):
-        with open(DB_PATH + 'csv/collections/collection-description.csv', 'r') as file:
+        with open(DB_PATH + 'csv/collections/text/collection-description.csv', 'r') as file:
             reader = csv.DictReader(file, delimiter=';')
             i = 1
             for row in reader:
                 c.execute('INSERT INTO collection_description VALUES(?,?)', (i, row['description']) )
                 i += 1
                 conn.commit()
+    
+    def createChildBottomDescription(self):
+        sql = 'CREATE TABLE if not exists collection_child_bottom_description (id integer primary key not null, h2 text, content text, language text)'
+        c.execute(sql)
+
+    def insertChildBottomDescription(self):
+        language = 'dk'
+        base_path = DB_PATH + '/csv/collections/text/child-bottom-description.ods'
+        sheet = language
+        df = read_ods(base_path , sheet)
+        df = df.fillna("")
+        df = df.to_dict(orient='index')
+        
+        i = 1
+        for row in df:
+            c.execute('INSERT INTO collection_child_bottom_description VALUES(?,?,?,?)', (i, df[row]['h2'], df[row]['content'], language) )
+            i += 1
+            conn.commit()
     
     
     def createCollectionKWResearch(self):

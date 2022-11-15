@@ -1,0 +1,74 @@
+Variant SKU,Vendor,Tags,Metafield: custom.compatible_with [list.single_line_text_field],Variant Metafield: custom.farve [list.color],Variant Metafield: color.string [single_line_text_field],Metafield: mm-google-shopping.custom_product [string]
+LCW37-02-001-5,TomTom,"TomTom, TomTom Runner, TomTom Multi-Sport","TomTom Runner, TomTom Multi-Sport",#000000,Sort,false
+LCW37-04-001-2,TomTom,"TomTom, TomTom Runner 2, TomTom Runner 2 Series, TomTom Runner 3, TomTom Runner 3 Series, TomTom Spark, TomTom Spark Series, TomTom Spark 3, TomTom Spark 3 Series, TomTom Adventurer","TomTom Runner 2, TomTom Runner 3, TomTom Spark, TomTom Spark 3, TomTom Adventurer",#0430e0,Blå,false
+LCW37-04-001-3,,,,#0430e0,Blå,false
+LCW37-04-001-4,,,,#29ad29,Grøn,false
+LCW37-04-001-5,,,,#0430e0,Blå,false
+LCW37-04-001-6,,,,#29ad29,Grøn,false
+LCW37-04-001-7,,,,#6b3d1e,Brun,false
+LCW37-04-001-8,,,,#d61c25,Rød,false
+LCW37-04-001-9,,,,"#c0c0c0, #808080",flerfarvet,false
+LCW37-04-001-10,,,,#ffffff,Hvid,false
+LCW37-04-001-11,,,,#000000,Sort,false
+LCW37-03-001-1,TomTom,"TomTom, TomTom Touch",TomTom Touch,#8213c2,Lilla,false
+LCW37-03-001-2,,,,#0430e0,Blå,false
+LCW37-03-001-3,,,,#0430e0,Blå,false
+LCW37-03-001-4,,,,#faf14d,Gul,false
+LCW37-03-001-5,,,,#eb990c,Orange,false
+LCW37-03-001-6,,,,#e024c4,Pink,false
+LCW37-03-001-7,,,,#d61c25,Rød,false
+LCW37-03-001-8,,,,#000000,Sort,false
+LCW37-00-001-1,TomTom,"TomTom, TomTom Runner 2, TomTom Runner 2 Series, TomTom Runner 3, TomTom Runner 3 Series, TomTom Multi-Sport","TomTom Runner 2, TomTom Runner 3, TomTom Multi-Sport",#000000,Sort,false
+LCW37-00-001-2,,,,#000000,Sort,false
+LCW37-00-001-3,,,,#000000,Sort,false
+LCW37-00-001-4,,,,#e024c4,Pink,false
+LCW37-00-001-5,,,,#eb990c,Orange,false
+LCW37-00-001-6,,,,#29ad29,Grøn,false
+LCW37-00-001-7,,,,#0430e0,Blå,false
+LCW37-00-001-8,,,,#0430e0,Blå,false
+LCW37-00-001-9,,,,#8213c2,Lilla,false
+LCW37-00-002-1,TomTom,"TomTom, TomTom Golfer 2, TomTom Golfer Series, TomTom Runner 3, TomTom Runner 3 Series","TomTom Golfer 2, TomTom Runner 3",#000000,Sort,false
+LCW37-00-002-3,,,,"#c0c0c0, #808080",flerfarvet,false
+LCW37-00-002-4,,,,#d61c25,Rød,false
+LCW37-00-002-5,,,,#e024c4,Pink,false
+LCW37-00-002-6,,,,#29ad29,Grøn,false
+LCW37-00-002-7,,,,#29ad29,Grøn,false
+LCW37-00-002-8,,,,#29ad29,Grøn,false
+LCW37-00-002-9,,,,#0430e0,Blå,false
+LCW37-00-002-10,,,,#0430e0,Blå,false
+LCW37-00-002-11,,,,#8213c2,Lilla,false
+LCW37-00-003-1,TomTom,"TomTom, TomTom Runner 2, TomTom Runner 2 Series, TomTom Runner 3, TomTom Runner 3 Series","TomTom Runner 2, TomTom Runner 3",#ffffff,Hvid,false
+LCW37-00-003-4,,,,#000000,Sort,false
+LCW37-00-003-5,,,,#d61c25,Rød,false
+LCW37-00-003-6,,,,"#c0c0c0, #808080",flerfarvet,false
+LCW37-00-003-7,,,,#0430e0,Blå,false
+LCW37-00-004-1,TomTom,"TomTom, TomTom Runner 2, TomTom Runner 2 Series, TomTom Runner 3, TomTom Runner 3 Series","TomTom Runner 2, TomTom Runner 3",#000000,Sort,false
+LCW37-00-004-2,,,,#ffffff,Hvid,false
+LCW37-00-004-3,,,,"#c0c0c0, #808080",flerfarvet,false
+LCW37-00-004-4,,,,#d61c25,Rød,false
+LCW37-00-004-5,,,,#8213c2,Lilla,false
+LCW37-18-001-1,urrem.dk,"TomTom, TomTom Spark 3 Cardio + Music, TomTom Spark 3 Series, TomTom Adventurer, TomTom Golfer 2, TomTom Golfer Series, TomTom Runner 2, TomTom Runner 2 Series, TomTom Runner 2 Cardio, TomTom Runner 2 Cardio + Music, TomTom Runner 2 Music, TomTom Runner 3, TomTom Runner 3 Series, TomTom Runner 3 Cardio, TomTom Runner 3 Cardio + Music, TomTom Runner 3 Music, TomTom Spark, TomTom Spark Series, TomTom Spark Cardio, TomTom Spark Cardio + Music, TomTom Spark Music, TomTom Spark 3, TomTom Spark 3 Cardio, TomTom Spark 3 Music","TomTom Spark 3 Cardio + Music, TomTom Adventurer, TomTom Golfer 2, TomTom Runner 2, TomTom Runner 2 Cardio, TomTom Runner 2 Cardio + Music, TomTom Runner 2 Music, TomTom Runner 3, TomTom Runner 3 Cardio, TomTom Runner 3 Cardio + Music, TomTom Runner 3 Music, TomTom Spark, TomTom Spark Cardio, TomTom Spark Cardio + Music, TomTom Spark Music, TomTom Spark 3, TomTom Spark 3 Cardio, TomTom Spark 3 Music",#29ad29,Grøn,false
+LCW37-18-001-2,,,,#ffffff,Hvid,false
+LCW37-18-001-3,,,,#000000,Sort,false
+LCW37-18-001-4,,,,#eb990c,Orange,false
+LCW37-18-001-5,,,,#0430e0,Blå,false
+LCW37-18-001-6,,,,#0430e0,Blå,false
+LCW37-18-001-7,,,,#29ad29,Grøn,false
+LCW37-18-001-8,,,,#e024c4,Pink,false
+LCW37-18-001-9,,,,#8213c2,Lilla,false
+LCW37-18-001-10,,,,#d61c25,Rød,false
+LCW37-18-001-11,,,,#0430e0,Blå,false
+LCW37-18-001-12,,,,#d61c25,Rød,false
+LCW37-07-001-1,TomTom,"TomTom, TomTom Spark 3, TomTom Spark 3 Series, TomTom Spark, TomTom Spark Series, TomTom Adventurer, TomTom Golfer 2, TomTom Golfer Series, TomTom Runner 2 Cardio, TomTom Runner 2 Series, TomTom Runner 2 Cardio + Music, TomTom Runner 2 Music, TomTom Runner 3 Cardio, TomTom Runner 3 Series, TomTom Runner 3 Cardio + Music, TomTom Spark Cardio + Music, TomTom Spark Music, TomTom Spark 3 Cardio, TomTom Spark 3 Cardio + Music, TomTom Spark 3 Music, TomTom Golfer 2 SE, TomTom Runner 3 Music, TomTom Spark Cardio, TomTom Runner 2, TomTom Runner 3","TomTom Spark 3, TomTom Spark, TomTom Adventurer, TomTom Golfer 2, TomTom Runner 2 Cardio, TomTom Runner 2 Cardio + Music, TomTom Runner 2 Music, TomTom Runner 3 Cardio, TomTom Runner 3 Cardio + Music, TomTom Spark Cardio + Music, TomTom Spark Music, TomTom Spark 3 Cardio, TomTom Spark 3 Cardio + Music, TomTom Spark 3 Music, TomTom Golfer 2 SE, TomTom Runner 3 Music, TomTom Spark Cardio, TomTom Runner 2, TomTom Runner 3",#000000,Sort,false
+LCW37-07-001-2,,,,#000000,Sort,false
+LCW37-07-001-3,,,,#0430e0,Blå,false
+LCW37-07-001-4,,,,#d61c25,Rød,false
+LCW37-07-001-5,,,,#d61c25,Rød,false
+LCW37-07-001-6,,,,#d61c25,Rød,false
+LCW37-07-001-7,,,,#e024c4,Pink,false
+LCW37-07-001-8,,,,#e024c4,Pink,false
+LCW37-07-001-9,,,,,Flerfarvet,false
+LCW37-07-001-10,,,,#0430e0,Blå,false
+LCW37-07-001-11,,,,#eb990c,Orange,false
+LCW37-07-001-12,,,,,Flerfarvet,false
+LCW37-07-001-13,,,,#29ad29,Grøn,false

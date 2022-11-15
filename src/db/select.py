@@ -1,6 +1,5 @@
 from config.constants import DB_PATH
 import sqlite3
-import os
 
 class Select:
     def __init__(self):
@@ -174,6 +173,17 @@ class Select:
         
         return descriptions
     
+    def collection_child_description(self) -> list[dict]:
+        sql = "SELECT h2, content FROM collection_child_bottom_description"
+        c.execute(sql)
+        rows = c.fetchall()
+        descriptions : list[dict] = []
+
+        for row in rows:
+            descriptions.append({ 'h2' : row[0], 'content' : row[1] })
+        
+        return descriptions
+    
     def collection_keyword_research(self) -> list[dict]:
         sql = "SELECT device, keyword, volume FROM collection_kw_research"
         c.execute(sql)
@@ -182,7 +192,7 @@ class Select:
         kws : list[dict] = []        
 
         for row in rows:
-            kws.append({'device' : row[0].lower(), 'keyword' : row[1], 'volume': row[2] })
+            kws.append({'device' : row[0].lower().strip(), 'keyword' : row[1].strip(), 'volume': row[2] })
 
         return kws
     

@@ -86,7 +86,6 @@ class Main:
         products = prices.getPrices(products = products, currency = 'dkk')
         # Clean attributes
         products = make.cleanAndFormat(products = products)
-        
         # Save CSVs
         save.csv(products = products)
         save.saveAdditionalImageFile(products = products)

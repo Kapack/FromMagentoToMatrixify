@@ -5,3 +5,4 @@ re
 sqlite3
 python-slugify
 itertools
+pandas_ods_reader

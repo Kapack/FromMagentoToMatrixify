@@ -20,5 +20,4 @@ HEXCOLORS = {
 'TRANSPARENT': {'hex':'#e8e8e8', 'dk' : 'gennemsigtig'},
 'WHITE' : {'hex':'#ffffff', 'dk' : 'hvid'},
 'YELLOW': {'hex':'#faf14d', 'dk' : 'gul'},
-'MULTICOLOR': {'hex':'', 'dk' : 'Flerfarvet'},
 }
