@@ -173,6 +173,17 @@ class Select:
         
         return descriptions
     
+    def collection_grandparent_description(self) -> list[dict]:
+        sql = "SELECT h2, content FROM collection_grandparent_bottom_description"
+        c.execute(sql)
+        rows = c.fetchall()
+        descriptions : list[dict] = []
+
+        for row in rows:
+            descriptions.append({ 'h2' : row[0], 'content' : row[1] })
+        
+        return descriptions
+
     def collection_child_description(self) -> list[dict]:
         sql = "SELECT h2, content FROM collection_child_bottom_description"
         c.execute(sql)

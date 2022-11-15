@@ -161,6 +161,8 @@ class Collections(Database):
         self.insertCollectionMetaDesc()
         self.createCollectionDescription()
         self.insertCollectionDescription()
+        self.createGrandParentBottomDescription()
+        self.insertGrandParentBottomDescription()
         self.createChildBottomDescription()
         self.insertChildBottomDescription()
         self.createCollectionKWResearch()
@@ -221,7 +223,27 @@ class Collections(Database):
                 c.execute('INSERT INTO collection_description VALUES(?,?)', (i, row['description']) )
                 i += 1
                 conn.commit()
-    
+    """
+    Bottom Texts
+    """
+    def createGrandParentBottomDescription(self):
+        sql = 'CREATE TABLE if not exists collection_grandparent_bottom_description (id integer primary key not null, h2 text, content text, language text)'
+        c.execute(sql)
+
+    def insertGrandParentBottomDescription(self):
+        language = 'dk'
+        base_path = DB_PATH + '/csv/collections/text/grandparent-bottom-description.ods'
+        sheet = language
+        df = read_ods(base_path , sheet)
+        df = df.fillna("")
+        df = df.to_dict(orient='index')
+        
+        i = 1
+        for row in df:
+            c.execute('INSERT INTO collection_grandparent_bottom_description VALUES(?,?,?,?)', (i, df[row]['h2'], df[row]['content'], language) )
+            i += 1
+            conn.commit()
+
     def createChildBottomDescription(self):
         sql = 'CREATE TABLE if not exists collection_child_bottom_description (id integer primary key not null, h2 text, content text, language text)'
         c.execute(sql)
@@ -240,7 +262,9 @@ class Collections(Database):
             i += 1
             conn.commit()
     
-    
+    """
+    Keywords
+    """
     def createCollectionKWResearch(self):
       sql = 'CREATE TABLE if not exists collection_kw_research (id integer primary key not null, device text, keyword text, volume integer)'
       c.execute(sql)

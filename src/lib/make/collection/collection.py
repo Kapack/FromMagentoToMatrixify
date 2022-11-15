@@ -65,37 +65,53 @@ class Collection:
     return description
 
   # Bottom SEO Text
-  def childBottomDescription(self, collection:dict):        
+  def bottomDescription(self, collection:dict) -> str:        
+    bottomTxt : str = ''
+    bottomDescs : list[dict] = []
+
+    if collection['relationship_type'].lower() == 'grandparent':
+      # Get texts
+      bottomDescs : list[dict] = self.select.collection_grandparent_description()
+      # Choosing default random text
+      bottomTxt = random.choice(bottomDescs)
+
     if collection['relationship_type'].lower() == 'child':
       # Get texts
-      childDescs : list[dict] = self.select.collection_child_description()
-      # Choosing default random text
-      bottomTxt = random.choice(childDescs)
+      bottomDescs : list[dict] = self.select.collection_child_description()
+      # Picking a default random from bottom descriptions    
+      bottomTxt = random.choice(bottomDescs)
 
-      # Using most searched keyword if it exists
-      mostSearchedKeywords = self.mostSearchedKeywords(collectionName = collection['name'])            
-      if mostSearchedKeywords['second']:
-        second_most_searched = mostSearchedKeywords['second'].lower()
-        second_most_searched_as_device = second_most_searched.replace(collection['name'].lower(), '[DEVICE]')        
+    # Using most searched keyword if it exists
+    mostSearchedKeywords = self.mostSearchedKeywords(collectionName = collection['name'])            
+    if mostSearchedKeywords['second']:
+      second_most_searched = mostSearchedKeywords['second'].lower()
+      second_most_searched_as_device = second_most_searched.replace(collection['name'].lower(), '[DEVICE]')        
 
-        # If there is a second most searched. Chose a headline, where keyword exists.      
-        allSecondTxt = []        
-        for desc in childDescs:
-          # If a h2 in childDescs is same as second most search. Find all and append
-          if desc['h2'].lower() == second_most_searched_as_device.lower():
-            allSecondTxt.append(desc)          
-          # else:
-          #   print(second_most_searched_as_device + ' Does not exists as Child description')
+      # If there is a second most searched. Chose a headline, where keyword exists.      
+      allSecondTxt = []        
+      for desc in bottomDescs:
+        if collection['name'].lower() == 'apple watch':          
+          # if sentence exists as a Description H2. Append all to list
+          if second_most_searched_as_device.lower() in desc['h2'].lower():
+            allSecondTxt.append(desc)            
         
-        # Picking random
-        if allSecondTxt:
-          bottomTxt = random.choice(allSecondTxt)
-          # Create text and replace DEVICE        
-        
+        # If a h2 in childDescs is same as second most search. Find all and append        
+        # if desc['h2'].lower() == second_most_searched_as_device.lower():
+        #   allSecondTxt.append(desc)                  
+        # else:
+        #   print(second_most_searched_as_device + ' Does not exists as Child description')
+      
+      # Picking random
+      if allSecondTxt:
+        # Getting a random text from picked keywords
+        bottomTxt = random.choice(allSecondTxt)        
+      
+    # Create text and replace DEVICE        
+    if bottomTxt != '':        
       bottomTxt = '<h2>' + bottomTxt['h2'] + '</h2>' + '<p>' + bottomTxt['content'] + '</p>'
-      bottomTxt = bottomTxt.replace('[DEVICE]', collection['name'])
-        
-      return bottomTxt
+      bottomTxt = bottomTxt.replace('[DEVICE]', collection['name'])      
+    
+    return bottomTxt
 
   def createGoogleAds(self, collections) -> None:
     adsKeywords = self.collectionAdsKw
@@ -198,7 +214,7 @@ class UpdateCollection(Collection):
       metaDesc = self.collectionMetaDesc(collection['name'])
       description = self.collectionDescription(collection['name'])
       templateSuffix = self.collectionTemplate(collection['relationship_type'])
-      childBottomDescription = self.childBottomDescription(collection=collection)
+      bottomDescription = self.bottomDescription(collection=collection)
       
       updateCollections.append({
         'Handle' : slugify(collection['name']),  
@@ -213,7 +229,7 @@ class UpdateCollection(Collection):
         'Metafield: description_tag [string]' : metaDesc,
         'Template Suffix' : templateSuffix,
         'Metafield: custom.belongs_to [single_line_text_field]' : collection['belongs_to'],
-        'Metafield: custom.bottom_description [multi_line_text_field]' : childBottomDescription,
+        'Metafield: custom.bottom_description [multi_line_text_field]' : bottomDescription,
       })
     
     return updateCollections    
