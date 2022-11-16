@@ -1,5 +1,5 @@
 from db.select import Select
-import re
+# import re
 
 """
 We translate into key translated_
@@ -8,14 +8,14 @@ class Translate:
     def __init__(self) -> None:
         self.select = Select()
         
-    def translateAttributes(self, products:dict) -> dict:
+    def translateAttributes(self, products:dict, language:str) -> dict:
         products : dict
 
-        products = self.material(products)
-        products = self.productTypes(products)            
+        products = self.material(products, language)
+        products = self.productTypes(products, language)            
         return products
     
-    def material(self, products:dict) -> dict:      
+    def material(self, products:dict, language:str) -> dict:      
         materials = self.select.materials()
 
         for product in products:
@@ -31,8 +31,8 @@ class Translate:
                     # If DB material exists in product_material_split list
                     if materials[i]['material'].lower() in product_material_split:                        
                         # If there is a translated version
-                        if(materials[i]['dk']):                            
-                            translated_materials.append(materials[i]['dk'])
+                        if(materials[i][language]):                            
+                            translated_materials.append(materials[i][language])
                         # Give user message if translated verison is missing
                         else:
                             print(materials[i]['material'] + ' needs translation')
@@ -43,14 +43,14 @@ class Translate:
         return products
     
 
-    def productTypes(self, products:dict) -> dict:
+    def productTypes(self, products:dict, language:str) -> dict:
         product_types = self.select.product_types()
         for product in products:                        
             for i in product_types:                                                        
                 # If what is in select 
                 if(product_types[i]['product_type'] == products[product]['product_types']['product_type']):                    
-                    if(product_types[i]['dk']):
-                        products[product]['product_types']['translate'] = product_types[i]['dk']                    
+                    if(product_types[i][language]):
+                        products[product]['product_types']['translate'] = product_types[i][language]                    
                     else:
                         raise ValueError(product_types[i]['product_types']['product_type'] + ' needs translation')            
         return products    

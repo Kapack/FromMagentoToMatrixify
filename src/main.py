@@ -1,10 +1,9 @@
-import argparse
-
+from config.arguments import Arguments
 from db.database import Database
 from lib.make.metafield import Metafield
 from lib.read_files.read_csv import ReadCsv
 from lib.make.make import Make
-from lib.make.collection.collection import UpdateCollection, CreateCollection
+from lib.make.collection.collection import CreateCollection
 from lib.make.image import Image
 from lib.make.parent import Parent
 from lib.make.content import Content
@@ -14,8 +13,9 @@ from lib.save_files.save_files import SaveFiles
 
 class Main:
     def __init__(self) -> None:
-        products : dict                  
-
+        products : dict             
+        # CLI Arguments     
+        language = Arguments().run()
         # DB
         database = Database()
         database.createAndInsertTables()
@@ -31,22 +31,6 @@ class Main:
         save = SaveFiles() 
         
         """
-        Arguments
-        """
-        # Initialize parser
-        parser = argparse.ArgumentParser()
- 
-        # Adding optional argument
-        parser.add_argument("-c", "--collection", choices=['yes'], help = "Saves a .csv file with all collections stored in db/csv.")
- 
-        # Read arguments from command line
-        args = parser.parse_args()
-        # If we want to generate collection again, skip all products creations
-        if args.collection and args.collection.lower() == 'yes':
-            UpdateCollection()                   
-            exit()
-
-        """
         Run
         """
         # Products
@@ -61,7 +45,7 @@ class Main:
         products = image.createAdditonalImages(products = products)        
         # Create Alt tags
         products = image.createImageAltText(products = products)        
-        products = metafield.colors(products = products)        
+        products = metafield.colors(products = products, language = language)        
         products = metafield.size(products = products)
         # Remove content from child
         products = parent.removeContentFromChild(products = products)
@@ -76,7 +60,7 @@ class Main:
         products = parent.setVendor(products = products)
         # products = metafield.compatibleWith(products = products)
         # Translate Attributes
-        products = translate.translateAttributes(products = products)
+        products = translate.translateAttributes(products = products, language = language)
         products = metafield.material(products = products)                
         # Create Names
         products = content.createName(products = products)

@@ -4,7 +4,7 @@ This field will be the same as Tag in ImportToMatrixify.csv
 """
 
 from db.select import Select
-from config.constants import CONTENT_DIR_IMPORT_TO_MATRIXIFY, BGCOLORS
+from config.constants import CONTENT_DIR_IMPORT_TO_MATRIXIFY, BGCOLORS, CUSTOM_COLLECTION_BOTTOM_DESCRIPTIONS
 from slugify import slugify
 import random
 import pandas as pd
@@ -210,27 +210,29 @@ class UpdateCollection(Collection):
     updateCollections : list[dict] = []    
 
     for collection in self.allCollections:
-      pageTitle = self.collectionPageTitle(collection['name'])
-      metaDesc = self.collectionMetaDesc(collection['name'])
-      description = self.collectionDescription(collection['name'])
-      templateSuffix = self.collectionTemplate(collection['relationship_type'])
-      bottomDescription = self.bottomDescription(collection=collection)
-      
-      updateCollections.append({
-        'Handle' : slugify(collection['name']),  
-        'Command' : 'Merge',      
-        'Title' : collection['name'],
-        'Body HTML' : description,
-        'Must Match' : 'all conditions', 
-        'Rule: Product Column' : 'Tag', 
-        'Rule: Relation' : 'Equals', 
-        'Rule: Condition' : collection['name'],
-        'Metafield: title_tag [string]' : pageTitle,
-        'Metafield: description_tag [string]' : metaDesc,
-        'Template Suffix' : templateSuffix,
-        'Metafield: custom.belongs_to [single_line_text_field]' : collection['belongs_to'],
-        'Metafield: custom.bottom_description [multi_line_text_field]' : bottomDescription,
-      })
+      # We don't want to overwrite custom/unique written text
+      if collection['name'].lower() not in CUSTOM_COLLECTION_BOTTOM_DESCRIPTIONS:
+        pageTitle = self.collectionPageTitle(collection['name'])
+        metaDesc = self.collectionMetaDesc(collection['name'])
+        description = self.collectionDescription(collection['name'])
+        templateSuffix = self.collectionTemplate(collection['relationship_type'])
+        bottomDescription = self.bottomDescription(collection=collection)
+        
+        updateCollections.append({
+          'Handle' : slugify(collection['name']),  
+          'Command' : 'Merge',      
+          'Title' : collection['name'],
+          'Body HTML' : description,
+          'Must Match' : 'all conditions', 
+          'Rule: Product Column' : 'Tag', 
+          'Rule: Relation' : 'Equals', 
+          'Rule: Condition' : collection['name'],
+          'Metafield: title_tag [string]' : pageTitle,
+          'Metafield: description_tag [string]' : metaDesc,
+          'Template Suffix' : templateSuffix,
+          'Metafield: custom.belongs_to [single_line_text_field]' : collection['belongs_to'],
+          'Metafield: custom.bottom_description [multi_line_text_field]' : bottomDescription,
+        })
     
     return updateCollections    
 
