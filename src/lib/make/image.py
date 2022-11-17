@@ -34,7 +34,7 @@ class Image():
         imageAltText : str
         for product in products:            
             # Replace special char with -
-            imageAltText = re.sub("[^A-Za-z0-9]","-", products[product]['option1_value'])
+            imageAltText = re.sub("[^A-Za-z0-9]","-", products[product]['options']['option1_value'])
             # Split
             imageAltTextSplit = imageAltText.split('-')
             # Remove empty (Because of duouble dashes)             

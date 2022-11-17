@@ -16,7 +16,6 @@ class Collection:
     self.collectionKwResearch : list[dict] = self.select.collection_keyword_research()
     self.collectionAdsKw : list = self.select.collection_ads_keyword()
 
-
   # Create default page tile      
   def collectionPageTitle(self, collectionName:str) -> str:
     pageTitle : str
@@ -112,8 +111,9 @@ class Collection:
       bottomTxt = bottomTxt.replace('[DEVICE]', collection['name'])      
     
     return bottomTxt
-
-  def createGoogleAds(self, collections) -> None:
+  
+  # Google Ads
+  def createGoogleAds(self, collections, language) -> None:
     adsKeywords = self.collectionAdsKw
     collectionNames : list[str] = collections
 
@@ -132,7 +132,7 @@ class Collection:
       # Create dictionary
       keywords.append({ 'name' : name, 'keywords' : ', '.join(ads_kw), 'negative_keywords' : '[' + name + ']' })
     # Save collection
-    self.saveCollection(collections = keywords, filepath = '/ads/kw.csv', warningmsg = 'Google Ads Keywords created\n')    
+    self.saveCollection(collections = keywords, filepath = '/ads/'+ language +'-kws.csv', warningmsg = 'Google Ads Keywords created\n')    
 
   def saveCollection(self, collections : list[dict], filepath : str, warningmsg : str):
     # Save as csv
@@ -164,14 +164,14 @@ class Collection:
     
 # Subclass
 class CreateCollection(Collection):  
-  def __init__(self, newCollections : list[dict]) -> None:
+  def __init__(self, newCollections : list[dict], language : str) -> None:
     super().__init__()
     # Only run if any new collections
     if(newCollections):
       missingCollection = self.newCollections(newCollections)
       msg = str(len(newCollections)) + ' missing collections was found. \n Todo: \n 1: update Shopify. \n 2: Update db/csv/collections.csv \n 3: Update shopify/other \n 4: Run main.py again \n 5: Import products'      
-      self.createGoogleAds(collections = newCollections)      
-      self.saveCollection(collections=missingCollection, filepath= '0-new-smart-collections.csv', warningmsg = msg)    
+      self.createGoogleAds(collections = newCollections, language = language)      
+      self.saveCollection(collections=missingCollection, filepath= '0-new-'+ language +'-smart-collections.csv', warningmsg = msg)    
 
   def newCollections(self, missingCollections:list[dict]) -> list[dict]:    
     newCollections : list = []        
@@ -197,13 +197,13 @@ class CreateCollection(Collection):
 
 # Subclass
 class UpdateCollection(Collection):  
-  def __init__(self) -> None:
+  def __init__(self, language:str) -> None:
     super().__init__()
     self.allCollections : list[dict] = self.select.collections()
     updateCollections = self.updateCollection()    
     msg = 'A updated collection list has been created. Be aware of what you\'re overwriting'
-    self.createGoogleAds(collections = self.allCollections)
-    self.saveCollection(collections = updateCollections, filepath = 'updated-collections/update-smart-collections.csv', warningmsg = msg)
+    self.createGoogleAds(collections = self.allCollections, language = language)
+    self.saveCollection(collections = updateCollections, filepath = 'updated-collections/update-'+ language +'-smart-collections.csv', warningmsg = msg)
 
 
   def updateCollection(self) -> list[dict]:    

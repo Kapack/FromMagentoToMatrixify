@@ -5,23 +5,23 @@ class Prices:
     def getPrices(self, products:dict, currency:str):
         for product in products:
             
-            if(products[product]['price']):
+            if(products[product]['prices']['price']):
                 # First convert to SEK / we're calculating backwards, compared to org. Magento .csv workflow            
-                org_price_sek = self.convertToSEK(price = products[product]['price'])
+                org_price_sek = self.convertToSEK(price = products[product]['prices']['price'])
                 # If special price is set
                 # Special price will be Variant Price, and the org Price will be compare price
-                if(products[product]['special_price']):
-                    special_price_sek = self.convertToSEK(price = products[product]['special_price'])
+                if(products[product]['prices']['special_price']):
+                    special_price_sek = self.convertToSEK(price = products[product]['prices']['special_price'])
                 
                 # Setting product price, according to currency
                 if currency == 'dkk':
                     price_dkk = self.convertToDKK(price = org_price_sek)
-                    products[product]['variant_price'] = price_dkk                
+                    products[product]['prices']['variant_price'] = price_dkk
                     # If product has a special price, overwrite
-                    if(products[product]['special_price']):
-                        special_price_dkk = self.convertToDKK(price = special_price_sek)                  
-                        products[product]['variant_price'] = special_price_dkk                
-                        products[product]['variant_compare_price'] = price_dkk                
+                    if(products[product]['prices']['special_price']):
+                        special_price_dkk = self.convertToDKK(price = special_price_sek)
+                        products[product]['prices']['variant_price'] = special_price_dkk
+                        products[product]['prices']['variant_compare_price'] = price_dkk
 
         return products
 

@@ -40,7 +40,8 @@ class Metafield:
             
                 # Assign hexcode to metafield
                 products[product]['colors']['hex'] = hexcode
-                products[product]['colors']['string'] = strColor.capitalize()
+                # products[product]['colors']['string'] = strColor.capitalize()
+                products[product]['options']['option2_value'] = strColor.capitalize()
                 
         return products    
     

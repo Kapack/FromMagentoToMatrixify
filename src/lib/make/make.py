@@ -55,8 +55,8 @@ class Make:
                 splitSku = products[product]['sku'].split('-')                
                 serieNumber = splitSku.pop()
                 if serieNumber.startswith('00', 0, 2):
-                    serieNumber = serieNumber.replace('00', '')                    
-                products[product]['option1_value'] = serieNumber                
+                    serieNumber = serieNumber.replace('00', '')                                                    
+                products[product]['options']['option1_value'] = serieNumber                
             except:
                 print(BGCOLORS['WARNING'] + ' missing - in sku ' + BGCOLORS['ENDC'])
         return products   

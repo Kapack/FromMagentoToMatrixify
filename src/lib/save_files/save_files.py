@@ -2,8 +2,8 @@ import csv
 from config.constants import CONTENT_DIR_IMPORT_TO_MATRIXIFY, BGCOLORS
 
 class SaveFiles:
-    def csv(self, products:dict) -> None:
-        with open(CONTENT_DIR_IMPORT_TO_MATRIXIFY + '1-import-main-products.csv', 'w') as file:            
+    def csv(self, products:dict, language:str) -> None:
+        with open(CONTENT_DIR_IMPORT_TO_MATRIXIFY + '1-import-'+ language +'-main-products.csv', 'w') as file:            
             fieldnames = [
                 'Handle', 
                 'Variant SKU', 
@@ -46,7 +46,7 @@ class SaveFiles:
                 'Metafield: custom.multiple_material [list.single_line_text_field]',
                 'Metafield: custom.storrelse [single_line_text_field]',
                 'Variant Metafield: custom.farve [list.color]',
-                'Variant Metafield: color.string [single_line_text_field]',
+                # 'Variant Metafield: color.string [single_line_text_field]',
                 'Metafield: mm-google-shopping.custom_product [string]',           
                 ]
                 
@@ -64,11 +64,11 @@ class SaveFiles:
                     'Tags Command' : 'MERGE', 
                     'Body (HTML)' :  products[product]['description'], 
                     'Vendor' : products[product]['vendor'], 
-                    'Tags' :  products[product]['categories']['category'],                     
-                    'Option1 Name' : products[product]['option1_name'], 
-                    'Option1 Value' : products[product]['option1_value'],
-                    'Option2 Name' : '', 
-                    'Option2 Value' : '',
+                    'Tags' :  products[product]['categories']['category'],
+                    'Option1 Name' : products[product]['options']['option1_name'], 
+                    'Option1 Value' : products[product]['options']['option1_value'],                    
+                    'Option2 Name' : products[product]['options']['option2_name'],
+                    'Option2 Value' : products[product]['options']['option2_value'],
                     'Option3 Name' : '', 
                     'Option3 Value' : '',
                     'Variant Grams' : products[product]['variant_grams'], 
@@ -76,8 +76,8 @@ class SaveFiles:
                     'Variant Inventory Qty' : products[product]['variant_inventory_qty'], 
                     'Variant Inventory Policy' : products[product]['variant_Inventory_policy'], 
                     'Variant Fulfillment Service' : products[product]['variant_fulfillment_service'], 
-                    'Variant Price' : products[product]['variant_price'],
-                    'Variant Compare At Price' : products[product]['variant_compare_price'],
+                    'Variant Price' : products[product]['prices']['variant_price'],
+                    'Variant Compare At Price' : products[product]['prices']['variant_compare_price'],
                     'Variant Requires Shipping' : products[product]['variant_requires_shipping'], 
                     'Variant Taxable' : products[product]['variant_taxable'], 
                     'Variant Weight Unit' : products[product]['variant_weight_unit'], 
@@ -98,13 +98,13 @@ class SaveFiles:
                     'Metafield: custom.multiple_material [list.single_line_text_field]' : products[product]['materials']['metafield'],
                     'Metafield: custom.storrelse [single_line_text_field]' : products[product]['size'],
                     'Variant Metafield: custom.farve [list.color]' : products[product]['colors']['hex'],   
-                    'Variant Metafield: color.string [single_line_text_field]' : products[product]['colors']['string'],
+                    # 'Variant Metafield: color.string [single_line_text_field]' : products[product]['colors']['string'],
                     'Metafield: mm-google-shopping.custom_product [string]' : 'false',
                     })
         print(BGCOLORS['SUCCESS'] + 'Import file is saved' + BGCOLORS['ENDC'])
     
-    def saveAdditionalImageFile(self, products:dict) -> None:
-        with open(CONTENT_DIR_IMPORT_TO_MATRIXIFY + '2-import-product-add-images.csv', 'w') as file:
+    def saveAdditionalImageFile(self, products:dict, language : str) -> None:
+        with open(CONTENT_DIR_IMPORT_TO_MATRIXIFY + '2-import-'+ language +'-product-add-images.csv', 'w') as file:
             fieldnames = ['Variant SKU', 'Image Src', 'Image Alt Text', 'Image Position', 'Image Command']
 
             writer = csv.DictWriter(file, fieldnames=fieldnames, delimiter=',')

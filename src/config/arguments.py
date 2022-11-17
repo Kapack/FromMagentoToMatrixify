@@ -21,12 +21,12 @@ class Arguments:
         # Validating language
         language : str = args.language.lower()
         if language not in ['dk', 'se']:
-            print(BGCOLORS['FAIL'] + 'Sorry. ' + language + ' is not a valid language option. Exiting.' + BGCOLORS['ENDC'])            
+            print(BGCOLORS['FAIL'] + 'Sorry. ' + language + ' is not a valid language option. Stopping code.' + BGCOLORS['ENDC'])            
             exit()
         
         # If we want to generate collection again, skip all products creations
         if args.collection and args.collection.lower() == 'yes':
-            UpdateCollection()                   
+            UpdateCollection(language = language)                   
             exit() 
     
         return language

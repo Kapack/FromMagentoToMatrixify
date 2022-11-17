@@ -12,13 +12,13 @@ from lib.translate.translate import Translate
 from lib.save_files.save_files import SaveFiles
 
 class Main:
+    products : dict             
+    
     def __init__(self) -> None:
-        products : dict             
         # CLI Arguments     
         language = Arguments().run()
-        # DB
-        database = Database()
-        database.createAndInsertTables()
+        # Creating DB
+        Database().createAndInsertTables()        
         # Read CSV
         readCsv = ReadCsv()        
         make = Make()
@@ -28,13 +28,13 @@ class Main:
         translate = Translate()
         content = Content()        
         prices = Prices()
-        save = SaveFiles() 
+        save = SaveFiles()
         
         """
         Run
         """
         # Products
-        products = readCsv.getProducts()
+        products = readCsv.getProducts(language = language)
         # # Handle
         products = make.handle(products = products)
         # Check if product is parent
@@ -54,7 +54,7 @@ class Main:
         products = productsAndCollections[0]
         missingCollections = productsAndCollections[1]        
         # # Check for new categories (Collections)                
-        CreateCollection(newCollections = missingCollections)
+        CreateCollection(newCollections = missingCollections, language = language)
         # # Add Missing Content to parent products 
         products = parent.addProductTypes(products = products)
         products = parent.setVendor(products = products)
@@ -71,8 +71,8 @@ class Main:
         # Clean attributes
         products = make.cleanAndFormat(products = products)
         # Save CSVs
-        save.csv(products = products)
-        save.saveAdditionalImageFile(products = products)
+        save.csv(products = products, language = language)
+        save.saveAdditionalImageFile(products = products, language = language)
 
 if __name__ == '__main__':
     Main()
