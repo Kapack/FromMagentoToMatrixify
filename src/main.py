@@ -6,7 +6,7 @@ from lib.make.make import Make
 from lib.make.collection.collection import CreateCollection
 from lib.make.image import Image
 from lib.make.parent import Parent
-from lib.make.content import Content
+from lib.make.content.content import Content
 from lib.make.prices import Prices
 from lib.translate.translate import Translate
 from lib.save_files.save_files import SaveFiles
@@ -15,10 +15,10 @@ class Main:
     products : dict             
     
     def __init__(self) -> None:
+        # We are creating the DB every time.
+        Database().createAndInsertTables()     
         # CLI Arguments     
-        language = Arguments().run()
-        # Creating DB
-        Database().createAndInsertTables()        
+        language = Arguments().run()   
         # Read CSV
         readCsv = ReadCsv()        
         make = Make()
@@ -26,7 +26,6 @@ class Main:
         image = Image()
         parent = Parent()
         translate = Translate()
-        content = Content()        
         prices = Prices()
         save = SaveFiles()
         
@@ -62,10 +61,8 @@ class Main:
         # Translate Attributes
         products = translate.translateAttributes(products = products, language = language)
         products = metafield.material(products = products)                
-        # Create Names
-        products = content.createName(products = products)
-        # Create Descriptions
-        products = content.createDescription(products = products)
+        # Create Content
+        products = Content().create(products = products)        
         # Currency convert        
         products = prices.getPrices(products = products, currency = 'dkk')
         # Clean attributes

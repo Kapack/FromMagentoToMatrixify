@@ -209,9 +209,10 @@ class UpdateCollection(Collection):
   def updateCollection(self) -> list[dict]:    
     updateCollections : list[dict] = []    
 
-    for collection in self.allCollections:
+    for collection in self.allCollections:      
       # We don't want to overwrite custom/unique written text
       if collection['name'].lower() not in CUSTOM_COLLECTION_BOTTOM_DESCRIPTIONS:
+
         pageTitle = self.collectionPageTitle(collection['name'])
         metaDesc = self.collectionMetaDesc(collection['name'])
         description = self.collectionDescription(collection['name'])

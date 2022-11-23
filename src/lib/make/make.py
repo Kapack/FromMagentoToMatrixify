@@ -1,7 +1,6 @@
 from utils.helper import convertListToString
 from config.constants import BGCOLORS
 from db.select import Select
-from lib.make.collection.collection import CreateCollection
 
 class Make:
     def __init__(self) -> None:

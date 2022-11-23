@@ -501,30 +501,38 @@ Realme Watch 2;;Child
 Realme Watch 2 Pro;;Child
 Realme Watch S;;Child
 Samsung;;Grandparent
-Samsung Galaxy Fit;;Child
-Samsung Galaxy Fit 2;;Child
-Samsung Galaxy Fit-e;;Child
-Samsung Galaxy Watch (42mm);;Child
-Samsung Galaxy Watch (46mm);;Child
-Samsung Galaxy Watch 3 (41mm);;Child
-Samsung Galaxy Watch 3 (45mm);;Child
-Samsung Galaxy Watch 3 (46mm);;Child
-Samsung Galaxy Watch 4 (40mm);;Child
-Samsung Galaxy Watch 4 (44mm);;Child
-Samsung Galaxy Watch 4 Classic (42mm);;Child
-Samsung Galaxy Watch 4 Classic (46mm);;Child
+Samsung Galaxy Fit Series;;Parent
+Samsung Galaxy Fit;Samsung Galaxy Fit Series;Child
+Samsung Galaxy Fit 2;Samsung Galaxy Fit 2 Series;Child
+Samsung Galaxy Fit-e;Samsung Galaxy Fit Series;Child
+Samsung Galaxy Watch;;Parent
+Samsung Galaxy Watch (42mm);Samsung Galaxy Watch;Child
+Samsung Galaxy Watch (46mm);Samsung Galaxy Watch;Child
+Samsung Galaxy Watch 3;;Parent
+Samsung Galaxy Watch 3 (41mm);Samsung Galaxy Watch 3;Child
+Samsung Galaxy Watch 3 (45mm);Samsung Galaxy Watch 3;Child
+Samsung Galaxy Watch 3 (46mm);Samsung Galaxy Watch 3;Child
+Samsung Galaxy Watch 4;;Parent
+Samsung Galaxy Watch 4 (40mm);Samsung Galaxy Watch 4;Child
+Samsung Galaxy Watch 4 (44mm);Samsung Galaxy Watch 4;Child
+Samsung Galaxy Watch 4 Classic (42mm);Samsung Galaxy Watch 4;Child
+Samsung Galaxy Watch 4 Classic (46mm);Samsung Galaxy Watch 4;Child
 Samsung Galaxy Watch Active;;Child
-Samsung Galaxy Watch Active 2 - 40mm;;Child
-Samsung Galaxy Watch Active 2 - 44mm;;Child
+Samsung Galaxy Watch Active 2;;Parent
+Samsung Galaxy Watch Active 2 - 40mm;Samsung Galaxy Watch Active 2;Child
+Samsung Galaxy Watch Active 2 - 44mm;Samsung Galaxy Watch Active 2;Child
 Samsung Gear;;Child
 Samsung Gear 2;;Child
-Samsung Gear Fit2;;Child
-Samsung Gear Fit2 Pro;;Child
-Samsung Gear S2;;Child
-Samsung Gear S2 Classic;;Child
-Samsung Gear S3;;Child
-Samsung Gear S3 Active;;Child
-Samsung Gear S3 Frontier;;Child
+Samsung Galaxy Fit 2 Series;;Parent
+Samsung Gear Fit2;Samsung Galaxy Fit 2 Series;Child
+Samsung Gear Fit2 Pro;Samsung Galaxy Fit 2 Series;Child
+Samsung Gear S2 Series;;Parent
+Samsung Gear S2;Samsung Gear S2 Series;Child
+Samsung Gear S2 Classic;Samsung Gear S2 Series;Child
+Samsung Gear S3 Series;;Parent
+Samsung Gear S3;Samsung Gear S3 Series;Child
+Samsung Gear S3 Active;Samsung Gear S3 Series;Child
+Samsung Gear S3 Frontier;Samsung Gear S3 Series;Child
 Samsung Gear Sport;;Child
 Seiko;;Grandparent
 Seiko SUN059;;Child

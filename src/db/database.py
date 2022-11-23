@@ -110,6 +110,7 @@ class ProductTexts(Database):
         self.insertWatchBandMaterialText()
         self.createWatchBandEndingtext()
         self.insertWatchBandEndingText()
+        self.createScreenProtectorIntros()
 
     # Specific texts
     def createWatchBandIntroText(self):
@@ -150,6 +151,20 @@ class ProductTexts(Database):
                 c.execute('INSERT INTO watch_band_ending_texts VALUES(?, ?)', (i, row['dk']))
                 i += 1
                 conn.commit()
+    
+    def createScreenProtectorIntros(self):
+        sql = 'CREATE TABLE if not exists screen_protecter_intro_texts (id integer primary key not null, dk text)'
+        c.execute(sql)
+
+    def insertScreenProtectorIntros(self):
+        with open(DB_PATH + 'csv/descriptions/screen_protecter/intros.csv', 'r') as file:
+            reader = csv.DictReader(file, delimiter=';')
+            i = 1
+            for row in reader:
+                c.execute('INSERT INTO screen_protecter_intro_texts VALUES(?, ?)', (i, row['dk']))
+                i += 1
+                conn.commit()
+
 
 class Collections(Database):
     def __init__(self):        
