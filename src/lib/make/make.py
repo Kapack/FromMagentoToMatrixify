@@ -14,13 +14,13 @@ class Make:
         handle : str
         for i in products:
             # Split sku by -
-            skuSplit = products[i]['sku'].split('-')
+            sku_split = products[i]['sku'].split('-')
             # Some skus are missing the last - 1
-            if(len(skuSplit) >= 4):
+            if(len(sku_split) >= 4):
                 # remove last element
-                skuSplit.pop()
+                sku_split.pop()
             # create back to a string
-            handle = ('-').join(skuSplit)                
+            handle = ('-').join(sku_split)                
             # Insert Handle
             products[i]['handle'] = handle
         
@@ -29,33 +29,33 @@ class Make:
     """
     If the previous item doesn't have the same handle, we assume it's the parent
     """
-    def checkIfParent(self, products:dict) -> dict:
-        previousHandle: str
-        currentHandle: str
+    def check_if_parent(self, products:dict) -> dict:
+        previous_handle: str
+        current_handle: str
 
         for i, product in enumerate(products):
             # If it's the first product in out list
             if (i == 0):
                 products[i]['parent'] = True
             else:
-                previousHandle = products[i - 1]['handle']                
-                currentHandle = products[i]['handle']
-                if previousHandle != currentHandle:
+                previous_handle = products[i - 1]['handle']                
+                current_handle = products[i]['handle']
+                if previous_handle != current_handle:
                     products[i]['parent'] = True                    
         
         return products
 
-    def createOptionOne(self, products:dict) -> dict:
+    def create_option_one(self, products:dict) -> dict:
         for product in products:
             """
             Series as Option 1
             """
             try:
-                splitSku = products[product]['sku'].split('-')                
-                serieNumber = splitSku.pop()
-                if serieNumber.startswith('00', 0, 2):
-                    serieNumber = serieNumber.replace('00', '')                                                    
-                products[product]['options']['option1_value'] = serieNumber                
+                split_sku = products[product]['sku'].split('-')                
+                serie_number = split_sku.pop()
+                if serie_number.startswith('00', 0, 2):
+                    serie_number = serie_number.replace('00', '')                                                    
+                products[product]['options']['option1_value'] = serie_number                
             except:
                 print(BGCOLORS['WARNING'] + ' missing - in sku ' + BGCOLORS['ENDC'])
         return products   
@@ -65,80 +65,80 @@ class Make:
         We return two lists: One for the products and the other for missing collections.
         belongsTo refers to the parent
     """
-    def createCategories(self, products:dict) -> list:                
+    def create_categories(self, products:dict) -> list:                
         # Collections in DB
         collections = self.select.collections()  
         # For creating new collections      
-        missingCollections : list[str] = []
+        missing_collections : list[str] = []
 
         for product in products:            
-            currentProductCategories : list[str]        
-            productCategories : list[str] = []   
-            productMetafield : list[str] = []             
-            appendDbCollections : list[dict] = []
+            current_product_categories : list[str]        
+            product_categories : list[str] = []   
+            product_metafield : list[str] = []             
+            append_db_collections : list[dict] = []
  
-            currentProductCategories = products[product]['categories']['category'].split(',')
-            for category in currentProductCategories:                                
-                categorySplit = category.split('/')
+            current_product_categories = products[product]['categories']['category'].split(',')
+            for category in current_product_categories:                                
+                category_split = category.split('/')
                 # Remove unwanted categories
                 unwanted = ['Lux-Case', 'Smartwatch']
                 for item in unwanted:
-                    if item in categorySplit:                        
-                        categorySplit.remove(item)
+                    if item in category_split:                        
+                        category_split.remove(item)
                     # Removes Lux-case as manufacturer                    
                     if item.lower() == products[product]['manufacturer'].lower():
                         products[product]['manufacturer'] = ''
                     
-                for i, category in enumerate(categorySplit):                                                                                 
+                for i, category in enumerate(category_split):                                                                                 
                     # If there's a / in the category name (Eg. Model 2 / 2s)
                     if('\\' in category):
                         # Combine the two elements
-                        category = category + categorySplit[i + 1]
+                        category = category + category_split[i + 1]
                         # Remove what is after slash so we don't search for 2s
-                        categorySplit.remove(categorySplit[i + 1])                                                
+                        category_split.remove(category_split[i + 1])                                                
                     # Check if category(name) is in DB, get the object. Returns a list with one item
-                    dbCollection = [collection for collection in collections if str(collection['name']).lower() == category.lower()]                                                
-                    if dbCollection:
+                    db_collection = [collection for collection in collections if str(collection['name']).lower() == category.lower()]                                                
+                    if db_collection:
                         # Append all categories objects found                      
-                        appendDbCollections.append(dbCollection[0])
+                        append_db_collections.append(db_collection[0])
 
                     # Append missing categories: If category name is missing in db and not empty           
                     elif (category):
-                        missingCollections.append(category)
+                        missing_collections.append(category)
 
             # Appending all found collections (To categores and metafiled)
-            for collection in appendDbCollections:
+            for collection in append_db_collections:
                 # Append brand and model
-                productCategories.append(collection['name'])                
+                product_categories.append(collection['name'])                
                 # Append Series
                 if collection['belongs_to']:
-                    productCategories.append(collection['belongs_to'])
+                    product_categories.append(collection['belongs_to'])
 
                 # Append to metafield
                 if collection['relationship_type'].lower() == 'child':
-                    productMetafield.append(collection['name'])
+                    product_metafield.append(collection['name'])
                             
                         
             # Make sure we have manufacturer as first element in categories                        
             if products[product]['manufacturer']:                                  
-                productCategories.insert(0, products[product]['manufacturer'])      
+                product_categories.insert(0, products[product]['manufacturer'])      
             
             # Remove duplicates                        
-            productCategories = list(dict.fromkeys(productCategories))               
-            missingCollections = list(dict.fromkeys(missingCollections))  
-            productMetafield = list(dict.fromkeys(productMetafield))  
+            product_categories = list(dict.fromkeys(product_categories))               
+            missing_collections = list(dict.fromkeys(missing_collections))  
+            product_metafield = list(dict.fromkeys(product_metafield))  
             
             # Asigning categories / Tags
-            products[product]['categories']['category'] = productCategories
+            products[product]['categories']['category'] = product_categories
             # Asigning metafield
-            products[product]['categories']['metafield_compatible_with'] = ', '.join(productMetafield)
+            products[product]['categories']['metafield_compatible_with'] = ', '.join(product_metafield)
 
-        return [products, missingCollections]
+        return [products, missing_collections]
     
     """
     Clean up so it's correct format for import file
     """
-    def cleanAndFormat(self, products:dict) -> dict:        
+    def clean_and_format(self, products:dict) -> dict:        
         for product in products:
             # Make sure we don't have double spaces in name
             products[product]['name'] = " ".join(products[product]['name'].split())

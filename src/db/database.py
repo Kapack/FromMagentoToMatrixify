@@ -15,7 +15,7 @@ class Database():
         conn.text_factory = str
         c = conn.cursor()
             
-    def createAndInsertTables(self) -> None:
+    def create_and_insert_tables(self) -> None:
         # Attributes        
         ProductAttributes()
         # Descriptions

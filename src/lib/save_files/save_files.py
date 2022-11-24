@@ -103,7 +103,7 @@ class SaveFiles:
                     })
         print(BGCOLORS['SUCCESS'] + 'Import file is saved' + BGCOLORS['ENDC'])
     
-    def saveAdditionalImageFile(self, products:dict, language : str) -> None:
+    def additional_image_file(self, products:dict, language : str) -> None:
         with open(CONTENT_DIR_IMPORT_TO_MATRIXIFY + '2-import-'+ language +'-product-add-images.csv', 'w') as file:
             fieldnames = ['Variant SKU', 'Image Src', 'Image Alt Text', 'Image Position', 'Image Command']
 

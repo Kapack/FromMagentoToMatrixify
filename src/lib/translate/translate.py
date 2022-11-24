@@ -8,11 +8,11 @@ class Translate:
     def __init__(self) -> None:
         self.select = Select()
         
-    def translateAttributes(self, products:dict, language:str) -> dict:
+    def translate_attributes(self, products:dict, language:str) -> dict:
         products : dict
 
         products = self.material(products, language)
-        products = self.productTypes(products, language)            
+        products = self.product_types(products, language)            
         return products
     
     def material(self, products:dict, language:str) -> dict:      
@@ -43,7 +43,7 @@ class Translate:
         return products
     
 
-    def productTypes(self, products:dict, language:str) -> dict:
+    def product_types(self, products:dict, language:str) -> dict:
         product_types = self.select.product_types()
         for product in products:                        
             for i in product_types:                                                        

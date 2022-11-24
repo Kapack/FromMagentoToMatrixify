@@ -14,14 +14,18 @@ class Content:
     [ADDJECTIVE] [MODEL] [MATERIAL] [PRODUCTTYPE]
     
     """
-    def create(self, products:dict) -> dict:
-        productName : str = ''
-        productDescription : str = ''
+    def create(self, products:dict) -> dict:        
+        product_name : str = ''        
+        original_description : str = ''
+        product_description : str = ''
+
         # addjectives = self.select.addjectives()
 
         for product in products:
             # Default product name, so name wont be empty
-            productName = products[product]['name']
+            product_name = products[product]['name']
+            original_description = products[product]['description']
+
             # Choosing on model name
             if (products[product]['model']) and (products[product]['model'].lower() != 'n/a'):                        
                 model = products[product]['model']
@@ -39,15 +43,15 @@ class Content:
             if products[product]['parent'] == True:
                 # Pick correct content
                 if products[product]['product_types']['product_type'] == 'Watch Band':
-                    productName = WatchBand().name(model = model, material = translated_material, product_type = translate_product_type)
-                    productDescription = WatchBand().description(model = model, material = translated_material, original_description = products[product]['description'])
+                    product_name = WatchBand().name(model = model, material = translated_material, product_type = translate_product_type)
+                    product_description = WatchBand().description(model = model, material = translated_material, original_description = original_description)
 
                 if products[product]['product_types']['product_type'] == 'Screen Protecter':                                                                            
-                    productName = ScreenProtector().name(model = model, material = translated_material, product_type = translate_product_type)
-                    productDescription = ScreenProtector().description(original_description = products[product]['description'])
+                    product_name = ScreenProtector().name(model = model, material = translated_material, product_type = translate_product_type)
+                    product_description = ScreenProtector().description(original_description = original_description)
             
             # Setting attr
-            products[product]['name'] = productName
-            products[product]['description'] = productDescription
+            products[product]['name'] = product_name
+            products[product]['description'] = product_description
 
         return products

@@ -11,10 +11,10 @@ class Metafield:
     def colors(self, products:dict, language:str) -> dict:        
         for product in products:            
             color : str
-            hexColors : list
-            hexcode : str = ''           
-            strColor : str = ''           
-            color = products[product]['colors']['color']            
+            hex_colors : list
+            hex_code : str = ''           
+            str_color : str = ''           
+            color = products[product]['colors']['color']
 
             # If color is not empty
             if color:
@@ -23,25 +23,25 @@ class Metafield:
 
                 # Split multiple colors
                 if '/' in color and color.lower() != 'silver/grey':
-                    splitColor = color.split('/')
-                    hexColors = []
+                    split_color = color.split('/')
+                    hex_colors = []
 
-                    for col in splitColor:
-                        hexColors.append(HEXCOLORS[col.upper()]['hex'])                                         
+                    for col in split_color:
+                        hex_colors.append(HEXCOLORS[col.upper()]['hex'])                                         
                     
                     # convert to string
-                    hexcode = ', '.join(hexColors)           
+                    hex_code = ', '.join(hex_colors)           
                     # Set string color to multicolor
-                    strColor = HEXCOLORS['MULTICOLOR'][language]      
+                    str_color = HEXCOLORS['MULTICOLOR'][language]      
                     
                 else:
-                    hexcode = HEXCOLORS[color.upper()]['hex']
-                    strColor = HEXCOLORS[color.upper()][language]
+                    hex_code = HEXCOLORS[color.upper()]['hex']
+                    str_color = HEXCOLORS[color.upper()][language]
             
-                # Assign hexcode to metafield
-                products[product]['colors']['hex'] = hexcode
+                # Assign hex_code to metafield
+                products[product]['colors']['hex'] = hex_code
                 # products[product]['colors']['string'] = strColor.capitalize()
-                products[product]['options']['option2_value'] = strColor.capitalize()
+                products[product]['options']['option2_value'] = str_color.capitalize()
                 
         return products    
     
@@ -60,35 +60,35 @@ class Metafield:
         for product in products:
             if products[product]['parent'] == True:
                 # Split material
-                materialSplit = products[product]['materials']['translated'].split(',')
-                products[product]['materials']['metafield'] = ', '.join(materialSplit)                              
+                material_split = products[product]['materials']['translated'].split(',')
+                products[product]['materials']['metafield'] = ', '.join(material_split)                              
         return products
     
     def size(self, products:dict) -> dict:        
         size : str
-        nameSplit : list
-        lastElement : str
+        name_split : list
+        last_element : str
 
         for product in products:
             if '- ' in products[product]['name']:
                 # Get everything from last dash
-                nameSplit = products[product]['name'].split('- ')
+                name_split = products[product]['name'].split('- ')
                 # The last element in splitted string
-                lastElement = nameSplit[-1].lower()                
+                last_element = name_split[-1].lower()                
 
                 """
                 Getting sizes
                 If size is in the name
                 """                                
-                if ' size' in lastElement:
+                if ' size' in last_element:
                     # Get everythin after size
-                    afterSize = lastElement.lower().split(' size', 1)[1]
+                    after_size = last_element.lower().split(' size', 1)[1]
                     # Remove special chars
-                    size = re.sub("[^A-Za-z0-9]","", afterSize).upper()
+                    size = re.sub("[^A-Za-z0-9]","", after_size).upper()
                     # Assign Size
                     products[product]['size'] = size
 
-                    # Remove size + afterSize from last element
-                    lastElement = lastElement.replace(' size' + afterSize, '')
+                    # Remove size + after_size from last element
+                    last_element = last_element.replace(' size' + after_size, '')
         
         return products

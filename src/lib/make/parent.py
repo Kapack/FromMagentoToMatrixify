@@ -2,7 +2,7 @@ class Parent:
     """
     If product is a child, we don't need name and description
     """
-    def removeContentFromChild(self, products:dict) -> dict:
+    def remove_content_from_child(self, products:dict) -> dict:
         for product in products:            
             if products[product]['parent'] == False:
                 # Remove name
@@ -17,7 +17,7 @@ class Parent:
                 products[product]['categories']['category'] = ''                       
         return products     
 
-    def addProductTypes(self, products:dict) -> dict:
+    def add_product_types(self, products:dict) -> dict:
         for product in products:
             if products[product]['parent'] == True:                
                 if products[product]['product_types']['product_type'] == 'Watch Band':
@@ -60,7 +60,7 @@ class Parent:
 
         return products
     
-    def setVendor(self, products) -> dict:
+    def set_vendor(self, products) -> dict:
         for product in products:            
             if products[product]['parent'] == True:                
                 vendor = products[product]['manufacturer']                

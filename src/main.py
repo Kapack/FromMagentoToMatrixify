@@ -16,7 +16,7 @@ class Main:
     
     def __init__(self) -> None:
         # We are creating the DB every time.
-        Database().createAndInsertTables()     
+        Database().create_and_insert_tables()     
         # CLI Arguments     
         language = Arguments().run()   
         # Read CSV
@@ -33,43 +33,43 @@ class Main:
         Run
         """
         # Products
-        products = readCsv.getProducts(language = language)
+        products = readCsv.get_products(language = language)
         # # Handle
         products = make.handle(products = products)
         # Check if product is parent
-        products = make.checkIfParent(products = products)
-        products = make.createOptionOne(products = products)
+        products = make.check_if_parent(products = products)
+        products = make.create_option_one(products = products)
         # Additonal Images
-        products = image.createBaseImage(products = products)
-        products = image.createAdditonalImages(products = products)        
+        products = image.create_base_image(products = products)
+        products = image.create_additonal_images(products = products)        
         # Create Alt tags
-        products = image.createImageAltText(products = products)        
+        products = image.create_image_alt_text(products = products)        
         products = metafield.colors(products = products, language = language)        
         products = metafield.size(products = products)
         # Remove content from child
-        products = parent.removeContentFromChild(products = products)
+        products = parent.remove_content_from_child(products = products)
         # Create compatible with / Categories
-        productsAndCollections = make.createCategories(products = products)
-        products = productsAndCollections[0]
-        missingCollections = productsAndCollections[1]        
+        products_and_collections = make.create_categories(products = products)
+        products = products_and_collections[0]
+        missing_collections = products_and_collections[1]        
         # # Check for new categories (Collections)                
-        CreateCollection(newCollections = missingCollections, language = language)
+        CreateCollection(newCollections = missing_collections, language = language)
         # # Add Missing Content to parent products 
-        products = parent.addProductTypes(products = products)
-        products = parent.setVendor(products = products)
+        products = parent.add_product_types(products = products)
+        products = parent.set_vendor(products = products)
         # products = metafield.compatibleWith(products = products)
         # Translate Attributes
-        products = translate.translateAttributes(products = products, language = language)
+        products = translate.translate_attributes(products = products, language = language)
         products = metafield.material(products = products)                
         # Create Content
         products = Content().create(products = products)        
         # Currency convert        
-        products = prices.getPrices(products = products, currency = 'dkk')
+        products = prices.get_prices(products = products, currency = 'dkk')
         # Clean attributes
-        products = make.cleanAndFormat(products = products)
+        products = make.clean_and_format(products = products)
         # Save CSVs
         save.csv(products = products, language = language)
-        save.saveAdditionalImageFile(products = products, language = language)
+        save.additional_image_file(products = products, language = language)
 
 if __name__ == '__main__':
     Main()

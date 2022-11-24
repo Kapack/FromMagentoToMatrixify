@@ -2,7 +2,7 @@ import csv
 from config.constants import CONTENT_FILES_EXPORT_FROM_MAGENTO, LOCAL_DICT
 
 class ReadCsv:
-	def getProducts(self, language:str) -> list[dict]:
+	def get_products(self, language:str) -> list[dict]:
 		# We will append and return to this dict
 		products : list[dict] = {}
 		# Open csv file
