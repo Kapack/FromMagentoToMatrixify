@@ -1,10 +1,10 @@
-from db.select import Select
+from db.select import SelectWatchBand
 import random
 import re
 
 class WatchBand():
     def __init__(self) -> None:
-        self.select = Select()
+        self.select = SelectWatchBand()
 
     def name(self, model : str, material : str, product_type : str) -> str:
         addjectives = self.select.addjectives()

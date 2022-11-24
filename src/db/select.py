@@ -36,26 +36,12 @@ class Select:
         sql = 'SELECT color, dk_singular, dk_plural, dk_neutrum FROM colors'
         c.execute(sql)
         rows = c.fetchall()
-        # print(rows)
 
         colors = {}
         for idx, col in enumerate(rows):
             colors[col[0]] = rows[idx]
-            #print(idx)
-        #print(d['all black'])
-        
-        
-        # colors = list(rows)
-        # print(colors)
-        return colors
-        #supplier_skus = list(reader)
 
-        # colors = {}
-        # i = 0
-        # for key in rows:            
-        #     colors[i] = {'color': rows[i][0], 'dk_singular' : rows[i][1], 'dk_plural' : rows[i][2], 'dk_neutrum' : rows[i][3]}
-        #     i += 1
-        # return colors
+        return colors
         
     def addjectives(self) -> list:
         sql = 'SELECT dk_addjective FROM addjectives'
@@ -69,7 +55,6 @@ class Select:
             i += 1        
         return dk_addjectives
     
-    # Descriptions 
     def sizes(self) -> dict:
         sql = 'SELECT size, dk FROM sizes'
         c.execute(sql)
@@ -82,7 +67,8 @@ class Select:
             i += 1
         return sizes                
 
-    # Specific product type
+class SelectWatchBand(Select):
+
     def watchband_intro_texts(self) -> list:
       sql = 'SELECT dk FROM watch_band_intro_texts'
       c.execute(sql)
@@ -119,6 +105,20 @@ class Select:
             i += 1        
         return dk_endings
     
+class SelectScreenProtector(Select):    
+    def intro_text(self) -> list:
+      sql = 'SELECT dk FROM screen_protecter_intro_texts'
+      c.execute(sql)
+      rows = c.fetchall()
+
+      intros = []
+      i = 0
+      for key in rows:            
+          intros.append(rows[i][0])
+          i += 1        
+      return intros
+
+class SelectCollection(Select):
     # Collections
     def collections(self) -> list[dict]:
       sql = 'SELECT name, belongs_to, relationship_type FROM collections'
@@ -146,7 +146,7 @@ class Select:
             i += 1
                 
         return page_titles
-    
+
     def collection_meta_desc(self) -> list[str]:
         sql = 'SELECT meta_desc FROM collection_meta_desc'
         c.execute(sql)
@@ -172,7 +172,7 @@ class Select:
             descriptions.append(value[0])
         
         return descriptions
-    
+
     def collection_grandparent_description(self) -> list[dict]:
         sql = "SELECT h2, content FROM collection_grandparent_bottom_description"
         c.execute(sql)
@@ -194,7 +194,7 @@ class Select:
             descriptions.append({ 'h2' : row[0], 'content' : row[1] })
         
         return descriptions
-    
+
     def collection_keyword_research(self) -> list[dict]:
         sql = "SELECT device, keyword, volume FROM collection_kw_research"
         c.execute(sql)
@@ -207,7 +207,7 @@ class Select:
 
         return kws
     
-    def collection_ads_keyword(self) -> list:
+    def collection_ads_keyword(self) -> list:        
         sql = "SELECT keyword FROM collection_ads_kw"
         c.execute(sql)
         rows = c.fetchall()

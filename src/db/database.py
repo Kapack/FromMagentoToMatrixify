@@ -111,6 +111,7 @@ class ProductTexts(Database):
         self.createWatchBandEndingtext()
         self.insertWatchBandEndingText()
         self.createScreenProtectorIntros()
+        self.insertScreenProtectorIntros()
 
     # Specific texts
     def createWatchBandIntroText(self):

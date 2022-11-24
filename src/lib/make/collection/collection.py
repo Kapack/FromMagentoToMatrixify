@@ -3,7 +3,7 @@ Collection is created from the Magento field _category,
 This field will be the same as Tag in ImportToMatrixify.csv
 """
 
-from db.select import Select
+from db.select import SelectCollection
 from config.constants import CONTENT_DIR_IMPORT_TO_MATRIXIFY, BGCOLORS, CUSTOM_COLLECTION_BOTTOM_DESCRIPTIONS
 from slugify import slugify
 import random
@@ -12,7 +12,7 @@ import pandas as pd
 # Super
 class Collection:
   def __init__(self) -> None:
-    self.select = Select()
+    self.select = SelectCollection()
     self.collectionKwResearch : list[dict] = self.select.collection_keyword_research()
     self.collectionAdsKw : list = self.select.collection_ads_keyword()
 
