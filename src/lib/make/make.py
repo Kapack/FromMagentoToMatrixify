@@ -1,11 +1,8 @@
-from utils.helper import convertListToString
+from utils.helper import convert_list_to_string
 from config.constants import BGCOLORS
-from db.select import Select
+from db.select import SelectCollection
 
 class Make:
-    def __init__(self) -> None:
-        self.select = Select()
-    
     """
     Creates handle 
     So shopify knows parent/child relationshop    
@@ -66,8 +63,8 @@ class Make:
         belongsTo refers to the parent
     """
     def create_categories(self, products:dict) -> list:                
-        # Collections in DB
-        collections = self.select.collections()  
+        # Collections in DB        
+        collections = SelectCollection().collections()
         # For creating new collections      
         missing_collections : list[str] = []
 
@@ -144,10 +141,10 @@ class Make:
             products[product]['name'] = " ".join(products[product]['name'].split())
              
             # Adding default size
-            if (products[product]['product_types']['product_type'] == 'Watch Band' and products[product]['size'] == ''):
+            if (products[product]['product_types']['product_type'] == 'watch band' and products[product]['size'] == ''):
                 products[product]['size'] = 'One-size'
             
             # Cast categories into string            
-            products[product]['categories']['category'] = convertListToString(theList = products[product]['categories']['category'])  
+            products[product]['categories']['category'] = convert_list_to_string(the_list = products[product]['categories']['category'])  
 
         return products

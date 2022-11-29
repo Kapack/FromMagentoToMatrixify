@@ -44,24 +44,13 @@ class Metafield:
                 products[product]['options']['option2_value'] = str_color.capitalize()
                 
         return products    
-    
-    def compatibleWith(self, products:dict) -> dict:
-        pass
-        """
-        look in make.createCategories
-        """
-
-        # for product in products:            
-        #     if products[product]['parent'] == True:                       
-        #         products[product]['categories']['metafield_compatible_with'] = ', '.join(products[product]['categories']['metafield_compatible_with'])
-        return products
-    
+        
     def material(self, products:dict) -> dict:
         for product in products:
-            if products[product]['parent'] == True:
+            if products[product]['parent'] == True:                                
                 # Split material
                 material_split = products[product]['materials']['translated'].split(',')
-                products[product]['materials']['metafield'] = ', '.join(material_split)                              
+                products[product]['materials']['metafield'] = ', '.join(material_split)            
         return products
     
     def size(self, products:dict) -> dict:        

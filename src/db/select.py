@@ -8,62 +8,62 @@ class Select:
         conn = sqlite3.connect(DB_PATH + 'database.db')
         c = conn.cursor()
 
-    def materials(self) -> dict:
-        sql = 'SELECT material, dk FROM materials'
+    def materials(self, language:str) -> dict:
+        sql = 'SELECT material, ' + language + ' FROM materials'
         c.execute(sql)
         rows = c.fetchall()
 
         materials = {}
         i = 0
         for key in rows:            
-            materials[i] = {'material': rows[i][0], 'dk' : rows[i][1] }
+            materials[i] = {'material': rows[i][0], language : rows[i][1] }
             i += 1
         return materials
 
-    def product_types(self) -> dict:
-        sql = 'SELECT product_type, dk FROM product_types'
+    def product_types(self, language : str) -> dict:
+        sql = 'SELECT product_type, ' + language + ' FROM product_types'
         c.execute(sql)
         rows = c.fetchall()
 
         product_types = {}
         i = 0
         for key in rows:            
-            product_types[i] = {'product_type': rows[i][0], 'dk' : rows[i][1] }
+            product_types[i] = {'product_type': rows[i][0], language : rows[i][1] }
             i += 1
         return product_types
 
-    def colors(self):
-        sql = 'SELECT color, dk_singular, dk_plural, dk_neutrum FROM colors'
-        c.execute(sql)
-        rows = c.fetchall()
+    # def colors(self):
+    #     sql = 'SELECT color, dk_singular, dk_plural, dk_neutrum FROM colors'
+    #     c.execute(sql)
+    #     rows = c.fetchall()
 
-        colors = {}
-        for idx, col in enumerate(rows):
-            colors[col[0]] = rows[idx]
+    #     colors = {}
+    #     for idx, col in enumerate(rows):
+    #         colors[col[0]] = rows[idx]
 
-        return colors
+    #     return colors
         
-    def addjectives(self) -> list:
-        sql = 'SELECT dk_addjective FROM addjectives'
+    def addjectives(self, language : str) -> list:
+        sql = 'SELECT ' + language + '_addjective FROM addjectives'
         c.execute(sql)
         rows = c.fetchall()
 
-        dk_addjectives = []
+        addjectives = []
         i = 0
         for key in rows:            
-            dk_addjectives.append(rows[i][0])
+            addjectives.append(rows[i][0])
             i += 1        
-        return dk_addjectives
+        return addjectives
     
-    def sizes(self) -> dict:
-        sql = 'SELECT size, dk FROM sizes'
+    def sizes(self, language : str) -> dict:
+        sql = 'SELECT size, ' + language + ' FROM sizes'
         c.execute(sql)
         rows = c.fetchall()
 
         sizes = {}
         i = 0        
         for key in rows:            
-            sizes[i] = {'size': rows[i][0], 'dk' : rows[i][1] }
+            sizes[i] = {'size': rows[i][0], language : rows[i][1] }
             i += 1
         return sizes                
 
@@ -82,14 +82,14 @@ class SelectWatchBand(Select):
       return dk_endings
 
     def watchband_material_texts(self) -> dict:
-        sql = 'SELECT material_text, material_text_dk FROM watch_band_material_texts'
+        sql = 'SELECT material_text, dk FROM watch_band_material_texts'
         c.execute(sql)
         rows = c.fetchall()
 
         material_texts = {}
         i = 0
         for key in rows:            
-            material_texts[i] = {'material_text': rows[i][0], 'material_text_dk' : rows[i][1] }
+            material_texts[i] = {'material_text': rows[i][0], 'dk' : rows[i][1] }
             i += 1
         return material_texts
 
@@ -117,6 +117,31 @@ class SelectScreenProtector(Select):
           intros.append(rows[i][0])
           i += 1        
       return intros
+
+class SelectCover(Select):
+    def intro_text(self, language : str) -> list:
+      sql = 'SELECT ' + language + ' FROM cover_intro_texts'
+      c.execute(sql)
+      rows = c.fetchall()
+
+      intros = []
+      i = 0
+      for key in rows:            
+          intros.append(rows[i][0])
+          i += 1        
+      return intros
+
+    def material_texts(self, language : str) -> dict:
+        sql = 'SELECT material_text,' + language + ' FROM cover_material_texts'
+        c.execute(sql)
+        rows = c.fetchall()
+
+        material_texts = {}
+        i = 0
+        for key in rows:            
+            material_texts[i] = {'material_text': rows[i][0], language : rows[i][1] }
+            i += 1
+        return material_texts    
 
 class SelectCollection(Select):
     # Collections

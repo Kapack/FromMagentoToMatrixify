@@ -1,12 +1,13 @@
 from db.select import Select
-from utils.helper import getModelName
-from lib.make.content.screen_protecter import ScreenProtector
+from utils.helper import get_model_name
+# from lib.make.content.screen_protecter import ScreenProtector
 from lib.make.content.watch_band import WatchBand
+from lib.make.content.cover import Cover
 
 
 class Content:
     def __init__(self) -> None:
-        self.select = Select()
+        self.select = Select()        
 
     """
     Creates name from attributes and database
@@ -14,10 +15,11 @@ class Content:
     [ADDJECTIVE] [MODEL] [MATERIAL] [PRODUCTTYPE]
     
     """
-    def create(self, products:dict) -> dict:        
+    def create(self, products:dict, language : str) -> dict:        
         product_name : str = ''        
         original_description : str = ''
         product_description : str = ''
+        material : str = ''
 
         # addjectives = self.select.addjectives()
 
@@ -30,28 +32,34 @@ class Content:
             if (products[product]['model']) and (products[product]['model'].lower() != 'n/a'):                        
                 model = products[product]['model']
             else:                                                                                                                    
-                model = getModelName(product = products[product])
+                model = get_model_name(product = products[product])
             # Translated product type
-            translate_product_type = products[product]['product_types']['translate']
+            translate_product_type = products[product]['product_types']['translate']            
             # Material
+            material = products[product]['materials']['material']
             translated_material = products[product]['materials']['translated']
             # Remove Other material
             if 'other' in translated_material.lower():
-                translated_material = translated_material.lower().replace('other', '') 
+                translated_material = translated_material.lower().replace('other', '')                
             
             # Only make content for parent products 
             if products[product]['parent'] == True:
                 # Pick correct content
-                if products[product]['product_types']['product_type'] == 'Watch Band':
-                    product_name = WatchBand().name(model = model, material = translated_material, product_type = translate_product_type)
-                    product_description = WatchBand().description(model = model, material = translated_material, original_description = original_description)
+                product_description = ''
+                if products[product]['product_types']['product_type'] == 'watch band':                    
+                    product_name = WatchBand().name(model = model, translated_material = translated_material, product_type = translate_product_type, language = language)
+                    product_description = WatchBand().description(model = model, material = material, original_description = original_description, language = language)
 
-                if products[product]['product_types']['product_type'] == 'Screen Protecter':                                                                            
-                    product_name = ScreenProtector().name(model = model, material = translated_material, product_type = translate_product_type)
-                    product_description = ScreenProtector().description(original_description = original_description)
+                if products[product]['product_types']['product_type'] == 'cover':                  
+                    product_name = Cover().name(model = model, translated_material = translated_material, product_type = translate_product_type)
+                    product_description = Cover().description(model = model, material = material, language = language)
+
+                # if products[product]['product_types']['product_type'] == 'screen protecter':                                                                            
+                #     product_name = ScreenProtector().name(model = model, material = translated_material, product_type = translate_product_type)
+                #     product_description = ScreenProtector().description(model = model)    
             
-            # Setting attr
-            products[product]['name'] = product_name
+            # Setting attr.
+            products[product]['name'] = product_name           
             products[product]['description'] = product_description
 
         return products

@@ -17,47 +17,61 @@ class Parent:
                 products[product]['categories']['category'] = ''                       
         return products     
 
-    def add_product_types(self, products:dict) -> dict:
+    """
+    WIP
+    """
+    def correcting_product_types(self, products:dict) -> dict:
+        for product in products:
+            if products[product]['parent'] == True:
+                # Correction 2-in-1 products (Cover + Screen protectors)
+                if products[product]['product_types']['product_type'] == 'screen protecter':
+                    if any(x in products[product]['name'] for x in ['cover', 'frame']):
+                        pass
+                        # products[product]['product_types']['product_type'] = 'cover'
+                        # print(products[product]['product_types']['product_type'])
+                        # print(products[product]['name'])        
+        return products
+                
+
+
+    def set_shopify_product_types(self, products:dict) -> dict:
         for product in products:
             if products[product]['parent'] == True:                
-                if products[product]['product_types']['product_type'] == 'Watch Band':
-                    products[product]['type_standard_id'] = '342'
-                    products[product]['type_standard_name'] = 'Watch Bands'
-                    products[product]['type_standard'] = 'Apparel & Accessories > Jewelry > Watch Accessories > Watch Bands'
+                if products[product]['product_types']['product_type'] == 'watch band':
+                    products[product]['types']['type_standard_id'] = '5123'
+                    products[product]['types']['type_standard_name'] = 'Watch Bands'
+                    products[product]['types']['type_standard'] = 'Apparel & Accessories > Jewelry > Watch Accessories > Watch Bands'
                                         
-                elif products[product]['product_types']['product_type'] == 'Screen Protecter':
-                    products[product]['type_standard_id'] = '1549'
-                    products[product]['type_standard_name'] = 'Screen Protectors'
-                    products[product]['type_standard'] = 'Electronics > Electronics Accessories > Electronics Films & Shields > Screen Protectors'
+                elif products[product]['product_types']['product_type'] == 'screen protecter':
+                    products[product]['types']['type_standard_id'] = '5468'
+                    products[product]['types']['type_standard_name'] = 'Screen Protectors'
+                    products[product]['types']['type_standard'] = 'Electronics > Electronics Accessories > Electronics Films & Shields > Screen Protectors'
                                     
-                elif products[product]['product_types']['product_type'] == 'Charger':
-                    products[product]['type_standard_id'] = '1582'
-                    products[product]['type_standard_name'] = 'Power Adapters & Chargers'
-                    products[product]['type_standard'] = 'Electronics > Electronics Accessories > Power > Power Adapters & Chargers'                    
+                elif products[product]['product_types']['product_type'] == 'charger':
+                    products[product]['types']['type_standard_id'] = '505295'
+                    products[product]['types']['type_standard_name'] = 'Power Adapters & Chargers'
+                    products[product]['types']['type_standard'] = 'Electronics > Electronics Accessories > Power > Power Adapters & Chargers'                    
                 
-                elif products[product]['product_types']['product_type'] == 'Cable':
-                    products[product]['type_standard_id'] = '1456'
-                    products[product]['type_standard_name'] = 'System & Power Cables'
-                    products[product]['type_standard'] = 'Electronics > Electronics Accessories > Cables > System & Power Cables'
+                elif products[product]['product_types']['product_type'] == 'cable':
+                    products[product]['types']['type_standard_id'] = '1763'
+                    products[product]['types']['type_standard_name'] = 'System & Power Cables'
+                    products[product]['types']['type_standard'] = 'Electronics > Electronics Accessories > Cables > System & Power Cables'
                 
-                elif products[product]['product_types']['product_type'] == 'Stand':
-                    products[product]['type_standard_id'] = '2786'
-                    products[product]['type_standard_name'] = 'Jewelry Holders'
-                    products[product]['type_standard'] = 'Health & Beauty > Jewelry Cleaning & Care > Jewelry Holders'
+                elif products[product]['product_types']['product_type'] == 'stand':
+                    products[product]['types']['type_standard_id'] = '5974'
+                    products[product]['types']['type_standard_name'] = 'Jewelry Holders'
+                    products[product]['types']['type_standard'] = 'Health & Beauty > Jewelry Cleaning & Care > Jewelry Holders'
 
-                elif products[product]['product_types']['product_type'] == 'Stylus Pen':
-                    products[product]['type_standard_id'] = '1472'
-                    products[product]['type_standard_name'] = 'Stylus Pens'
-                    products[product]['type_standard'] = 'Electronics > Electronics Accessories > Computer Accessories > Stylus Pens'
+                elif products[product]['product_types']['product_type'] == 'stylus pen':
+                    products[product]['types']['type_standard_id'] = '5308'
+                    products[product]['types']['type_standard_name'] = 'Stylus Pens'
+                    products[product]['types']['type_standard'] = 'Electronics > Electronics Accessories > Computer Accessories > Stylus Pens'
 
                 else:
-                    products[product]['type_standard_id'] = '341'
-                    products[product]['type_standard_name'] = 'Watch Accessories'
-                    products[product]['type_standard'] = 'Apparel & Accessories > Jewelry > Watch Accessories'
-                
-                # else:
-                #     products[product]['custom_product_type'] = products[product]['product_type']
-
+                    products[product]['types']['type_standard_id'] = '5122'
+                    products[product]['types']['type_standard_name'] = 'Watch Accessories'
+                    products[product]['types']['type_standard'] = 'Apparel & Accessories > Jewelry > Watch Accessories'
+                    
         return products
     
     def set_vendor(self, products) -> dict:
@@ -68,4 +82,13 @@ class Parent:
                     vendor = 'urrem.dk'
                 products[product]['vendor'] = vendor
                                         
+        return products
+    
+    def set_material(self, products : dict) -> dict:
+        for product in products:
+            if products[product]['parent'] == True:
+                ## Setting Tempered glass to Screen protectors
+                if products[product]['product_types']['product_type'].lower() == 'screen protecter' and 'tempered glass' in products[product]['name']:
+                    products[product]['materials']['material'] = products[product]['materials']['material'].lower().replace('glass', 'tempered glass')
+
         return products

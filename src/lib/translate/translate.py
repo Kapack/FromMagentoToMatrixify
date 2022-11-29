@@ -16,10 +16,10 @@ class Translate:
         return products
     
     def material(self, products:dict, language:str) -> dict:      
-        materials = self.select.materials()
+        materials = self.select.materials(language = language)
 
         for product in products:
-            product_material = products[product]['materials']['material'].lower()            
+            product_material = products[product]['materials']['material'].lower()                        
             translated_materials = []
             # If product has a material
             if(product_material):
@@ -44,11 +44,11 @@ class Translate:
     
 
     def product_types(self, products:dict, language:str) -> dict:
-        product_types = self.select.product_types()
-        for product in products:                        
-            for i in product_types:                                                        
+        product_types = self.select.product_types(language = language)
+        for product in products:            
+            for i in product_types:                                                                        
                 # If what is in select 
-                if(product_types[i]['product_type'] == products[product]['product_types']['product_type']):                    
+                if(product_types[i]['product_type'].lower() == products[product]['product_types']['product_type']):
                     if(product_types[i][language]):
                         products[product]['product_types']['translate'] = product_types[i][language]                    
                     else:

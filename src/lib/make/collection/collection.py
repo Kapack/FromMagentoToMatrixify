@@ -132,13 +132,13 @@ class Collection:
       # Create dictionary
       keywords.append({ 'name' : name, 'keywords' : ', '.join(ads_kw), 'negative_keywords' : '[' + name + ']' })
     # Save collection
-    self.saveCollection(collections = keywords, filepath = '/ads/'+ language +'-kws.csv', warningmsg = 'Google Ads Keywords created\n')    
+    self.saveCollection(collections = keywords, filepath = '/ads/'+ language +'-kws.csv', msg = 'Google Ads Keywords created\n', msg_type = 'WARNING')    
 
-  def saveCollection(self, collections : list[dict], filepath : str, warningmsg : str):
+  def saveCollection(self, collections : list[dict], filepath : str, msg : str, msg_type : str):
     # Save as csv
     df = pd.DataFrame.from_dict(collections)
     df.to_csv (CONTENT_DIR_IMPORT_TO_MATRIXIFY + filepath, index = False, header=True)  
-    print(BGCOLORS['WARNING'] + warningmsg + BGCOLORS['ENDC'])
+    print(BGCOLORS[msg_type] + msg + BGCOLORS['ENDC'])
 
   def mostSearchedKeywords(self, collectionName : str) -> dict[str]:
     mostSearched = {'first' : '', 'second' : ''}
@@ -169,9 +169,9 @@ class CreateCollection(Collection):
     # Only run if any new collections
     if(newCollections):
       missingCollection = self.newCollections(newCollections)
-      msg = str(len(newCollections)) + ' missing collections was found. \n Todo: \n 1: update Shopify. \n 2: Update db/csv/collections.csv \n 3: Update shopify/other \n 4: Run main.py again \n 5: Import products'      
+      msg = 'Product Import list NOT created!\n' + str(len(newCollections)) + ' Missing collections was found. \n Todo: \n 1: update Shopify with new collections. \n 2: Update db/csv/collections.csv \n 3: Update shopify/other \n 4: Run this code again \n 5: Import products'      
       self.createGoogleAds(collections = newCollections, language = language)      
-      self.saveCollection(collections=missingCollection, filepath= '0-new-'+ language +'-smart-collections.csv', warningmsg = msg)    
+      self.saveCollection(collections=missingCollection, filepath= '0-new-'+ language +'-smart-collections.csv', msg = msg, msg_type = 'FAIL')    
 
   def newCollections(self, missingCollections:list[dict]) -> list[dict]:    
     newCollections : list = []        
@@ -203,7 +203,7 @@ class UpdateCollection(Collection):
     updateCollections = self.updateCollection()    
     msg = 'A updated collection list has been created. Be aware of what you\'re overwriting'
     self.createGoogleAds(collections = self.allCollections, language = language)
-    self.saveCollection(collections = updateCollections, filepath = 'updated-collections/update-'+ language +'-smart-collections.csv', warningmsg = msg)
+    self.saveCollection(collections = updateCollections, filepath = 'updated-collections/update-'+ language +'-smart-collections.csv', msg = msg, msg_type = 'WARNING')
 
 
   def updateCollection(self) -> list[dict]:    

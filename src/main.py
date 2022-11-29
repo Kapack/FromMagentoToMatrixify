@@ -16,16 +16,16 @@ class Main:
     
     def __init__(self) -> None:
         # We are creating the DB every time.
-        Database().create_and_insert_tables()     
+        Database().create_and_insert_tables()        
         # CLI Arguments     
-        language = Arguments().run()   
+        language = Arguments().run()                   
+               
         # Read CSV
         readCsv = ReadCsv()        
         make = Make()
         metafield = Metafield()
         image = Image()
-        parent = Parent()
-        translate = Translate()
+        parent = Parent()        
         prices = Prices()
         save = SaveFiles()
         
@@ -52,17 +52,22 @@ class Main:
         products_and_collections = make.create_categories(products = products)
         products = products_and_collections[0]
         missing_collections = products_and_collections[1]        
-        # # Check for new categories (Collections)                
-        CreateCollection(newCollections = missing_collections, language = language)
-        # # Add Missing Content to parent products 
-        products = parent.add_product_types(products = products)
+        
+        if len(missing_collections) > 0:
+        # Check for new categories (Collections)                
+            CreateCollection(newCollections = missing_collections, language = language)
+            # exit()
+
+        # Add Missing Content to parent products 
+        products = parent.correcting_product_types(products = products)
+        products = parent.set_shopify_product_types(products = products)
         products = parent.set_vendor(products = products)
-        # products = metafield.compatibleWith(products = products)
+        products = parent.set_material(products = products)
         # Translate Attributes
-        products = translate.translate_attributes(products = products, language = language)
+        products = Translate().translate_attributes(products = products, language = language)
         products = metafield.material(products = products)                
         # Create Content
-        products = Content().create(products = products)        
+        products = Content().create(products = products, language = language)        
         # Currency convert        
         products = prices.get_prices(products = products, currency = 'dkk')
         # Clean attributes

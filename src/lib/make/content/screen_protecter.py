@@ -1,4 +1,5 @@
 from db.select import SelectScreenProtector
+import random
 
 class ScreenProtector():
     
@@ -7,19 +8,19 @@ class ScreenProtector():
         
         return product_name
     
-    def description(self, original_description : str) -> str:
+    def description(self, model : str) -> str:
         select = SelectScreenProtector()
         description : str = ''
         intro_texts : str = ''
+        # Select from database        
+        intro_texts = select.intro_text()
         
-        # intro_texts = select.intro_text()
-        # print(intro_texts)
+        # Append random Intro Text
+        intro_txt = random.choice(intro_texts)
+        if '[DEVICE]' in intro_txt:                                     
+            intro_txt = intro_txt.replace('[DEVICE]', model)
+        
+        # Building Description
+        description = intro_txt
 
-
-
-
-
-
-
-        return original_description
-
+        return description
