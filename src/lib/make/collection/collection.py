@@ -169,7 +169,7 @@ class CreateCollection(Collection):
     # Only run if any new collections
     if(newCollections):
       missingCollection = self.newCollections(newCollections)
-      msg = 'Product Import list NOT created!\n' + str(len(newCollections)) + ' Missing collections was found. \n Todo: \n 1: update Shopify with new collections. \n 2: Update db/csv/collections.csv \n 3: Update shopify/other \n 4: Run this code again \n 5: Import products'      
+      msg = 'Product Import list NOT created!\n' + str(len(newCollections)) + ' Missing collections was found. \n Todo: \n 1: update Shopify with new collections. \n 2: Update db/csv/collections.csv \n 3: Update shopify/other - page \n 4: Run this code again \n 5: Import products'      
       self.createGoogleAds(collections = newCollections, language = language)      
       self.saveCollection(collections=missingCollection, filepath= '0-new-'+ language +'-smart-collections.csv', msg = msg, msg_type = 'FAIL')    
 

@@ -14,7 +14,8 @@ class Parent:
                 # Remove manufacturer
                 products[product]['manufacturer'] = ''
                 # Remove categories
-                products[product]['categories']['category'] = ''                       
+                products[product]['categories']['category'] = ''
+                products[product]['product_types']['product_type'] = ''
         return products     
 
     """
@@ -30,14 +31,9 @@ class Parent:
 
                 if products[product]['product_types']['product_type'] == 'screen protecter':
                     if any(x in products[product]['name'] for x in ['cover', 'frame']):
-                        pass
-                        # products[product]['product_types']['product_type'] = 'cover'
-                        # print(products[product]['product_types']['product_type'])
-                        # print(products[product]['name'])        
+                        products[product]['product_types']['product_type'] = 'cover, screen protecter'
         return products
                 
-
-
     def set_shopify_product_types(self, products:dict) -> dict:
         for product in products:
             if products[product]['parent'] == True:                

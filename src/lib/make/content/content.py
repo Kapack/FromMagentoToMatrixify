@@ -20,7 +20,7 @@ class Content:
         original_description : str = ''
         product_description : str = ''
         product_type : str = ''
-        translate_product_type : str = ''
+        translated_product_type : str = ''
         material : str = ''
         translated_material : str = ''
 

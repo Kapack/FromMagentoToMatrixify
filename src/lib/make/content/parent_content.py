@@ -33,6 +33,5 @@ class ParentContent:
                     mat_addjective = random.choice(addjectives[product_type.lower()][material])
                 # If there's not material text, use a default
                 except (KeyError):
-                    mat_addjective = random.choice(addjectives[product_type.lower()]['default'])
-                    # print(mat_addjective)        
+                    mat_addjective = random.choice(addjectives[product_type.lower()]['default'])                    
         return mat_addjective

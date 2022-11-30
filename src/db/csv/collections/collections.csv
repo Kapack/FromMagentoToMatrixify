@@ -45,6 +45,7 @@ Amazfit Stratos Series;Amazfit;Parent
 Amazfit T-Rex;Amazfit T-Rex Series;Child
 Amazfit T-Rex Pro;Amazfit T-Rex Series;Child
 Amazfit T-Rex Series;;Parent
+Amazfit Verge;;Child
 Amazfit Verge 3;;Child
 Amazfit X;;Child
 Amazfit Youth;Amazfit Youth Series;Child
@@ -153,6 +154,7 @@ Fossil Marshal Touch;;Child
 Fossil Men's Sport 43mm;;Child
 Fossil Q Marshal Gen 2;;Child
 Fossil Scarlette;;Child
+Fossil Sport Women's (41mm);;Child
 Fossil Tailor Hybrid;;Child
 Fossil Venture;;Child
 Fossil Wander;;Child
@@ -196,6 +198,7 @@ Garmin Edge 510;;Child
 Garmin Edge 520;;Child
 Garmin Edge 530;;Child
 Garmin Edge 800 / 810;;Child
+Garmin Edge 800\810;;Child
 Garmin Edge 820;;Child
 Garmin Edge 830;;Child
 Garmin Edge G80;;Child
@@ -352,22 +355,23 @@ Haylou SmartWatch LS01;;Child
 Haylou SmartWatch LS02;;Child
 Haylou Smartwatch RS4;;Child
 Haylou Solar;;Child
+Haylou Solar LS02;;Child
 Haylou Solar LS05;;Child
 Honor;;Grandparent
-Honor Band Series;;Parent
 Honor Band 3;Honor Band Series;Child
 Honor Band 5;Honor Band Series;Child
 Honor Band 5i;Honor Band Series;Child
 Honor Band 6;Honor Band Series;Child
-Honor MagicWatch Series;;Parent
+Honor Band Series;;Parent
 Honor MagicWatch 2 42mm;Honor MagicWatch Series;Child
 Honor MagicWatch 2 46mm;Honor MagicWatch Series;Child
+Honor MagicWatch Series;;Parent
 Honor S1;;Child
-Honor Watch Series;;Parent
 Honor Watch Dream;Honor Watch Series;Child
 Honor Watch ES;Honor Watch Series;Child
 Honor Watch GS 3;Honor Watch Series;Child
 Honor Watch GS Pro;Honor Watch Series;Child
+Honor Watch Series;;Parent
 Huawei;;Grandparent
 Huawei Band 2;Huawei Band 2 Series;Child
 Huawei Band 2 Pro;Huawei Band 2 Series;Child
@@ -396,7 +400,9 @@ Huawei Watch 2 Series;;Parent
 Huawei Watch 3;Huawei Watch 3 Series;Child
 Huawei Watch 3 Pro;Huawei Watch 3 Series;Child
 Huawei Watch 3 Series;;Parent
+Huawei Watch D;;Child
 Huawei Watch Fit;Huawei Watch Fit Series;Child
+Huawei Watch Fit 2;;Child
 Huawei Watch Fit Mini;Huawei Watch Fit Series;Child
 Huawei Watch Fit Series;;Parent
 Huawei Watch GT;Huawei Watch GT Series;Child
@@ -442,6 +448,7 @@ Misfit Vapor 2;;Child
 Motorola Moto;;Grandparent
 Motorola Moto 360 - 42mm;;Child
 Motorola Moto 360 - 46mm;;Child
+Motorola Moto 360 (3rd Gen);;Child
 Noise;;Grandparent
 Noise ColorFit Pro 2;;Child
 Noise ColorFit Pulse;;Child
@@ -501,9 +508,10 @@ Realme Watch 2;;Child
 Realme Watch 2 Pro;;Child
 Realme Watch S;;Child
 Samsung;;Grandparent
-Samsung Galaxy Fit Series;;Parent
 Samsung Galaxy Fit;Samsung Galaxy Fit Series;Child
 Samsung Galaxy Fit 2;Samsung Galaxy Fit 2 Series;Child
+Samsung Galaxy Fit 2 Series;;Parent
+Samsung Galaxy Fit Series;;Parent
 Samsung Galaxy Fit-e;Samsung Galaxy Fit Series;Child
 Samsung Galaxy Watch;;Parent
 Samsung Galaxy Watch (42mm);Samsung Galaxy Watch;Child
@@ -517,22 +525,24 @@ Samsung Galaxy Watch 4 (40mm);Samsung Galaxy Watch 4;Child
 Samsung Galaxy Watch 4 (44mm);Samsung Galaxy Watch 4;Child
 Samsung Galaxy Watch 4 Classic (42mm);Samsung Galaxy Watch 4;Child
 Samsung Galaxy Watch 4 Classic (46mm);Samsung Galaxy Watch 4;Child
+Samsung Galaxy Watch 5;;Parent
+Samsung Galaxy Watch 5 (40mm);Samsung Galaxy Watch 5;Child
+Samsung Galaxy Watch 5 (44mm);Samsung Galaxy Watch 5;Child
 Samsung Galaxy Watch Active;;Child
 Samsung Galaxy Watch Active 2;;Parent
 Samsung Galaxy Watch Active 2 - 40mm;Samsung Galaxy Watch Active 2;Child
 Samsung Galaxy Watch Active 2 - 44mm;Samsung Galaxy Watch Active 2;Child
 Samsung Gear;;Child
 Samsung Gear 2;;Child
-Samsung Galaxy Fit 2 Series;;Parent
 Samsung Gear Fit2;Samsung Galaxy Fit 2 Series;Child
 Samsung Gear Fit2 Pro;Samsung Galaxy Fit 2 Series;Child
-Samsung Gear S2 Series;;Parent
 Samsung Gear S2;Samsung Gear S2 Series;Child
 Samsung Gear S2 Classic;Samsung Gear S2 Series;Child
-Samsung Gear S3 Series;;Parent
+Samsung Gear S2 Series;;Parent
 Samsung Gear S3;Samsung Gear S3 Series;Child
 Samsung Gear S3 Active;Samsung Gear S3 Series;Child
 Samsung Gear S3 Frontier;Samsung Gear S3 Series;Child
+Samsung Gear S3 Series;;Parent
 Samsung Gear Sport;;Child
 Seiko;;Grandparent
 Seiko SUN059;;Child
@@ -571,6 +581,7 @@ Suunto D6i Zulu;Suunto D6 Series;Child
 Suunto Essential;;Child
 Suunto Kailash;;Child
 Suunto M1 / M2 / M4 / M5;;Child
+Suunto M1 M2 M4 M5;;Child
 Suunto Quest M1 / M2 / M4 / M5;;Child
 Suunto Spartan Series;;Parent
 Suunto Spartan Sport;Suunto Spartan Series;Child
@@ -597,31 +608,31 @@ Ticwatch S2;;Child
 TicWatch TicBand;;Child
 TomTom;;Grandparent
 TomTom Adventurer;;Child
-TomTom Golfer Series;;Parent
 TomTom Golfer 2;TomTom Golfer Series;Child
 TomTom Golfer 2 SE;TomTom Golfer Series;Child
+TomTom Golfer Series;;Parent
 TomTom Multi-Sport;;Child
 TomTom Runner;;Child
-TomTom Runner 2 Series;;Parent
 TomTom Runner 2;TomTom Runner 2 Series;Child
 TomTom Runner 2 Cardio;TomTom Runner 2 Series;Child
 TomTom Runner 2 Cardio + Music;TomTom Runner 2 Series;Child
 TomTom Runner 2 Music;TomTom Runner 2 Series;Child
-TomTom Runner 3 Series;;Parent
+TomTom Runner 2 Series;;Parent
 TomTom Runner 3;TomTom Runner 3 Series;Child
 TomTom Runner 3 Cardio;TomTom Runner 3 Series;Child
 TomTom Runner 3 Cardio + Music;TomTom Runner 3 Series;Child
 TomTom Runner 3 Music;TomTom Runner 3 Series;Child
-TomTom Spark Series;;Parent
+TomTom Runner 3 Series;;Parent
 TomTom Spark;TomTom Spark Series;Child
-TomTom Spark 3 Series;;Parent
 TomTom Spark 3;TomTom Spark 3 Series;Child
 TomTom Spark 3 Cardio;TomTom Spark 3 Series;Child
 TomTom Spark 3 Cardio + Music;TomTom Spark 3 Series;Child
 TomTom Spark 3 Music;TomTom Spark 3 Series;Child
+TomTom Spark 3 Series;;Parent
 TomTom Spark Cardio;TomTom Spark Series;Child
 TomTom Spark Cardio + Music;TomTom Spark Series;Child
 TomTom Spark Music;TomTom Spark Series;Child
+TomTom Spark Series;;Parent
 TomTom Touch;;Child
 Umidigi;;Grandparent
 Umidigi UFit;;Child
@@ -650,6 +661,7 @@ Xiaomi Mi Band 2;Xiaomi Mi;Child
 Xiaomi Mi Band 3;Xiaomi Mi;Child
 Xiaomi Mi Band 5;Xiaomi Mi;Child
 Xiaomi Mi Band 7;Xiaomi Mi;Child
+Xiaomi Mi Band 7 Pro;;Child
 Xiaomi Mi Smart Band 4;Xiaomi Mi;Child
 Xiaomi Mi Smart Band 6;Xiaomi Mi;Child
 Xiaomi Mi Watch;Xiaomi Mi;Child

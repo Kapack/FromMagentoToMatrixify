@@ -28,7 +28,8 @@ class Arguments:
             exit()
         
         # Remove old product files
-        filepaths = [CONTENT_DIR_IMPORT_TO_MATRIXIFY + '1-import-' + language + '-main-products.csv', CONTENT_DIR_IMPORT_TO_MATRIXIFY + '2-import-' + language + '-product-add-images.csv']
+        
+        filepaths = [CONTENT_DIR_IMPORT_TO_MATRIXIFY + '0-new-' + language + '-smart-collections.csv', CONTENT_DIR_IMPORT_TO_MATRIXIFY + '1-import-' + language + '-main-products.csv', CONTENT_DIR_IMPORT_TO_MATRIXIFY + '2-import-' + language + '-product-add-images.csv']
         for filepath in filepaths:
             if os.path.exists(filepath):        
                 os.remove(filepath) 

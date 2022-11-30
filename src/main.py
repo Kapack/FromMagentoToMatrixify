@@ -56,7 +56,7 @@ class Main:
         if len(missing_collections) > 0:
         # Check for new categories (Collections)                
             CreateCollection(newCollections = missing_collections, language = language)
-            # exit()
+            exit()
 
         # Add Missing Content to parent products 
         products = parent.correcting_product_types(products = products)
