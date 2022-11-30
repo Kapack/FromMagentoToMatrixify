@@ -24,6 +24,10 @@ class Parent:
         for product in products:
             if products[product]['parent'] == True:
                 # Correction 2-in-1 products (Cover + Screen protectors)
+                if products[product]['product_types']['product_type'] == 'cover':
+                    if any(x in products[product]['name'] for x in ['screen film', 'tempered glass', 'screen protector']):
+                        products[product]['product_types']['product_type'] = 'cover, screen protecter'                   
+
                 if products[product]['product_types']['product_type'] == 'screen protecter':
                     if any(x in products[product]['name'] for x in ['cover', 'frame']):
                         pass

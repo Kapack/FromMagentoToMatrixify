@@ -46,7 +46,7 @@ class ReadCsv:
 					'prices' : {'price' : key['price'], 'special_price' : key['special_price'], 'variant_price' : '', 'variant_compare_price' : ''},
 					'product_types' : {'product_type' : key['m2_type'].lower(), 'translate' : ''},
 					'size' : '',
-					'materials' : {'material' : key['material'], 'translated' : '', 'metafield' : ''},
+					'materials' : {'material' : key['material'].lower().strip(), 'translated' : '', 'metafield' : ''},
 					# 'colors' : {'color' : key['color'], 'hex' : key['color'], 'string' : key['color']},			
 					'colors' : {'color' : key['color'], 'hex' : key['color']},			
 					'categories' : {'category' : key['_category'], 'metafield_compatible_with' : '' },	

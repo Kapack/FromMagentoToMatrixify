@@ -43,16 +43,78 @@ class Select:
 
     #     return colors
         
-    def addjectives(self, language : str) -> list:
-        sql = 'SELECT ' + language + '_addjective FROM addjectives'
+    # def addjectives(self, language : str) -> list:
+    #     sql = 'SELECT ' + language + '_addjective FROM addjectives'
+    #     c.execute(sql)
+    #     rows = c.fetchall()
+
+    #     addjectives = []
+    #     i = 0
+    #     for key in rows:            
+    #         addjectives.append(rows[i][0])
+    #         i += 1        
+    #     return addjectives
+    
+    def addjectives(self, language : str) -> dict:
+        sql = 'SELECT product_type, material, ' + language + '_addjective FROM addjectives'
         c.execute(sql)
         rows = c.fetchall()
-
-        addjectives = []
+        # addjectives = [{
+        #     'cover' : {
+        #         'silicone / tpu' : ['1', '3']
+        #     }
+        # }]        
+        #
+        
+        # Setting product type keys
+        product_type_keys = []
         i = 0
-        for key in rows:            
-            addjectives.append(rows[i][0])
+        for value in rows:
+            split_product_types = rows[i][0].split(',')
+
+            for product_type in split_product_types:
+                product_type_keys.append(product_type.lower().strip())
+
+            product_type_keys = list(dict.fromkeys(product_type_keys))
             i += 1        
+        #   
+        addjectives = {}             
+        # Setting materials as key
+        for product_type_key in product_type_keys:            
+            mat_keys = []
+            # Rows is from DB
+            for value in rows:
+                value_split_types = value[0].split(',')
+                value_material = value[1]
+                
+                for val_split_type in value_split_types:                    
+                    val_split_type = val_split_type.lower().strip()
+                    if product_type_key in val_split_type:
+                        
+                        # Append material:
+                        mat_keys.append(value_material)
+                        # Removing duplicates
+                        mat_keys = list(dict.fromkeys(mat_keys))
+                        # Setting material is dict keys
+                        addjectives[product_type_key] = dict.fromkeys(mat_keys)                        
+
+        # Setting addjectives
+        for product_type_key in addjectives:
+            for material in addjectives[product_type_key]:
+                value_adj_list = []
+                # Loop trough DB
+                for value in rows:
+                    value_split_types = value[0].split(',')
+                    value_material = value[1].lower().strip()
+                    value_adj = value[2].strip()                    
+                    for val_split_type in value_split_types: 
+                        val_split_type = val_split_type.lower().strip()                    
+                        if product_type_key in val_split_type and material == value_material:
+                            # Setting values
+                            value_adj_list.append(value_adj)
+                            addjectives[val_split_type][material] = value_adj_list
+                            
+        
         return addjectives
     
     def sizes(self, language : str) -> dict:
@@ -142,6 +204,18 @@ class SelectCover(Select):
             material_texts[i] = {'material_text': rows[i][0], language : rows[i][1] }
             i += 1
         return material_texts    
+    
+    def ending_texts(self, language : str) -> list:
+        sql = 'SELECT ' + language + ' FROM cover_ending_texts'
+        c.execute(sql)
+        rows = c.fetchall()
+
+        endings = []
+        i = 0
+        for key in rows:            
+            endings.append(rows[i][0])
+            i += 1        
+        return endings
 
 class SelectCollection(Select):
     # Collections

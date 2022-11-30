@@ -1,21 +1,24 @@
+from lib.make.content.parent_content import ParentContent
 from db.select import SelectWatchBand
 import random
 import re
 
-class WatchBand():
-    def __init__(self) -> None:
-        self.select = SelectWatchBand()
+class WatchBand(ParentContent):
+    def __init__(self, model : str, language : str, material : str) -> None:
+        self.model = model
+        self.language = language
+        self.material = material
+        super().__init__()
 
-    def name(self, model : str, translated_material : str, product_type : str, language : str) -> str:
-        addjectives = self.select.addjectives(language = language)
-        # Addjective
-        addjective = random.choice(addjectives)
+    def name(self, translated_material : str, product_type : str, translated_product_type : str) -> str:
+        # Adjective according material        
+        mat_addjective = self.give_addjective_from_material(material = self.material, product_type = product_type, language = self.language)
         # Building productname
-        product_name = addjective.capitalize() + ' ' +  model +  ' ' + translated_material + ' ' +  product_type
-        
+        product_name = mat_addjective.capitalize() + ' ' +  self.model +  ' ' + translated_material + ' ' +  translated_product_type        
         return product_name
     
-    def description(self, model : str, material : str, original_description : str, language : str) -> str:
+    def description(self, original_description : str) -> str:
+        select = SelectWatchBand()
         description : str = ''
         intro_txt : str = ''
         material_txt : str = ''
@@ -23,33 +26,33 @@ class WatchBand():
         ending_txt : str = ''
 
         # Select from database        
-        intro_texts = self.select.watchband_intro_texts()
-        material_texts = self.select.watchband_material_texts()
-        ending_texts = self.select.watchband_ending_texts() 
-        sizes = self.select.sizes(language = language)
+        intro_texts = select.watchband_intro_texts()
+        material_texts = select.watchband_material_texts()
+        ending_texts = select.watchband_ending_texts() 
+        sizes = select.sizes(language = self.language)
         
         # Append random Intro Text
         intro_txt = random.choice(intro_texts)
         if '[DEVICE]' in intro_txt:                                     
-            intro_txt = intro_txt.replace('[DEVICE]', model)
+            intro_txt = intro_txt.replace('[DEVICE]', self.model)
         
         # Append all material, Material Text
         material_list_texts = []                    
         for i in material_texts:
-            if(material == material_texts[i]['material_text']):                            
-                material_list_texts.append(material_texts[i][language])
+            if(self.material == material_texts[i]['material_text']):                            
+                material_list_texts.append(material_texts[i][self.language])
         
         # If any texts got append to material_list_texts, pick one random
         if(material_list_texts):
             material_txt = random.choice(material_list_texts)
             if '[DEVICE]' in material_txt:
-                material_txt = material_txt.replace('[DEVICE]', model) 
+                material_txt = material_txt.replace('[DEVICE]', self.model) 
                               
         # Check if original text contains anything about sizes
         sizes_found = ([ sizes[size]['size'] for size in sizes if(sizes[size]['size'] in original_description.lower() ) ])
         if (sizes_found):
             # Get sizes
-            size_txt = self.size_text(productDescription = original_description, language = language)
+            size_txt = self.size_text(productDescription = original_description)
 
         # Append Ending Text
         ending_txt = random.choice(ending_texts)
@@ -59,8 +62,8 @@ class WatchBand():
         
         return description
     
-    def size_text(self, productDescription : str, language : str):        
-        sizes = self.select.sizes(language = language)
+    def size_text(self, productDescription : str):        
+        sizes = self.select.sizes(language = self.language)
         size_txt = ''
 
         # Split description

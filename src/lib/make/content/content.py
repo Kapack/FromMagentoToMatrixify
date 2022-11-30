@@ -19,9 +19,10 @@ class Content:
         product_name : str = ''        
         original_description : str = ''
         product_description : str = ''
+        product_type : str = ''
+        translate_product_type : str = ''
         material : str = ''
-
-        # addjectives = self.select.addjectives()
+        translated_material : str = ''
 
         for product in products:
             # Default product name, so name wont be empty
@@ -33,8 +34,9 @@ class Content:
                 model = products[product]['model']
             else:                                                                                                                    
                 model = get_model_name(product = products[product])
-            # Translated product type
-            translate_product_type = products[product]['product_types']['translate']            
+            # Product type
+            product_type = products[product]['product_types']['product_type']
+            translated_product_type = products[product]['product_types']['translate']            
             # Material
             material = products[product]['materials']['material']
             translated_material = products[product]['materials']['translated']
@@ -46,20 +48,20 @@ class Content:
             if products[product]['parent'] == True:
                 # Pick correct content
                 product_description = ''
-                if products[product]['product_types']['product_type'] == 'watch band':                    
-                    product_name = WatchBand().name(model = model, translated_material = translated_material, product_type = translate_product_type, language = language)
-                    product_description = WatchBand().description(model = model, material = material, original_description = original_description, language = language)
+                if product_type == 'watch band':
+                    product_name = WatchBand(model = model, language = language, material = material).name(translated_material = translated_material, product_type = product_type, translated_product_type = translated_product_type)
+                    product_description = WatchBand(model = model, language = language, material = material).description(original_description = original_description)
 
-                if products[product]['product_types']['product_type'] == 'cover':                  
-                    product_name = Cover().name(model = model, translated_material = translated_material, product_type = translate_product_type)
-                    product_description = Cover().description(model = model, material = material, language = language)
+                if product_type == 'cover':                                      
+                    product_name = Cover(model = model, language = language, material = material).name(translated_material = translated_material, product_type = product_type, translated_product_type = translated_product_type)
+                    product_description = Cover(model = model, language = language, material = material).description()
 
                 # if products[product]['product_types']['product_type'] == 'screen protecter':                                                                            
                 #     product_name = ScreenProtector().name(model = model, material = translated_material, product_type = translate_product_type)
                 #     product_description = ScreenProtector().description(model = model)    
             
-            # Setting attr.
-            products[product]['name'] = product_name           
-            products[product]['description'] = product_description
+                # Setting attr.
+                products[product]['name'] = product_name           
+                products[product]['description'] = product_description
 
         return products

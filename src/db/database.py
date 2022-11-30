@@ -28,7 +28,7 @@ class ProductAttributes(Database):
         self.create_insert_color()
         self.create_insert_material()
         self.create_insert_product_type()
-        self.create_insert_addjective()          
+        self.create_insert_addjective()     
         self.create_insert_sizes()
 
     def create_insert_color(self):
@@ -68,16 +68,16 @@ class ProductAttributes(Database):
                 conn.commit()
 
     def create_insert_addjective(self):
-        sql = 'CREATE TABLE if not exists addjectives (id integer primary key not null, dk_addjective text)'
+        sql = 'CREATE TABLE if not exists addjectives (id integer primary key not null, material text, product_type text, dk_addjective text)'
         c.execute(sql)
-
-        with open(DB_PATH + 'csv/attributes/addjectives.csv', 'r') as file: 
+        with open(DB_PATH + 'csv/attributes/materials_addjectives.csv', 'r') as file: 
             reader = csv.DictReader(file, delimiter=';')
             i = 1
             for row in reader:
-                c.execute('INSERT INTO addjectives VALUES(?, ?)', (i, row['dk_addjective'] ))
+                c.execute('INSERT INTO addjectives VALUES(?, ?, ?, ?)', (i, row['material'].lower().strip(), row['product_type'].lower().strip(), row['dk_addjective'].strip() ))
                 i += 1
-                conn.commit()
+                conn.commit()                
+
 
     def create_insert_sizes(self):
         sql = 'CREATE TABLE if not exists sizes (id integer primary key not null, size text, dk text)'
