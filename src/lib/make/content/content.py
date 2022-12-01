@@ -29,11 +29,12 @@ class Content:
             product_name = products[product]['name']
             original_description = products[product]['description']
 
-            # Choosing on model name
-            if (products[product]['model']) and (products[product]['model'].lower() != 'n/a'):                        
-                model = products[product]['model']
-            else:                                                                                                                    
-                model = get_model_name(product = products[product])
+            # # Choosing on model name
+            # if (products[product]['model']) and (products[product]['model'].lower() != 'n/a'):                        
+            #     model = products[product]['model']
+            # else:                                                                                                                    
+            model = get_model_name(product = products[product])
+
             # Product type
             product_type = products[product]['product_types']['product_type']
             translated_product_type = products[product]['product_types']['translate']            
@@ -61,7 +62,7 @@ class Content:
                 #     product_description = ScreenProtector().description(model = model)    
             
                 # Setting attr.
-                products[product]['name'] = product_name           
+                products[product]['name'] = product_name
                 products[product]['description'] = product_description
 
         return products

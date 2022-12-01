@@ -1,33 +1,18 @@
 product_type;material;dk_addjective
-cover;default;beskyttende
-cover;Plastic;Hårdt
-cover;Plastic;Holdbart
-cover, watch band;Silicone / TPU;Rart
-cover, watch band;Silicone / TPU;Behagelig
-cover, watch band;Silicone / TPU;Blød
-cover, watchband;Plastic;hårdfør
-screen protector;Tempered Glass;Slidstærk
-screen protector;Tempered Glass;Stærk
-screen protector;Tempered Glass;Ekstra stærk
-watch band;default;alle tiders
-watch band;default;behagelig
-watch band;default;cool
 cover, watch band;default;alle tiders
-watch band;default;behagelig
-watch band;default;cool
-watch band;default;elegant
-watch band;default;eminent
+cover;default;beskyttende
 watch band;default;cool
 watch band;default;elegant
 watch band;default;eminent
 watch band;default;fantastisk
+cover;Plastic;robust
 cover, watch band;default;fed
 cover, watch band;default;fint
 cover, watch band;default;flot
 watch band;default;fortrinligt
 watch band;default;fremragende
 watch band;default;glimrende
-watch band;Silicone / TPU;helt vildt behagelig
+watch band, cover;default;godt
 watch band;default;helt vildt cool
 watch band;default;helt vildt elegant
 watch band;default;helt vildt fantastisk
@@ -50,7 +35,6 @@ watch band;default;holdbart
 watch band;default;klassisk
 watch band;default;komfortabel
 watch band;default;kønt
-watch band;Silicone / TPU;mega behagelig
 watch band;default;mega cool
 watch band;default;mega elegant
 watch band;default;mega fantastisk
@@ -64,12 +48,10 @@ watch band;default;mega komfortabel
 watch band;default;mega kønt
 watch band;default;mega nydelig
 watch band;default;mega pænt
-watch band;Silicone / TPU;mega rart
 watch band;default;mega sejt
 watch band;default;mega skøn
 watch band;default;mega slidstærk
 watch band;default;mega smuk
-watch band;Silicone / TPU;meget behagelig
 watch band;default;meget cool
 watch band;default;meget elegant
 watch band;default;meget fantastisk
@@ -83,14 +65,12 @@ watch band;default;meget komfortabel
 watch band;default;meget kønt
 watch band;default;meget nydelig
 watch band;default;meget pænt
-watch band;Silicone / TPU;meget rart
 watch band;default;meget sejt
 watch band;default;meget skøn
 watch band;default;meget slidstærk
 watch band;default;meget smuk
 watch band;default;nydelig
 watch band;default;pænt
-watch band;Silicone / TPU;rigtigt behagelig
 watch band;default;rigtigt cool
 watch band;default;rigtigt elegant
 watch band;default;rigtigt fantastisk
@@ -100,7 +80,6 @@ cover, watch band;default;rigtigt flot
 cover, watch band;default;rigtigt godt
 watch band;default;rigtigt hårdfør
 watch band;default;rigtigt holdbart
-watch band;Silicone / TPU;rigtigt komfortabel
 watch band;default;rigtigt kønt
 watch band;default;rigtigt nydelig
 watch band;default;rigtigt pænt
@@ -116,7 +95,6 @@ watch band;default;smuk
 watch band;default;solid
 watch band;default;stilfuld
 watch band;default;stilren
-watch band;Silicone / TPU;super behagelig
 watch band;default;super cool
 watch band;default;super elegant
 watch band;default;super fantastisk
@@ -126,11 +104,9 @@ cover, watch band;default;super flot
 cover, watch band;default;super godt
 watch band;default;super hårdfør
 watch band;default;super holdbart
-watch band;Silicone / TPU;super komfortabel
 watch band;default;super kønt
 watch band;default;super nydelig
 cover, watch band;default;super pænt
-watch band;Silicone / TPU;super rart
 watch band;default;super sejt
 watch band;default;super skøn
 watch band;default;super slidstærk
@@ -139,7 +115,6 @@ watch band;default;supercool
 watch band;default;superflot
 watch band;default;tidsløst
 watch band;default;udsøgt
-watch band;Silicone / TPU;vildt behagelig
 watch band;default;vildt cool
 watch band;default;vildt elegant
 watch band;default;vildt fantastisk
@@ -149,7 +124,6 @@ cover, watch band;default;vildt flot
 cover, watch band;default;vildt godt
 watch band;default;vildt hårdfør
 watch band;default;vildt holdbart
-watch band;Silicone / TPU;vildt komfortabel
 watch band;default;vildt kønt
 watch band;default;vildt nydelig
 watch band;default;vildt pænt
@@ -159,4 +133,25 @@ watch band;default;vildt skøn
 watch band;default;vildt slidstærk
 watch band;default;vildt smuk
 watch band;default;yndigt
-watch band, cover;default;godt
+cover, watchband;Plastic;hårdfør
+cover;Plastic;Hårdt
+cover;Plastic;Holdbart
+cover, watch band;Silicone / TPU;fleksibel
+cover, watch band;Silicone / TPU;Behagelig
+cover, watch band;Silicone / TPU;Blød
+watch band;Silicone / TPU;helt vildt behagelig
+watch band;Silicone / TPU;mega behagelig
+watch band;Silicone / TPU;mega rart
+watch band;Silicone / TPU;meget behagelig
+watch band;Silicone / TPU;meget rart
+cover, watch band;Silicone / TPU;Rart
+watch band;Silicone / TPU;rigtigt behagelig
+watch band;Silicone / TPU;rigtigt komfortabel
+watch band;Silicone / TPU;super behagelig
+watch band;Silicone / TPU;super komfortabel
+watch band;Silicone / TPU;super rart
+watch band;Silicone / TPU;vildt behagelig
+watch band;Silicone / TPU;vildt komfortabel
+screen protector;Tempered Glass;Ekstra stærk
+screen protector;Tempered Glass;Slidstærk
+screen protector;Tempered Glass;Stærk

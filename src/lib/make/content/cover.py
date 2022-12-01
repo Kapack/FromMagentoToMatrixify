@@ -16,7 +16,7 @@ class Cover(ParentContent):
         translated_material = self.set_and_in_material_name(translated_material = translated_material, language = self.language)
         # Building product name                
         product_name = mat_addjective.capitalize() + ' ' + self.model +  ' ' + translated_material + ' ' +  translated_product_type
-        return product_name        
+        return product_name
         
     def description(self) -> str:
         select = SelectCover()

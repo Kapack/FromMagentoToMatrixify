@@ -14,7 +14,7 @@ class WatchBand(ParentContent):
         # Adjective according material        
         mat_addjective = self.give_addjective_from_material(material = self.material, product_type = product_type, language = self.language)
         # Building productname
-        product_name = mat_addjective.capitalize() + ' ' +  self.model +  ' ' + translated_material + ' ' +  translated_product_type        
+        product_name = mat_addjective.capitalize() + ' ' +  self.model +  ' ' + translated_material + ' ' +  translated_product_type
         return product_name
     
     def description(self, original_description : str) -> str:

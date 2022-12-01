@@ -1,3 +1,5 @@
+from utils.helper import get_model_name
+
 class Parent:
     """
     If product is a child, we don't need name and description
@@ -73,7 +75,14 @@ class Parent:
                     products[product]['types']['type_standard'] = 'Apparel & Accessories > Jewelry > Watch Accessories'
                     
         return products
-    
+
+    def set_models(self, products : dict) -> dict:
+        for product in products:
+            product['model'] = get_model_name(product = product)
+            # print(product['model'])
+        
+        return products
+
     def set_vendor(self, products) -> dict:
         for product in products:            
             if products[product]['parent'] == True:                

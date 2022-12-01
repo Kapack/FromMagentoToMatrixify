@@ -14,9 +14,17 @@ def get_model_name(product : dict) -> str:
   model_name : str = ''
   manufacturer : str = product['manufacturer'] 
   product_categories : list = product['categories']['category']  
-  # Clean up the categories  
-  while manufacturer in product_categories : product_categories.remove(manufacturer)    
-      
+  # Clean up the categories    
+
+  # Series is parent
+  # series = []
+  # for name in product_categories:
+  #   if 'series' in name.lower():
+  #     series.append(name)
+  #     product_categories.remove(name)      
+
+  while manufacturer in product_categories : product_categories.remove(manufacturer)      
+
   # Deciding on modelname
   if len(product_categories) == 1:
     model_name = product_categories[0]    
@@ -35,7 +43,9 @@ def get_model_name(product : dict) -> str:
    
   # Make sure we have manufacturer as first element in categories, the while loop removes all 
   if manufacturer:     
-    product_categories.insert(0, manufacturer)                                         
+    product_categories.insert(0, manufacturer)
+    # for serie in series:                                         
+    #   product_categories.insert(len(product_categories), serie)
   return model_name
 
 

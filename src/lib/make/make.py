@@ -114,8 +114,7 @@ class Make:
                 # Append to metafield
                 if collection['relationship_type'].lower() == 'child':
                     product_metafield.append(collection['name'])
-                            
-                        
+                                                    
             # Make sure we have manufacturer as first element in categories                        
             if products[product]['manufacturer']:                                  
                 product_categories.insert(0, products[product]['manufacturer'])      

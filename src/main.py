@@ -58,9 +58,10 @@ class Main:
             CreateCollection(newCollections = missing_collections, language = language)
             exit()
 
-        # Add Missing Content to parent products 
+        # Add Missing Content to parent products         
         products = parent.correcting_product_types(products = products)
         products = parent.set_shopify_product_types(products = products)
+        # products = parent.set_models(products = products)
         products = parent.set_vendor(products = products)
         products = parent.set_material(products = products)
         # Translate Attributes
