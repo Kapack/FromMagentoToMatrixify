@@ -107,7 +107,6 @@ class WatchBand(ParentContent):
         return size_txt 
 
     def convertInchToCm(self, next_el:str) -> str:
-        print(next_el)
         # Remove everything that isn't numbers
         split_next_el = re.split('[^0-9.,]', next_el)
         # Remove empty

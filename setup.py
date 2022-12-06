@@ -6,11 +6,9 @@ setup(
   version="1.0.0",
   description="Converts Magento export sheet to Matrixify Import sheet",
   author="Kasper Kloster",
-  author_email='kasperkloster@gmail.com',
-# #   url="https://github.com/KasperKloster/Pluudie",
+  author_email='kasper@wepack.se',
   python_requires='>=3, <4', 
   package_dir = {'' : 'src'}, 
-#   packages=find_packages(),
   install_requires=[
     'slugify==0.0.1',
     'python-slugify==6.1.2',

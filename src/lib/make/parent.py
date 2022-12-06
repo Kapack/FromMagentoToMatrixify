@@ -1,4 +1,5 @@
-from utils.helper import get_model_name
+from db.select import SelectCollection
+from config.constants import LOCALWORDS
 
 class Parent:
     """
@@ -17,6 +18,7 @@ class Parent:
                 products[product]['manufacturer'] = ''
                 # Remove categories
                 products[product]['categories']['category'] = ''
+                #
                 products[product]['product_types']['product_type'] = ''
         return products     
 
@@ -76,13 +78,6 @@ class Parent:
                     
         return products
 
-    def set_models(self, products : dict) -> dict:
-        for product in products:
-            product['model'] = get_model_name(product = product)
-            # print(product['model'])
-        
-        return products
-
     def set_vendor(self, products) -> dict:
         for product in products:            
             if products[product]['parent'] == True:                
@@ -100,4 +95,40 @@ class Parent:
                 if products[product]['product_types']['product_type'].lower() == 'screen protecter' and 'tempered glass' in products[product]['name']:
                     products[product]['materials']['material'] = products[product]['materials']['material'].lower().replace('glass', 'tempered glass')
 
+        return products
+    
+    def set_model(self, products : dict) -> dict:
+        product_categories : list
+        product_manufacturer : str
+        # Collections in DB        
+        collections = SelectCollection().collections()
+                
+        # Remove all child, so we can remove grandparent and parent from name
+        parent_collections = []
+        for collection in collections:
+            if collection['relationship_type'].lower() != 'child':
+                parent_collections.append(collection['name'])
+
+        # Setting models / Only Child                        
+        for product in products:
+            if products[product]['parent'] == True:
+                product_categories = products[product]['categories']['category']
+                product_manufacturer = products[product]['manufacturer'] 
+                # Remove manufacturer from categories
+                if product_manufacturer in product_categories:
+                    product_categories.remove(product_manufacturer)
+                                
+                # Remove Parents and Grandparent                
+                for product_category in product_categories:
+                    if product_category in parent_collections:
+                        product_categories.remove(product_category)
+                
+                # Setting models
+                products[product]['model'] = product_categories                
+            
+
+                
+                
+
+        
         return products

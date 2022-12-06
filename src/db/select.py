@@ -260,9 +260,9 @@ class SelectCollection(Select):
 
             i += 1
         return meta_descs
-    
-    def collection_description(self) -> list[str]:
-        sql = "SELECT description FROM collection_description"
+
+    def grandparent_description(self) -> list[dict]:
+        sql = "SELECT description FROM collection_grandparent_description"
         c.execute(sql)
         rows = c.fetchall()
         descriptions = []
@@ -272,7 +272,7 @@ class SelectCollection(Select):
         
         return descriptions
 
-    def collection_grandparent_description(self) -> list[dict]:
+    def grandparent_bottom_description(self) -> list[dict]:
         sql = "SELECT h2, content FROM collection_grandparent_bottom_description"
         c.execute(sql)
         rows = c.fetchall()
@@ -282,8 +282,30 @@ class SelectCollection(Select):
             descriptions.append({ 'h2' : row[0], 'content' : row[1] })
         
         return descriptions
+    
+    def parent_description(self) -> list[str]:
+        sql = "SELECT description FROM collection_parent_description"
+        c.execute(sql)
+        rows = c.fetchall()
+        descriptions = []
 
-    def collection_child_description(self) -> list[dict]:
+        for key, value in enumerate(rows):
+            descriptions.append(value[0])
+        
+        return descriptions
+
+    def child_description(self) -> list[str]:
+        sql = "SELECT description FROM collection_child_description"
+        c.execute(sql)
+        rows = c.fetchall()
+        descriptions = []
+
+        for key, value in enumerate(rows):
+            descriptions.append(value[0])
+        
+        return descriptions
+    
+    def child_bottom_description(self) -> list[dict]:
         sql = "SELECT h2, content FROM collection_child_bottom_description"
         c.execute(sql)
         rows = c.fetchall()
@@ -293,6 +315,7 @@ class SelectCollection(Select):
             descriptions.append({ 'h2' : row[0], 'content' : row[1] })
         
         return descriptions
+
 
     def collection_keyword_research(self) -> list[dict]:
         sql = "SELECT device, keyword, volume FROM collection_kw_research"

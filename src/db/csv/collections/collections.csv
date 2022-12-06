@@ -99,37 +99,37 @@ Coros Vertix 2;;Child
 Diesel;;Grandparent
 Diesel On Full Guard 2.5;;Child
 Fitbit;;Grandparent
-Fitbit Ace;Fitbit Ace Series;Child
-Fitbit Ace 2;Fitbit Ace Series;Child
-Fitbit Ace 3;Fitbit Ace Series;Child
-Fitbit Ace Series;;Parent
-Fitbit Alta;Fitbit Alta Series;Child
-Fitbit Alta HR;Fitbit Alta Series;Child
-Fitbit Alta Series;;Parent
-Fitbit Blaze;;Child
-Fitbit Charge;Fitbit Charge Series;Child
-Fitbit Charge 2;Fitbit Charge Series;Child
-Fitbit Charge 3;Fitbit Charge Series;Child
-Fitbit Charge 4;Fitbit Charge Series;Child
-Fitbit Charge 5;Fitbit Charge Series;Child
-Fitbit Charge HR;Fitbit Charge Series;Child
-Fitbit Charge Series;;Parent
-Fitbit Flex;Fitbit Flex Series;Child
-Fitbit Flex 2;Fitbit Flex Series;Child
-Fitbit Flex Series;;Parent
-Fitbit Inspire;Fitbit Inspire Series;Child
-Fitbit Inspire 2;Fitbit Inspire Series;Child
-Fitbit Inspire Series;;Parent
-Fitbit Ionic;;Child
-Fitbit Luxe;;Child
-Fitbit Sense;;Child
-Fitbit Surge;;Child
-Fitbit Versa;Fitbit Versa Series;Child
-Fitbit Versa 2;Fitbit Versa Series;Child
-Fitbit Versa 3;Fitbit Versa Series;Child
-Fitbit Versa 4;Fitbit Versa Series;Child
-Fitbit Versa Lite;Fitbit Versa Series;Child
-Fitbit Versa Series;;Parent
+Fitbit Ace;Fitbit;Parent
+Fitbit Ace 1;Fitbit Ace;Child
+Fitbit Ace 2;Fitbit Ace;Child
+Fitbit Ace 3;Fitbit Ace;Child
+Fitbit Alta;Fitbit;Parent
+Fitbit Alta 1;Fitbit Alta;Child
+Fitbit Alta HR;Fitbit Alta;Child
+Fitbit Blaze 1;;Child
+Fitbit Charge;Fitbit;Parent
+Fitbit Charge 1;Fitbit Charge;Child
+Fitbit Charge 2;Fitbit Charge;Child
+Fitbit Charge 3;Fitbit Charge;Child
+Fitbit Charge 4;Fitbit Charge;Child
+Fitbit Charge 5;Fitbit Charge;Child
+Fitbit Charge HR;Fitbit Charge;Child
+Fitbit Flex;Fitbit;Parent
+Fitbit Flex 1;Fitbit Flex;Child
+Fitbit Flex 2;Fitbit Flex;Child
+Fitbit Inspire;Fitbit;Parent
+Fitbit Inspire 1;Fitbit Inspire;Child
+Fitbit Inspire 2;Fitbit Inspire;Child
+Fitbit Ionic 1;;Child
+Fitbit Luxe 1;;Child
+Fitbit Sense 1;;Child
+Fitbit Surge 1;;Child
+Fitbit Versa;Fitbit;Parent
+Fitbit Versa 1;Fitbit Versa;Child
+Fitbit Versa 2;Fitbit Versa;Child
+Fitbit Versa 3;Fitbit Versa;Child
+Fitbit Versa 4;Fitbit Versa;Child
+Fitbit Versa Lite;Fitbit Versa;Child
 Fossil;;Grandparent
 Fossil Crewmaster Hybrid;;Child
 Fossil Explorist;;Child
@@ -160,185 +160,185 @@ Fossil Venture;;Child
 Fossil Wander;;Child
 Fossil Women's Gen 4 Sport;Fossil Gen 4;Child
 Garmin;;Grandparent
-Garmin Approach;;Child
-Garmin Approach G10;;Child
-Garmin Approach G12;;Child
-Garmin Approach G30 Golf;;Child
-Garmin Approach S1;;Child
-Garmin Approach S2;;Child
-Garmin Approach S20;;Child
-Garmin Approach S3;;Child
-Garmin Approach S4;;Child
-Garmin Approach S40;;Child
-Garmin Approach S50;;Child
-Garmin Approach S6;;Child
-Garmin Approach S60;;Child
-Garmin Approach S62;;Child
-Garmin Approach X10;;Child
-Garmin Approach X40;;Child
-Garmin D2;;Child
-Garmin D2 Charlie;;Child
-Garmin D2 Delta;;Child
-Garmin Descent;;Child
-Garmin Descent G1;;Child
-Garmin Descent MK1;;Child
-Garmin Descent Mk2;;Child
-Garmin Descent Mk2i;;Child
-Garmin Descent Mk2S 43mm;;Child
-Garmin Edge;;Child
-Garmin Edge 1000;;Child
-Garmin Edge 1030;;Child
-Garmin Edge 1030 Plus;;Child
-Garmin Edge 1040;;Child
-Garmin Edge 130;;Child
-Garmin Edge 200;;Child
-Garmin Edge 25;;Child
-Garmin Edge 500;;Child
-Garmin Edge 510;;Child
-Garmin Edge 520;;Child
-Garmin Edge 530;;Child
-Garmin Edge 800 / 810;;Child
-Garmin Edge 800\810;;Child
-Garmin Edge 820;;Child
-Garmin Edge 830;;Child
-Garmin Edge G80;;Child
+Garmin Approach;Garmin;Parent
+Garmin Approach G10;Garmin Approach;Child
+Garmin Approach G12;Garmin Approach;Child
+Garmin Approach G30 Golf;Garmin Approach;Child
+Garmin Approach S1;Garmin Approach;Child
+Garmin Approach S2;Garmin Approach;Child
+Garmin Approach S20;Garmin Approach;Child
+Garmin Approach S3;Garmin Approach;Child
+Garmin Approach S4;Garmin Approach;Child
+Garmin Approach S40;Garmin Approach;Child
+Garmin Approach S50;Garmin Approach;Child
+Garmin Approach S6;Garmin Approach;Child
+Garmin Approach S60;Garmin Approach;Child
+Garmin Approach S62;Garmin Approach;Child
+Garmin Approach X10;Garmin Approach;Child
+Garmin Approach X40;Garmin Approach;Child
+Garmin D2;Garmin;Parent
+Garmin D2 Charlie;Garmin D2;Child
+Garmin D2 Delta;Garmin D2;Child
+Garmin Descent;Garmin;Parent
+Garmin Descent G1;Garmin Descent;Child
+Garmin Descent MK1;Garmin Descent;Child
+Garmin Descent Mk2;Garmin Descent;Child
+Garmin Descent Mk2i;Garmin Descent;Child
+Garmin Descent Mk2S 43mm;Garmin Descent;Child
+Garmin Edge;Garmin;Parent
+Garmin Edge 1000;Garmin Edge;Child
+Garmin Edge 1030;Garmin Edge;Child
+Garmin Edge 1030 Plus;Garmin Edge;Child
+Garmin Edge 1040;Garmin Edge;Child
+Garmin Edge 130;Garmin Edge;Child
+Garmin Edge 200;Garmin Edge;Child
+Garmin Edge 25;Garmin Edge;Child
+Garmin Edge 500;Garmin Edge;Child
+Garmin Edge 510;Garmin Edge;Child
+Garmin Edge 520;Garmin Edge;Child
+Garmin Edge 530;Garmin Edge;Child
+Garmin Edge 800 / 810;Garmin Edge;Child
+Garmin Edge 800\810;Garmin Edge;Child
+Garmin Edge 820;Garmin Edge;Child
+Garmin Edge 830;Garmin Edge;Child
+Garmin Edge G80;Garmin Edge;Child
 Garmin Enduro;;Child
-Garmin Epix;;Child
+Garmin Epix;;Parent
 Garmin Epix Gen 2;;Child
-Garmin Etrex;;Child
-Garmin eTrex 10;;Child
-Garmin eTrex 20;;Child
-Garmin eTrex 201x;;Child
-Garmin eTrex 209x;;Child
-Garmin eTrex 20x;;Child
-Garmin eTrex 22x;;Child
-Garmin eTrex 30;;Child
-Garmin eTrex 309x;;Child
-Garmin eTrex 30x;;Child
-Garmin eTrex 32x;;Child
-Garmin Fenix;;Child
-Garmin Fenix 3;;Child
-Garmin Fenix 5;;Child
-Garmin Fenix 5 Plus;;Child
-Garmin Fenix 5S;;Child
-Garmin Fenix 5S Plus;;Child
-Garmin Fenix 5X;;Child
-Garmin Fenix 5X Plus;;Child
-Garmin Fenix 6;;Child
-Garmin Fenix 6 Pro;;Child
-Garmin Fenix 6 Pro Solar;;Child
-Garmin Fenix 6S;;Child
-Garmin Fenix 6S Pro;;Child
-Garmin Fenix 6S Solar Pro;;Child
-Garmin Fenix 6X;;Child
-Garmin Fenix 6X Pro;;Child
-Garmin Fenix 6X Pro Solar;;Child
-Garmin Fenix 7;;Child
-Garmin Fenix 7S;;Child
-Garmin Fenix 7X;;Child
-Garmin Fenix Chronos;;Child
+Garmin Etrex;Garmin;Parent
+Garmin eTrex 10;Garmin Etrex;Child
+Garmin eTrex 20;Garmin Etrex;Child
+Garmin eTrex 201x;Garmin Etrex;Child
+Garmin eTrex 209x;Garmin Etrex;Child
+Garmin eTrex 20x;Garmin Etrex;Child
+Garmin eTrex 22x;Garmin Etrex;Child
+Garmin eTrex 30;Garmin Etrex;Child
+Garmin eTrex 309x;Garmin Etrex;Child
+Garmin eTrex 30x;Garmin Etrex;Child
+Garmin eTrex 32x;Garmin Etrex;Child
+Garmin Fenix;Garmin;Parent
+Garmin Fenix 3;Garmin Fenix;Child
+Garmin Fenix 5;Garmin Fenix;Child
+Garmin Fenix 5 Plus;Garmin Fenix;Child
+Garmin Fenix 5S;Garmin Fenix;Child
+Garmin Fenix 5S Plus;Garmin Fenix;Child
+Garmin Fenix 5X;Garmin Fenix;Child
+Garmin Fenix 5X Plus;Garmin Fenix;Child
+Garmin Fenix 6;Garmin Fenix;Child
+Garmin Fenix 6 Pro;Garmin Fenix;Child
+Garmin Fenix 6 Pro Solar;Garmin Fenix;Child
+Garmin Fenix 6S;Garmin Fenix;Child
+Garmin Fenix 6S Pro;Garmin Fenix;Child
+Garmin Fenix 6S Solar Pro;Garmin Fenix;Child
+Garmin Fenix 6X;Garmin Fenix;Child
+Garmin Fenix 6X Pro;Garmin Fenix;Child
+Garmin Fenix 6X Pro Solar;Garmin Fenix;Child
+Garmin Fenix 7;Garmin Fenix;Child
+Garmin Fenix 7S;Garmin Fenix;Child
+Garmin Fenix 7X;Garmin Fenix;Child
+Garmin Fenix Chronos;Garmin Fenix;Child
 Garmin ForeAthlete 35J;;Child
-Garmin Forerunner;;Child
-Garmin Forerunner 10;;Child
-Garmin Forerunner 110;;Child
-Garmin Forerunner 15;;Child
-Garmin Forerunner 158;;Child
-Garmin Forerunner 210;;Child
-Garmin Forerunner 220;;Child
-Garmin Forerunner 225;;Child
-Garmin Forerunner 230;;Child
-Garmin Forerunner 235;;Child
-Garmin Forerunner 245;;Child
-Garmin Forerunner 245 Music;;Child
-Garmin Forerunner 25 Large;;Child
-Garmin Forerunner 25 Small;;Child
-Garmin Forerunner 255;;Child
-Garmin Forerunner 255S;;Child
-Garmin Forerunner 30;;Child
-Garmin Forerunner 310XT;;Child
-Garmin Forerunner 35;;Child
-Garmin Forerunner 410;;Child
-Garmin Forerunner 45;;Child
-Garmin Forerunner 45S;;Child
-Garmin Forerunner 55;;Child
-Garmin Forerunner 610;;Child
-Garmin Forerunner 620;;Child
-Garmin Forerunner 630;;Child
-Garmin Forerunner 645;;Child
-Garmin Forerunner 645 Music;;Child
-Garmin Forerunner 735;;Child
-Garmin Forerunner 735XT;;Child
-Garmin Forerunner 745;;Child
-Garmin Forerunner 910XT;;Child
-Garmin Forerunner 920 XT;;Child
-Garmin Forerunner 935;;Child
-Garmin Forerunner 945;;Child
-Garmin Forerunner 955;;Child
-Garmin Instinct;;Child
-Garmin Instinct 2;;Child
-Garmin Instinct 2S;;Child
-Garmin Instinct Esports;;Child
-Garmin Instinct Solar;;Child
-Garmin Instinct Tactical;;Child
-Garmin Instinct Tide;;Child
+Garmin Forerunner;Garmin;Parent
+Garmin Forerunner 10;Garmin Forerunner;Child
+Garmin Forerunner 110;Garmin Forerunner;Child
+Garmin Forerunner 15;Garmin Forerunner;Child
+Garmin Forerunner 158;Garmin Forerunner;Child
+Garmin Forerunner 210;Garmin Forerunner;Child
+Garmin Forerunner 220;Garmin Forerunner;Child
+Garmin Forerunner 225;Garmin Forerunner;Child
+Garmin Forerunner 230;Garmin Forerunner;Child
+Garmin Forerunner 235;Garmin Forerunner;Child
+Garmin Forerunner 245;Garmin Forerunner;Child
+Garmin Forerunner 245 Music;Garmin Forerunner;Child
+Garmin Forerunner 25 Large;Garmin Forerunner;Child
+Garmin Forerunner 25 Small;Garmin Forerunner;Child
+Garmin Forerunner 255;Garmin Forerunner;Child
+Garmin Forerunner 255S;Garmin Forerunner;Child
+Garmin Forerunner 30;Garmin Forerunner;Child
+Garmin Forerunner 310XT;Garmin Forerunner;Child
+Garmin Forerunner 35;Garmin Forerunner;Child
+Garmin Forerunner 410;Garmin Forerunner;Child
+Garmin Forerunner 45;Garmin Forerunner;Child
+Garmin Forerunner 45S;Garmin Forerunner;Child
+Garmin Forerunner 55;Garmin Forerunner;Child
+Garmin Forerunner 610;Garmin Forerunner;Child
+Garmin Forerunner 620;Garmin Forerunner;Child
+Garmin Forerunner 630;Garmin Forerunner;Child
+Garmin Forerunner 645;Garmin Forerunner;Child
+Garmin Forerunner 645 Music;Garmin Forerunner;Child
+Garmin Forerunner 735;Garmin Forerunner;Child
+Garmin Forerunner 735XT;Garmin Forerunner;Child
+Garmin Forerunner 745;Garmin Forerunner;Child
+Garmin Forerunner 910XT;Garmin Forerunner;Child
+Garmin Forerunner 920 XT;Garmin Forerunner;Child
+Garmin Forerunner 935;Garmin Forerunner;Child
+Garmin Forerunner 945;Garmin Forerunner;Child
+Garmin Forerunner 955;Garmin Forerunner;Child
+Garmin Instinct;Garmin;Parent
+Garmin Instinct 2;Garmin Instinct;Child
+Garmin Instinct 2S;Garmin Instinct;Child
+Garmin Instinct Esports;Garmin Instinct;Child
+Garmin Instinct Solar;Garmin Instinct;Child
+Garmin Instinct Tactical;Garmin Instinct;Child
+Garmin Instinct Tide;Garmin Instinct;Child
 Garmin Legacy;;Child
 Garmin Legacy Hero;;Child
 Garmin Legacy Saga;;Child
 Garmin Lily;;Child
-Garmin Marq;;Child
-Garmin MARQ Adventurer;;Child
-Garmin MARQ Aviator;;Child
-Garmin MARQ Captain;;Child
-Garmin MARQ Driver;;Child
-Garmin Quatix;;Child
-Garmin Quatix 3;;Child
-Garmin Quatix 5;;Child
-Garmin Quatix 5 Sapphire;;Child
-Garmin Quatix 6;;Child
-Garmin Quatix 6X;;Child
-Garmin Quatix 7;;Child
+Garmin MARQ;Garmin;Parent
+Garmin MARQ Adventurer;Garmin MARQ;Child
+Garmin MARQ Aviator;Garmin MARQ;Child
+Garmin MARQ Captain;Garmin MARQ;Child
+Garmin MARQ Driver;Garmin MARQ;Child
+Garmin Quatix;Garmin;Parent
+Garmin Quatix 3;Garmin Quatix;Child
+Garmin Quatix 5;Garmin Quatix;Child
+Garmin Quatix 5 Sapphire;Garmin Quatix;Child
+Garmin Quatix 6;Garmin Quatix;Child
+Garmin Quatix 6X;Garmin Quatix;Child
+Garmin Quatix 7;Garmin Quatix;Child
 Garmin Running Dynamics Pod;;Child
 Garmin Swim;;Child
 Garmin Swim 2;;Child
-Garmin Tactix;;Child
-Garmin Tactix 7;;Child
-Garmin Tactix 7 Pro;;Child
-Garmin Tactix Charlie;;Child
-Garmin Tactix Delta;;Child
-Garmin Venu;;Child
-Garmin Venu 2;;Child
-Garmin Venu 2 Plus;;Child
-Garmin Venu 2S;;Child
-Garmin Venu Sq;;Child
-Garmin Vivoactive;;Child
-Garmin Vivoactive 3;;Child
-Garmin Vivoactive 3 Music;;Child
-Garmin Vivoactive 3 Trainer;;Child
-Garmin Vivoactive 4;;Child
-Garmin Vivoactive 4S;;Child
-Garmin Vivoactive Acetate;;Child
-Garmin Vivoactive HR;;Child
-Garmin Vivofit;;Child
-Garmin Vivofit 1;;Child
-Garmin Vivofit 2;;Child
-Garmin Vivofit 3;;Child
-Garmin Vivofit 4;;Child
-Garmin Vivofit JR;;Child
-Garmin Vivofit JR 2;;Child
-Garmin Vivofit Jr 3;;Child
-Garmin Vivomove;;Child
-Garmin Vivomove 3;;Child
-Garmin Vivomove 3S;;Child
-Garmin Vivomove HR;;Child
-Garmin Vivomove Luxe;;Child
-Garmin Vivomove Sport;;Child
-Garmin Vivomove Style;;Child
-Garmin Vivosmart;;Child
-Garmin Vivosmart 3;;Child
-Garmin Vivosmart 4;;Child
-Garmin Vivosmart 5;;Child
-Garmin Vivosmart HR;;Child
-Garmin Vivosmart HR+;;Child
+Garmin Tactix;Garmin;Parent
+Garmin Tactix 7;Garmin Tactix;Child
+Garmin Tactix 7 Pro;Garmin Tactix;Child
+Garmin Tactix Charlie;Garmin Tactix;Child
+Garmin Tactix Delta;Garmin Tactix;Child
+Garmin Venu;Garmin;Parent
+Garmin Venu 2;Garmin Venu;Child
+Garmin Venu 2 Plus;Garmin Venu;Child
+Garmin Venu 2S;Garmin Venu;Child
+Garmin Venu Sq;Garmin Venu;Child
+Garmin Vivoactive;Garmin;Parent
+Garmin Vivoactive 3;Garmin Vivoactive;Child
+Garmin Vivoactive 3 Music;Garmin Vivoactive;Child
+Garmin Vivoactive 3 Trainer;Garmin Vivoactive;Child
+Garmin Vivoactive 4;Garmin Vivoactive;Child
+Garmin Vivoactive 4S;Garmin Vivoactive;Child
+Garmin Vivoactive Acetate;Garmin Vivoactive;Child
+Garmin Vivoactive HR;Garmin Vivoactive;Child
+Garmin Vivofit;Garmin;Parent
+Garmin Vivofit 1;Garmin Vivofit;Child
+Garmin Vivofit 2;Garmin Vivofit;Child
+Garmin Vivofit 3;Garmin Vivofit;Child
+Garmin Vivofit 4;Garmin Vivofit;Child
+Garmin Vivofit JR;Garmin Vivofit;Child
+Garmin Vivofit JR 2;Garmin Vivofit;Child
+Garmin Vivofit Jr 3;Garmin Vivofit;Child
+Garmin Vivomove;Garmin;Parent
+Garmin Vivomove 3;Garmin Vivomove;Child
+Garmin Vivomove 3S;Garmin Vivomove;Child
+Garmin Vivomove HR;Garmin Vivomove;Child
+Garmin Vivomove Luxe;Garmin Vivomove;Child
+Garmin Vivomove Sport;Garmin Vivomove;Child
+Garmin Vivomove Style;Garmin Vivomove;Child
+Garmin Vivosmart;Garmin;Parent
+Garmin Vivosmart 3;Garmin Vivosmart;Child
+Garmin Vivosmart 4;Garmin Vivosmart;Child
+Garmin Vivosmart 5;Garmin Vivosmart;Child
+Garmin Vivosmart HR;Garmin Vivosmart;Child
+Garmin Vivosmart HR+;Garmin Vivosmart;Child
 Garmin Vivosport;;Child
 GulfBuddy Voice 2 GPS;;Child
 GulfBuddy Voice GPS;;Child

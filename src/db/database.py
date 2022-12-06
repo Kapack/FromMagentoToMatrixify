@@ -5,7 +5,7 @@ import csv
 from pandas_ods_reader import read_ods
 
 class Database():
-    def __init__(self):		
+    def __init__(self):	
         global conn
         global c
         # Delete Database, so we are fully updated                
@@ -15,13 +15,13 @@ class Database():
         conn.text_factory = str
         c = conn.cursor()
             
-    def create_and_insert_tables(self) -> None:
+    def create_and_insert_tables(self, language : str) -> None:                        
         # Attributes        
         ProductAttributes()
         # Descriptions
         ProductTexts()
          # Collections
-        Collections()
+        Collections(language = language)
 
 class ProductAttributes(Database):
     def __init__(self):                
@@ -191,15 +191,24 @@ class ProductTexts(Database):
 
 
 class Collections(Database):
-    def __init__(self):        
+    def __init__(self, language : str):             
+        self.language = language        
         self.create_insert_collections()
         self.create_insert_collection_page_titles()
         self.create_insert_collection_meta_desc()
-        self.create_insert_collection_description()
-        self.create_insert_grand_parent_bottom_description()
+
+        self.create_insert_grandparent_description()
+        self.create_insert_grandparent_bottom_description()
+        
+        self.create_insert_parent_collection_description()
+        self.create_insert_parent_bottom_description()
+
+        self.create_insert_child_collection_description()
         self.create_insert_child_bottom_description()
+        
         self.create_insert_collection_kw_research()
-        self.create_insert_collection_ads_keywords()
+        self.create_insert_collection_ads_keywords()        
+    
 
     def create_insert_collections(self):
       sql = 'CREATE TABLE if not exists collections (id integer primary key not null, name text, belongs_to text, relationship_type text)'
@@ -214,76 +223,140 @@ class Collections(Database):
           conn.commit()
     
     def create_insert_collection_page_titles(self):
-      sql = 'CREATE TABLE if not exists collection_page_title (id integer primary key not null, kw text, cta text)'
-      c.execute(sql)        
-    
-      with open(DB_PATH + 'csv/collections/text/collection-meta-title.csv', 'r') as file:
-        reader = csv.DictReader(file, delimiter=';')
+        sql = 'CREATE TABLE if not exists collection_page_title (id integer primary key not null, kw text, cta text)'
+        c.execute(sql)
+
+        base_path = DB_PATH + '/csv/collections/text/collection-meta-title.ods'
+        sheet = self.language
+        df = read_ods(base_path , sheet)
+        df = df.fillna("")
+        df = df.to_dict(orient='index')   
+        
         i = 1
-        for row in reader:
-          c.execute('INSERT INTO collection_page_title VALUES(?,?,?)', (i, row['kw'], row['cta']) )
-          i += 1
-          conn.commit()
+        for row in df:
+            c.execute('INSERT INTO collection_page_title VALUES(?,?,?)', (i, df[row]['kw'], df[row]['cta']) )
+            i += 1
+            conn.commit()   
     
     def create_insert_collection_meta_desc(self):
         sql = 'CREATE TABLE if not exists collection_meta_desc (id integer primary key not null, meta_desc text)'
         c.execute(sql) 
-    
-        with open(DB_PATH + 'csv/collections/text/collection-meta-title.csv', 'r') as file:
-            reader = csv.DictReader(file, delimiter=';')
-            i = 1
-            for row in reader:
-                c.execute('INSERT INTO collection_meta_desc VALUES(?,?)', (i, row['meta_desc']) )
-                i += 1
-                conn.commit()
-    
-    def create_insert_collection_description(self):
-        sql = 'CREATE TABLE if not exists collection_description (id integer primary key not null, description text)'
-        c.execute(sql)
-    
-        with open(DB_PATH + 'csv/collections/text/collection-description.csv', 'r') as file:
-            reader = csv.DictReader(file, delimiter=';')
-            i = 1
-            for row in reader:
-                c.execute('INSERT INTO collection_description VALUES(?,?)', (i, row['description']) )
-                i += 1
-                conn.commit()
-    """
-    Bottom Texts
-    """
-    def create_insert_grand_parent_bottom_description(self):
-        sql = 'CREATE TABLE if not exists collection_grandparent_bottom_description (id integer primary key not null, h2 text, content text, language text)'
-        c.execute(sql)
+        
+        base_path = DB_PATH + '/csv/collections/text/collection-meta-title.ods'
+        sheet = self.language
+        df = read_ods(base_path , sheet)
+        df = df.fillna("")
+        df = df.to_dict(orient='index') 
 
-        language = 'dk'
+        i = 1
+        for row in df:
+            c.execute('INSERT INTO collection_meta_desc VALUES(?,?)', (i, df[row]['meta_desc']) )
+            i += 1
+            conn.commit()   
+    
+    """
+    Grandparent descriptions
+    """
+    def create_insert_grandparent_description(self):
+        sql = 'CREATE TABLE if not exists collection_grandparent_description (id integer primary key not null, description text)'
+        c.execute(sql)
+        base_path = DB_PATH + '/csv/collections/text/grandparent-description.ods'
+        sheet = self.language
+        df = read_ods(base_path , sheet)
+        df = df.fillna("")
+        df = df.to_dict(orient='index')
+        
+        i = 1
+        for row in df:
+            c.execute('INSERT INTO collection_grandparent_description VALUES(?,?)', (i, df[row]['description']) )
+            i += 1
+            conn.commit()   
+
+    def create_insert_grandparent_bottom_description(self):
+        sql = 'CREATE TABLE if not exists collection_grandparent_bottom_description (id integer primary key not null, h2 text, content text)'
+        c.execute(sql)
         base_path = DB_PATH + '/csv/collections/text/grandparent-bottom-description.ods'
-        sheet = language
+        sheet = self.language
         df = read_ods(base_path , sheet)
         df = df.fillna("")
         df = df.to_dict(orient='index')
         
         i = 1
         for row in df:
-            c.execute('INSERT INTO collection_grandparent_bottom_description VALUES(?,?,?,?)', (i, df[row]['h2'], df[row]['content'], language) )
+            c.execute('INSERT INTO collection_grandparent_bottom_description VALUES(?,?,?)', (i, df[row]['h2'], df[row]['content']) )
             i += 1
-            conn.commit()
-
-    def create_insert_child_bottom_description(self):
-        sql = 'CREATE TABLE if not exists collection_child_bottom_description (id integer primary key not null, h2 text, content text, language text)'
+            conn.commit()    
+    
+    """
+    Parent Descriptions
+    """
+    def create_insert_parent_collection_description(self):
+        sql = 'CREATE TABLE if not exists collection_parent_description (id integer primary key not null, description text)'
         c.execute(sql)
 
-        language = 'dk'
-        base_path = DB_PATH + '/csv/collections/text/child-bottom-description.ods'
-        sheet = language
+        base_path = DB_PATH + '/csv/collections/text/parent-collection-description.ods'
+        sheet = self.language
+        df = read_ods(base_path , sheet)
+        df = df.fillna("")
+        df = df.to_dict(orient='index')
+
+        i = 1
+        for row in df:
+            c.execute('INSERT INTO collection_parent_description VALUES(?,?)', (i, df[row]['description']) )
+            i += 1
+            conn.commit()
+
+    def create_insert_parent_bottom_description(self):
+        sql = 'CREATE TABLE if not exists collection_parent_bottom_description (id integer primary key not null, h2 text, content text)'
+        c.execute(sql)
+        base_path = DB_PATH + '/csv/collections/text/parent-collection-bottom-description.ods'
+        sheet = self.language
         df = read_ods(base_path , sheet)
         df = df.fillna("")
         df = df.to_dict(orient='index')
         
         i = 1
         for row in df:
-            c.execute('INSERT INTO collection_child_bottom_description VALUES(?,?,?,?)', (i, df[row]['h2'], df[row]['content'], language) )
+            c.execute('INSERT INTO collection_parent_bottom_description VALUES(?,?,?)', (i, df[row]['h2'], df[row]['content']) )
+            i += 1
+            conn.commit()   
+
+    """
+    Child descriptions
+    """
+    def create_insert_child_collection_description(self):
+        sql = 'CREATE TABLE if not exists collection_child_description (id integer primary key not null, description text)'
+        c.execute(sql)
+    
+        base_path = DB_PATH + '/csv/collections/text/child-collection-description.ods'
+        sheet = self.language
+        df = read_ods(base_path , sheet)
+        df = df.fillna("")
+        df = df.to_dict(orient='index')
+        
+        i = 1
+        for row in df:
+            c.execute('INSERT INTO collection_child_description VALUES(?,?)', (i, df[row]['description']) )
             i += 1
             conn.commit()
+
+    
+    def create_insert_child_bottom_description(self):
+        sql = 'CREATE TABLE if not exists collection_child_bottom_description (id integer primary key not null, h2 text, content text)'
+        c.execute(sql)
+                
+        base_path = DB_PATH + '/csv/collections/text/child-bottom-description.ods'
+        sheet = self.language
+        df = read_ods(base_path , sheet)
+        df = df.fillna("")
+        df = df.to_dict(orient='index')
+        
+        i = 1
+        for row in df:
+            c.execute('INSERT INTO collection_child_bottom_description VALUES(?,?,?)', (i, df[row]['h2'], df[row]['content']) )
+            i += 1
+            conn.commit()
+
     
     """
     Keywords

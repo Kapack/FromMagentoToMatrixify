@@ -53,13 +53,27 @@ class Collection:
     return meta_desc
   
   # Header Description
-  def collectionDescription(self, collectionName:str) -> str:    
-    description : str
-    description = self.select.collection_description()
+  def collectionDescription(self, collection_name:str, relationship_type : str = '') -> str:    
+    description : list = ['']
+
+    if relationship_type.lower() == 'grandparent':
+      # description = self.select.collection_description()
+      description = self.select.grandparent_description()
+    
+    if relationship_type.lower() == 'parent':
+      # description = self.select.collection_description()
+      description = self.select.parent_description()
+
+    if relationship_type.lower() == 'child':
+      # description = self.select.collection_description()
+      description = self.select.child_description()
+
     # Pick random
     description = random.choice(description)
+    
+    # Replace variables
     if '[DEVICE]' in description:
-      description = description.replace('[DEVICE]', collectionName)
+      description = description.replace('[DEVICE]', collection_name)
 
     return description
 
@@ -70,13 +84,13 @@ class Collection:
 
     if collection['relationship_type'].lower() == 'grandparent':
       # Get texts
-      bottomDescs : list[dict] = self.select.collection_grandparent_description()
+      bottomDescs : list[dict] = self.select.grandparent_bottom_description()
       # Choosing default random text
       bottomTxt = random.choice(bottomDescs)
 
     if collection['relationship_type'].lower() == 'child':
       # Get texts
-      bottomDescs : list[dict] = self.select.collection_child_description()
+      bottomDescs : list[dict] = self.select.child_bottom_description()      
       # Picking a default random from bottom descriptions    
       bottomTxt = random.choice(bottomDescs)
 
@@ -92,13 +106,7 @@ class Collection:
         if collection['name'].lower() == 'apple watch':          
           # if sentence exists as a Description H2. Append all to list
           if second_most_searched_as_device.lower() in desc['h2'].lower():
-            allSecondTxt.append(desc)            
-        
-        # If a h2 in childDescs is same as second most search. Find all and append        
-        # if desc['h2'].lower() == second_most_searched_as_device.lower():
-        #   allSecondTxt.append(desc)                  
-        # else:
-        #   print(second_most_searched_as_device + ' Does not exists as Child description')
+            allSecondTxt.append(desc)
       
       # Picking random
       if allSecondTxt:
@@ -169,7 +177,7 @@ class CreateCollection(Collection):
     # Only run if any new collections
     if(newCollections):
       missingCollection = self.newCollections(newCollections)
-      msg = 'Product Import list NOT created!\n' + str(len(newCollections)) + ' Missing collections was found. \n Todo: \n 1: update Shopify with new collections. \n 2: Update db/csv/collections.csv \n 3: Update shopify/other - page \n 4: Run this code again \n 5: Import products'      
+      msg = 'Product Import list NOT created!\n' + str(len(newCollections)) + ' Missing collections was found. \n Todo: \n 0: Find the new categories in import/0-new-smart-collections.csv \n 1: update Shopify with new collections. \n 2: Update db/csv/collections.csv \n 3: Update shopify/other - page \n 4: Run this code again \n 5: Import products'      
       self.createGoogleAds(collections = newCollections, language = language)      
       self.saveCollection(collections=missingCollection, filepath= '0-new-'+ language +'-smart-collections.csv', msg = msg, msg_type = 'FAIL')    
 
@@ -215,7 +223,7 @@ class UpdateCollection(Collection):
 
         pageTitle = self.collectionPageTitle(collection['name'])
         metaDesc = self.collectionMetaDesc(collection['name'])
-        description = self.collectionDescription(collection['name'])
+        description = self.collectionDescription(collection_name = collection['name'],  relationship_type = collection['relationship_type'])
         templateSuffix = self.collectionTemplate(collection['relationship_type'])
         bottomDescription = self.bottomDescription(collection=collection)
         
@@ -233,14 +241,15 @@ class UpdateCollection(Collection):
           'Template Suffix' : templateSuffix,
           'Metafield: custom.belongs_to [single_line_text_field]' : collection['belongs_to'],
           'Metafield: custom.bottom_description [multi_line_text_field]' : bottomDescription,
-        })
+        }        
+        )
     
     return updateCollections    
 
   # Chosing template
   def collectionTemplate(self, relationship_type:str) -> str:
     templateSuffix = ''
-    if relationship_type.lower() == 'parent':
+    if relationship_type.lower() == 'parent' or relationship_type.lower() == 'grandparent':
       templateSuffix = 'parent-collection'
     
     return templateSuffix

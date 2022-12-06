@@ -1,5 +1,5 @@
 from db.select import Select
-# import re
+from config.constants import LOCALWORDS
 
 """
 We translate into key translated_
@@ -37,8 +37,8 @@ class Translate:
                         else:
                             print(materials[i]['material'] + ' needs translation')
                                                 
-                # Give products string value
-                products[product]['materials']['translated'] =  ', '.join(translated_materials)
+                # Give products string value                
+                products[product]['materials']['translated'] =  str(' ' + LOCALWORDS[language]['and'] + ' ').join(translated_materials)
 
         return products
     

@@ -1,5 +1,6 @@
 from config.arguments import Arguments
 from db.database import Database
+from lib.make.collection.collection import UpdateCollection
 from lib.make.metafield import Metafield
 from lib.read_files.read_csv import ReadCsv
 from lib.make.make import Make
@@ -15,11 +16,17 @@ class Main:
     products : dict             
     
     def __init__(self) -> None:
-        # We are creating the DB every time.
-        Database().create_and_insert_tables()        
         # CLI Arguments     
-        language = Arguments().run()                   
-               
+        arguments = Arguments().run()   
+        language = arguments.language.lower()            
+        # We are creating the DB every time.
+        Database().create_and_insert_tables(language = language)     
+        
+        # If we want to generate collection again, skip all products creations
+        if arguments.collection and arguments.collection.lower() == 'yes':
+            UpdateCollection(language = language)                   
+            exit()                   
+        
         # Read CSV
         readCsv = ReadCsv()        
         make = Make()
@@ -64,6 +71,7 @@ class Main:
         # products = parent.set_models(products = products)
         products = parent.set_vendor(products = products)
         products = parent.set_material(products = products)
+        products = parent.set_model(products = products)
         # Translate Attributes
         products = Translate().translate_attributes(products = products, language = language)
         products = metafield.material(products = products)                

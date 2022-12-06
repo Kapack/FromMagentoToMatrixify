@@ -73,9 +73,9 @@ class Make:
             product_categories : list[str] = []   
             product_metafield : list[str] = []             
             append_db_collections : list[dict] = []
- 
+             
             current_product_categories = products[product]['categories']['category'].split(',')
-            for category in current_product_categories:                                
+            for category in current_product_categories:                                   
                 category_split = category.split('/')
                 # Remove unwanted categories
                 unwanted = ['Lux-Case', 'Smartwatch']
@@ -85,29 +85,40 @@ class Make:
                     # Removes Lux-case as manufacturer                    
                     if item.lower() == products[product]['manufacturer'].lower():
                         products[product]['manufacturer'] = ''
-                    
-                for i, category in enumerate(category_split):                                                                                 
+                            
+                for i, category_name in enumerate(category_split):                    
                     # If there's a / in the category name (Eg. Model 2 / 2s)
-                    if('\\' in category):
+                    if('\\' in category_name):
                         # Combine the two elements
-                        category = category + category_split[i + 1]
+                        category_name = category_name + category_split[i + 1]
                         # Remove what is after slash so we don't search for 2s
-                        category_split.remove(category_split[i + 1])                                                
-                    # Check if category(name) is in DB, get the object. Returns a list with one item
-                    db_collection = [collection for collection in collections if str(collection['name']).lower() == category.lower()]                                                
+                        category_split.remove(category_split[i + 1])                
+                    
+                    # If not grandparent
+                    if i != 0:
+                        # Check if category_name contains a number
+                        contains_a_number = any(string.isdigit() for string in category_name)                     
+                        # If not, it must be the first version, and we need to correct the name (Parent/child relationship)
+                        if contains_a_number == False:
+                            # Append a 1 to category name / This will be a child element
+                            category_name = category_name + ' 1'                                
+
+                    # Check if category_name is in DB, get the object. Returns a list with one item
+                    db_collection = [collection for collection in collections if str(collection['name']).lower() == category_name.lower()]                                                
+                    #                    
                     if db_collection:
                         # Append all categories objects found                      
                         append_db_collections.append(db_collection[0])
 
                     # Append missing categories: If category name is missing in db and not empty           
-                    elif (category):
-                        missing_collections.append(category)
+                    elif (category_name):
+                        missing_collections.append(category_name)
 
             # Appending all found collections (To categores and metafiled)
             for collection in append_db_collections:
                 # Append brand and model
                 product_categories.append(collection['name'])                
-                # Append Series
+                # Append Series / Parent
                 if collection['belongs_to']:
                     product_categories.append(collection['belongs_to'])
 
