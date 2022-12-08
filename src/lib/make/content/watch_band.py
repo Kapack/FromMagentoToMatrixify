@@ -1,3 +1,5 @@
+from config.constants import LOCALWORDS
+from utils.helper import replace_last
 from lib.make.content.parent_content import ParentContent
 from db.select import SelectWatchBand
 import random
@@ -13,6 +15,14 @@ class WatchBand(ParentContent):
     def name(self, translated_material : str, product_type : str, translated_product_type : str) -> str:
         # Adjective according material        
         mat_addjective = self.give_addjective_from_material(material = self.material, product_type = product_type, language = self.language)
+        
+        # Replacing comma
+        if ',' in translated_material:
+            # Replace last occurence of , with and
+            translated_material = replace_last(translated_material, ',', ' ' + LOCALWORDS[self.language]['and'] + ' ')
+            # Remove double spaces
+            translated_material = " ".join(translated_material.split())
+            
         # Building productname
         product_name = mat_addjective.capitalize() + ' ' +  self.model +  ' ' + translated_material + ' ' +  translated_product_type
         return product_name
@@ -37,9 +47,9 @@ class WatchBand(ParentContent):
             intro_txt = intro_txt.replace('[DEVICE]', self.model)
         
         # Append all material, Material Text
-        material_list_texts = []                    
+        material_list_texts = []
         for i in material_texts:
-            if(self.material == material_texts[i]['material_text']):                            
+            if(self.material == material_texts[i]['material']):                            
                 material_list_texts.append(material_texts[i][self.language])
         
         # If any texts got append to material_list_texts, pick one random

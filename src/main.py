@@ -6,7 +6,7 @@ from lib.read_files.read_csv import ReadCsv
 from lib.make.make import Make
 from lib.make.collection.collection import CreateCollection
 from lib.make.image import Image
-from lib.make.parent import Parent
+from lib.make.parent_product.parent_product import ParentProduct
 from lib.make.content.content import Content
 from lib.make.prices import Prices
 from lib.translate.translate import Translate
@@ -32,7 +32,7 @@ class Main:
         make = Make()
         metafield = Metafield()
         image = Image()
-        parent = Parent()        
+        parent = ParentProduct()        
         prices = Prices()
         save = SaveFiles()
         
@@ -60,10 +60,10 @@ class Main:
         products = products_and_collections[0]
         missing_collections = products_and_collections[1]        
         
-        if len(missing_collections) > 0:
-        # Check for new categories (Collections)                
-            CreateCollection(newCollections = missing_collections, language = language)
-            exit()
+        # if len(missing_collections) > 0:
+        # # Check for new categories (Collections)                
+        #     CreateCollection(newCollections = missing_collections, language = language)
+        #     exit()
 
         # Add Missing Content to parent products         
         products = parent.correcting_product_types(products = products)

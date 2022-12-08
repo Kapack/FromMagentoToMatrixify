@@ -19,7 +19,7 @@ class Metafield:
             # If color is not empty
             if color:
                 if color.lower() == 'silver/grey':
-                    color = 'grey'                                                   
+                    color = 'silver'                                                   
 
                 # Split multiple colors
                 if '/' in color and color.lower() != 'silver/grey':

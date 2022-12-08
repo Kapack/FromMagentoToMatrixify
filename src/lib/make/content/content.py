@@ -44,7 +44,7 @@ class Content:
                 if products[product]['parent'] == True:
                     # Pick correct content
                     product_description = ''
-                    if product_type == 'watch band':
+                    if product_type == 'watch band':                        
                         product_name = WatchBand(model = product_model_name, language = language, material = material).name(translated_material = translated_material, product_type = product_type, translated_product_type = translated_product_type)
                         product_description = WatchBand(model = product_model_name, language = language, material = material).description(original_description = original_description)
 

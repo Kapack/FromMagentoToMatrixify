@@ -132,44 +132,44 @@ class Select:
 class SelectWatchBand(Select):
 
     def watchband_intro_texts(self) -> list:
-      sql = 'SELECT dk FROM watch_band_intro_texts'
+      sql = 'SELECT intro FROM watch_band_intro_texts'
       c.execute(sql)
       rows = c.fetchall()
 
-      dk_endings = []
+      intros = []
       i = 0
       for key in rows:            
-          dk_endings.append(rows[i][0])
+          intros.append(rows[i][0])
           i += 1        
-      return dk_endings
+      return intros
 
     def watchband_material_texts(self) -> dict:
-        sql = 'SELECT material_text, dk FROM watch_band_material_texts'
+        sql = 'SELECT material, text FROM watch_band_material_texts'
         c.execute(sql)
         rows = c.fetchall()
 
         material_texts = {}
         i = 0
         for key in rows:            
-            material_texts[i] = {'material_text': rows[i][0], 'dk' : rows[i][1] }
+            material_texts[i] = {'material': rows[i][0], 'text' : rows[i][1] }
             i += 1
         return material_texts
 
     def watchband_ending_texts(self) -> list:
-        sql = 'SELECT dk FROM watch_band_ending_texts'
+        sql = 'SELECT ending FROM watch_band_ending_texts'
         c.execute(sql)
         rows = c.fetchall()
 
-        dk_endings = []
+        endings = []
         i = 0
         for key in rows:            
-            dk_endings.append(rows[i][0])
+            endings.append(rows[i][0])
             i += 1        
-        return dk_endings
+        return endings
     
 class SelectScreenProtector(Select):    
     def intro_text(self) -> list:
-      sql = 'SELECT dk FROM screen_protecter_intro_texts'
+      sql = 'SELECT intro FROM screen_protecter_intro_texts'
       c.execute(sql)
       rows = c.fetchall()
 
@@ -182,7 +182,7 @@ class SelectScreenProtector(Select):
 
 class SelectCover(Select):
     def intro_text(self, language : str) -> list:
-      sql = 'SELECT ' + language + ' FROM cover_intro_texts'
+      sql = 'SELECT intro FROM cover_intro_texts'
       c.execute(sql)
       rows = c.fetchall()
 
@@ -194,19 +194,19 @@ class SelectCover(Select):
       return intros
 
     def material_texts(self, language : str) -> dict:
-        sql = 'SELECT material_text,' + language + ' FROM cover_material_texts'
+        sql = 'SELECT material, text FROM cover_material_texts'
         c.execute(sql)
         rows = c.fetchall()
 
         material_texts = {}
         i = 0
         for key in rows:            
-            material_texts[i] = {'material_text': rows[i][0], language : rows[i][1] }
+            material_texts[i] = {'material_text': rows[i][0], 'text' : rows[i][1] }
             i += 1
         return material_texts    
     
     def ending_texts(self, language : str) -> list:
-        sql = 'SELECT ' + language + ' FROM cover_ending_texts'
+        sql = 'SELECT ending FROM cover_ending_texts'
         c.execute(sql)
         rows = c.fetchall()
 
@@ -220,13 +220,17 @@ class SelectCover(Select):
 class SelectCollection(Select):
     # Collections
     def collections(self) -> list[dict]:
-      sql = 'SELECT name, belongs_to, relationship_type FROM collections'
+      sql = 'SELECT name, belongs_to, relationship_type, alternative_names FROM collections'
       c.execute(sql)
       rows = c.fetchall()
       collections = []
       
-      for i, key in enumerate(rows):
-        collections.append({'name' : rows[i][0], 'belongs_to': rows[i][1], 'relationship_type' : rows[i][2]})
+      for i, key in enumerate(rows):        
+        alt_names = []
+        if rows[i][3]:
+            alt_names = rows[i][3].split(', ')
+            # print(alt_names)
+        collections.append({'name' : rows[i][0], 'belongs_to': rows[i][1], 'relationship_type' : rows[i][2], 'alternative_names' : alt_names })
       
       return collections
     

@@ -32,13 +32,13 @@ class Translate:
                     if materials[i]['material'].lower() in product_material_split:                        
                         # If there is a translated version
                         if(materials[i][language]):                            
-                            translated_materials.append(materials[i][language])
+                            translated_materials.append(materials[i][language].title())
                         # Give user message if translated verison is missing
                         else:
                             print(materials[i]['material'] + ' needs translation')
                                                 
                 # Give products string value                
-                products[product]['materials']['translated'] =  str(' ' + LOCALWORDS[language]['and'] + ' ').join(translated_materials)
+                products[product]['materials']['translated'] =  ', '.join(translated_materials)
 
         return products
     

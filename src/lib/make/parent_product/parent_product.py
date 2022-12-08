@@ -1,7 +1,6 @@
 from db.select import SelectCollection
-from config.constants import LOCALWORDS
 
-class Parent:
+class ParentProduct:
     """
     If product is a child, we don't need name and description
     """
@@ -22,9 +21,7 @@ class Parent:
                 products[product]['product_types']['product_type'] = ''
         return products     
 
-    """
-    WIP
-    """
+
     def correcting_product_types(self, products:dict) -> dict:
         for product in products:
             if products[product]['parent'] == True:
@@ -125,10 +122,4 @@ class Parent:
                 
                 # Setting models
                 products[product]['model'] = product_categories                
-            
-
-                
-                
-
-        
         return products

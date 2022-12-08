@@ -14,17 +14,19 @@ class Database():
         conn = sqlite3.connect(DB_PATH + 'database.db')
         conn.text_factory = str
         c = conn.cursor()
-            
-    def create_and_insert_tables(self, language : str) -> None:                        
+
+    def create_and_insert_tables(self, language : str) -> None:                                
         # Attributes        
-        ProductAttributes()
+        ProductAttributes(language = language)
         # Descriptions
-        ProductTexts()
+        ProductTexts(language = language)
          # Collections
         Collections(language = language)
 
+# Attributes
 class ProductAttributes(Database):
-    def __init__(self):                
+    def __init__(self, language : str):    
+        self.language = language             
         self.create_insert_color()
         self.create_insert_material()
         self.create_insert_product_type()
@@ -44,56 +46,56 @@ class ProductAttributes(Database):
                 conn.commit()
 
     def create_insert_material(self):
-        sql = 'CREATE TABLE if not exists materials (id integer primary key not null, material text, dk text)'
+        sql = 'CREATE TABLE if not exists materials (id integer primary key not null, material text, ' + self.language + ' text)'
         c.execute(sql)
 
         with open(DB_PATH + 'csv/attributes/materials.csv', 'r') as file: 
             reader = csv.DictReader(file, delimiter=';')
             i = 1
             for row in reader:
-                c.execute('INSERT INTO materials VALUES(?, ?, ?)', (i, row['material'], row['dk'] ))
+                c.execute('INSERT INTO materials VALUES(?, ?, ?)', (i, row['material'], row[self.language] ))
                 i += 1
                 conn.commit()
 
     def create_insert_product_type(self):
-        sql = 'CREATE TABLE if not exists product_types (id integer primary key not null, product_type text, dk text)'
+        sql = 'CREATE TABLE if not exists product_types (id integer primary key not null, product_type text, ' + self.language + ' text)'
         c.execute(sql)
 
         with open(DB_PATH + 'csv/attributes/product_types.csv', 'r') as file: 
             reader = csv.DictReader(file, delimiter=';')
             i = 1
             for row in reader:
-                c.execute('INSERT INTO product_types VALUES(?, ?, ?)', (i, row['product_type'], row['dk'] ))
+                c.execute('INSERT INTO product_types VALUES(?, ?, ?)', (i, row['product_type'], row[self.language] ))
                 i += 1
                 conn.commit()
 
     def create_insert_addjective(self):
-        sql = 'CREATE TABLE if not exists addjectives (id integer primary key not null, material text, product_type text, dk_addjective text)'
+        sql = 'CREATE TABLE if not exists addjectives (id integer primary key not null, material text, product_type text, dk_addjective text, se_addjective text)'
         c.execute(sql)
         with open(DB_PATH + 'csv/attributes/materials_addjectives.csv', 'r') as file: 
             reader = csv.DictReader(file, delimiter=';')
             i = 1
             for row in reader:
-                c.execute('INSERT INTO addjectives VALUES(?, ?, ?, ?)', (i, row['material'].lower().strip(), row['product_type'].lower().strip(), row['dk_addjective'].strip() ))
+                c.execute('INSERT INTO addjectives VALUES(?, ?, ?, ?, ?)', (i, row['material'].lower().strip(), row['product_type'].lower().strip(), row['dk_addjective'].strip(), row['se_addjective'].strip() ))
                 i += 1
                 conn.commit()                
 
-
     def create_insert_sizes(self):
-        sql = 'CREATE TABLE if not exists sizes (id integer primary key not null, size text, dk text)'
+        sql = 'CREATE TABLE if not exists sizes (id integer primary key not null, size text, ' + self.language + ' text)'
         c.execute(sql)
     
         with open(DB_PATH + 'csv/attributes/sizes.csv', 'r') as file: 
             reader = csv.DictReader(file, delimiter=';')
             i = 1
             for row in reader:
-                c.execute('INSERT INTO sizes VALUES(?, ?, ?)', (i, row['size'], row['dk']  ))
+                c.execute('INSERT INTO sizes VALUES(?, ?, ?)', (i, row['size'], row[self.language]  ))
                 i += 1
                 conn.commit()
 
 # Descriptions
 class ProductTexts(Database):
-    def __init__(self):        
+    def __init__(self, language : str):
+        self.language = language        
         self.create_insert_watch_band_intro()
         self.create_insert_watch_band_material()
         self.create_insert_watch_band_ending()
@@ -103,93 +105,121 @@ class ProductTexts(Database):
         self.create_insert_cover_endings()
 
     # Specific texts
-    def create_insert_watch_band_intro(self):
-        sql = 'CREATE TABLE if not exists watch_band_intro_texts (id integer primary key not null, dk text)'
+    def create_insert_watch_band_intro(self):        
+        sql = 'CREATE TABLE if not exists watch_band_intro_texts (id integer primary key not null, intro text)'
         c.execute(sql)
 
-        with open(DB_PATH + 'csv/descriptions/watch_band/intros.csv', 'r') as file: 
-            reader = csv.DictReader(file, delimiter=';')
-            i = 1
-            for row in reader:
-                c.execute('INSERT INTO watch_band_intro_texts VALUES(?, ?)', (i, row['dk']  ))
-                i += 1
-                conn.commit()
+        base_path = DB_PATH + '/csv/descriptions/watch_band/intros.ods'
+        sheet = self.language
+        df = read_ods(base_path , sheet)
+        df = df.fillna("")
+        df = df.to_dict(orient='index')
+        
+        i = 1
+        for row in df:
+            c.execute('INSERT INTO watch_band_intro_texts VALUES(?,?)', (i, df[row]['intro']) )
+            i += 1
+            conn.commit() 
 
     def create_insert_watch_band_material(self):
-        sql = 'CREATE TABLE if not exists watch_band_material_texts (id integer primary key not null, material_text text, dk text)'
+        sql = 'CREATE TABLE if not exists watch_band_material_texts (id integer primary key not null, material text, text text)'
         c.execute(sql)
-    
-        with open(DB_PATH + 'csv/descriptions/watch_band/material_texts.csv', 'r') as file: 
-            reader = csv.DictReader(file, delimiter=';')
-            i = 1
-            for row in reader:
-                c.execute('INSERT INTO watch_band_material_texts VALUES(?, ?, ?)', (i, row['material_text'],row['dk'] ))
-                i += 1
-                conn.commit()
+
+        base_path = DB_PATH + '/csv/descriptions/watch_band/material_texts.ods'
+        sheet = self.language
+        df = read_ods(base_path , sheet)
+        df = df.fillna("")
+        df = df.to_dict(orient='index')
+        
+        i = 1
+        for row in df:
+            c.execute('INSERT INTO watch_band_material_texts VALUES(?,?, ?)', (i, df[row]['material'], df[row]['text']) )
+            i += 1
+            conn.commit() 
 
     def create_insert_watch_band_ending(self):
-        sql = 'CREATE TABLE if not exists watch_band_ending_texts (id integer primary key not null, dk text)'
+        sql = 'CREATE TABLE if not exists watch_band_ending_texts (id integer primary key not null, ending text)'
         c.execute(sql)
-    
-        with open(DB_PATH + 'csv/descriptions/watch_band/endings.csv', 'r') as file: 
-            reader = csv.DictReader(file, delimiter=';')
-            i = 1
-            for row in reader:
-                c.execute('INSERT INTO watch_band_ending_texts VALUES(?, ?)', (i, row['dk']))
-                i += 1
-                conn.commit()
+        
+        base_path = DB_PATH + '/csv/descriptions/watch_band/endings.ods'
+        sheet = self.language
+        df = read_ods(base_path , sheet)
+        df = df.fillna("")
+        df = df.to_dict(orient='index')
+        
+        i = 1
+        for row in df:
+            c.execute('INSERT INTO watch_band_ending_texts VALUES(?,?)', (i, df[row]['ending']) )
+            i += 1
+            conn.commit() 
     
     def create_insert_screen_protector_intros(self):
-        sql = 'CREATE TABLE if not exists screen_protecter_intro_texts (id integer primary key not null, dk text)'
+        sql = 'CREATE TABLE if not exists screen_protecter_intro_texts (id integer primary key not null, intro text)'
         c.execute(sql)
-
-        with open(DB_PATH + 'csv/descriptions/screen_protecter/intros.csv', 'r') as file:
-            reader = csv.DictReader(file, delimiter=';')
-            i = 1
-            for row in reader:
-                c.execute('INSERT INTO screen_protecter_intro_texts VALUES(?, ?)', (i, row['dk']))
-                i += 1
-                conn.commit()
+        
+        base_path = DB_PATH + '/csv/descriptions/screen_protecter/intros.ods'
+        sheet = self.language
+        df = read_ods(base_path , sheet)
+        df = df.fillna("")
+        df = df.to_dict(orient='index')
+        
+        i = 1
+        for row in df:
+            c.execute('INSERT INTO screen_protecter_intro_texts VALUES(?,?)', (i, df[row]['intro']) )
+            i += 1
+            conn.commit() 
 
     def create_insert_cover_intros(self):
-        sql = 'CREATE TABLE if not exists cover_intro_texts (id integer primary key not null, dk text)'
+        sql = 'CREATE TABLE if not exists cover_intro_texts (id integer primary key not null, intro text)'
         c.execute(sql)
-    
-        with open(DB_PATH + 'csv/descriptions/cover/intros.csv', 'r') as file:
-            reader = csv.DictReader(file, delimiter=';')
-            i = 1
-            for row in reader:
-                c.execute('INSERT INTO cover_intro_texts VALUES(?, ?)', (i, row['dk']))
-                i += 1
-                conn.commit()
+        
+        base_path = DB_PATH + '/csv/descriptions/cover/intros.ods'
+        sheet = self.language
+        df = read_ods(base_path , sheet)
+        df = df.fillna("")
+        df = df.to_dict(orient='index')
+        
+        i = 1
+        for row in df:
+            c.execute('INSERT INTO cover_intro_texts VALUES(?,?)', (i, df[row]['intro']) )
+            i += 1
+            conn.commit()
 
     def create_insert_cover_materials(self):
         # Create Table
-        sql = 'CREATE TABLE if not exists cover_material_texts (id integer primary key not null, material_text text, dk text)'
+        sql = 'CREATE TABLE if not exists cover_material_texts (id integer primary key not null, material text, text  text)'
         c.execute(sql)
-        # Insert values
-        with open(DB_PATH + 'csv/descriptions/cover/material_texts.csv', 'r') as file: 
-            reader = csv.DictReader(file, delimiter=';')
-            i = 1
-            for row in reader:
-                c.execute('INSERT INTO cover_material_texts VALUES(?, ?, ?)', (i, row['material_text'],row['dk'] ))
-                i += 1
-                conn.commit()
+
+        base_path = DB_PATH + '/csv/descriptions/cover/material_texts.ods'
+        sheet = self.language
+        df = read_ods(base_path , sheet)
+        df = df.fillna("")
+        df = df.to_dict(orient='index')
+        
+        i = 1
+        for row in df:
+            c.execute('INSERT INTO cover_material_texts VALUES(?,?,?)', (i, df[row]['material'], df[row]['text'] ) )
+            i += 1
+            conn.commit()
 
     def create_insert_cover_endings(self):
         # Create Table
-        sql = 'CREATE TABLE if not exists cover_ending_texts (id integer primary key not null, dk text)'
+        sql = 'CREATE TABLE if not exists cover_ending_texts (id integer primary key not null, ending text)'
         c.execute(sql)
-        # Insert values
-        with open(DB_PATH + 'csv/descriptions/cover/endings.csv', 'r') as file: 
-            reader = csv.DictReader(file, delimiter=';')
-            i = 1
-            for row in reader:
-                c.execute('INSERT INTO cover_ending_texts VALUES(?, ?)', (i, row['dk']))
-                i += 1
-                conn.commit()
 
+        base_path = DB_PATH + '/csv/descriptions/cover/endings.ods'
+        sheet = self.language
+        df = read_ods(base_path , sheet)
+        df = df.fillna("")
+        df = df.to_dict(orient='index')
+        
+        i = 1
+        for row in df:
+            c.execute('INSERT INTO cover_ending_texts VALUES(?,?)', (i, df[row]['ending']) )
+            i += 1
+            conn.commit()
 
+# Collections
 class Collections(Database):
     def __init__(self, language : str):             
         self.language = language        
@@ -211,14 +241,14 @@ class Collections(Database):
     
 
     def create_insert_collections(self):
-      sql = 'CREATE TABLE if not exists collections (id integer primary key not null, name text, belongs_to text, relationship_type text)'
+      sql = 'CREATE TABLE if not exists collections (id integer primary key not null, name text, belongs_to text, relationship_type text, alternative_names text)'
       c.execute(sql)
 
       with open(DB_PATH + 'csv/collections/collections.csv', 'r') as file:
         reader = csv.DictReader(file, delimiter=';')
         i = 1
         for row in reader:                      
-          c.execute('INSERT INTO collections VALUES(?,?,?,?)', (i, row['name'], row['belongs_to'], row['relationship_type']) )
+          c.execute('INSERT INTO collections VALUES(?,?,?,?,?)', (i, row['name'], row['belongs_to'], row['relationship_type'], row['alternative_names'] ))
           i += 1
           conn.commit()
     
