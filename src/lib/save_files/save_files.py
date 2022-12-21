@@ -92,7 +92,8 @@ class SaveFiles:
                     'Image Alt Text' : products[product]['image_alt_text'], 
                     'Image Position' : products[product]['image_position'],
                     'Variant Country of Origin' : products[product]['variant_country_of_origin'], 
-                    'Type' : products[product]['product_types']['translate'],                    
+                    # 'Type' : ','.join(products[product]['product_types']['translate']),
+                    'Type' : self.setType(translate_types = products[product]['product_types']['translate']),
                     # 'Type: Standard ID' : products[product]['types']['type_standard_id'],
                     # 'Type: Standard Name' : products[product]['types']['type_standard_name'],
                     'Type: Standard' : products[product]['types']['type_standard'],                    
@@ -123,4 +124,11 @@ class SaveFiles:
                     # 'Variant Command' : 'MERGE', 
                 })
         print(BGCOLORS['SUCCESS'] + 'Additional images is saved' + BGCOLORS['ENDC'])
-        
+    
+    def setType(self, translate_types : list) -> str:
+        translate_type : str = ''
+        # Pick the first
+        if translate_types:
+            translate_type = translate_types[0]
+
+        return translate_type

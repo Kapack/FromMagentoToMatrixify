@@ -17,8 +17,7 @@ class ReadCsv:
 					'ean': key['ean'],
 					'name' : key['name'],
           			'manufacturer' : key['manufacturer'],
-					'model' : '',
-          			# 'model' : key['model'],					
+					'model' : '',	
 					'command' : 'MERGE',
 					'variant_command' : 'MERGE',
 					'tags_command' : 'MERGE',
@@ -45,13 +44,12 @@ class ReadCsv:
 					'custom_product_type' : '',
 					'types' : {'type_standard_id' : '', 'type_standard_name' : '', 'type_standard' : ''},
 					'prices' : {'price' : key['price'], 'special_price' : key['special_price'], 'variant_price' : '', 'variant_compare_price' : ''},
-					'product_types' : {'product_type' : key['m2_type'].lower(), 'translate' : ''},
+					'product_types' : {'product_type' : [key['m2_type'].lower()], 'translate' : ''},
 					'size' : '',
 					'materials' : {'material' : key['material'].lower().strip(), 'translated' : '', 'metafield' : ''},
-					# 'colors' : {'color' : key['color'], 'hex' : key['color'], 'string' : key['color']},			
 					'colors' : {'color' : key['color'], 'hex' : key['color']},			
 					'categories' : {'category' : key['_category'], 'metafield_compatible_with' : '' },	
 					'parent': False,
 				}
-				i += 1
+				i += 1				
 			return products

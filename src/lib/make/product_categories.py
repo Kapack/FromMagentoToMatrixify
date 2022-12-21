@@ -1,6 +1,9 @@
 from db.select import SelectCollection
 
 class ProductCategories:
+    def __init__(self, language : str) -> None:
+        self.language = language
+
     def create(self, products : dict) -> tuple:
         # For creating new collections      
         missing_collections : list[str] = []
@@ -68,7 +71,7 @@ class ProductCategories:
         return products, missing_collections
     
     def remove_unwanted_categores(self, category_split : list, current_product : dict) -> list:
-        unwanted = ['Lux-Case', 'Smartwatch']
+        unwanted = ['Lux-Case', 'Smartwatch', 'Audio']
         for item in unwanted:
             if item in category_split:                        
                 category_split.remove(item)

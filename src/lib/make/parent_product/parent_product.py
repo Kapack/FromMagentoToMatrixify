@@ -25,14 +25,15 @@ class ParentProduct:
     def correcting_product_types(self, products:dict) -> dict:
         for product in products:
             if products[product]['parent'] == True:
-                # Correction 2-in-1 products (Cover + Screen protectors)
-                if products[product]['product_types']['product_type'] == 'cover':
+                # Correction 2-in-1 products (Cover + Screen protectors) / Screen protector will be the last
+                if products[product]['product_types']['product_type'][0] == 'cover':                    
                     if any(x in products[product]['name'] for x in ['screen film', 'tempered glass', 'screen protector']):
-                        products[product]['product_types']['product_type'] = 'cover, screen protecter'                   
+                        products[product]['product_types']['product_type'].insert(1, 'screen protector')
 
-                if products[product]['product_types']['product_type'] == 'screen protecter':
+                if products[product]['product_types']['product_type'][0] == 'screen protector':
                     if any(x in products[product]['name'] for x in ['cover', 'frame']):
-                        products[product]['product_types']['product_type'] = 'cover, screen protecter'
+                        products[product]['product_types']['product_type'].insert(0, 'cover')
+
         return products
                 
     def set_shopify_product_types(self, products:dict) -> dict:
@@ -77,7 +78,7 @@ class ParentProduct:
 
     def set_vendor(self, products) -> dict:
         for product in products:            
-            if products[product]['parent'] == True:                
+            if products[product]['parent'] == True:
                 vendor = products[product]['manufacturer']                
                 if not vendor:                    
                     vendor = 'urrem.dk'
@@ -85,12 +86,30 @@ class ParentProduct:
                                         
         return products
     
+    """
+    Cast to list.
+    Insert tempered glass.
+    Always set glass last
+    """
     def set_material(self, products : dict) -> dict:
         for product in products:
-            if products[product]['parent'] == True:
-                ## Setting Tempered glass to Screen protectors
-                if products[product]['product_types']['product_type'].lower() == 'screen protecter' and 'tempered glass' in products[product]['name']:
-                    products[product]['materials']['material'] = products[product]['materials']['material'].lower().replace('glass', 'tempered glass')
+            # Cast to list
+            products[product]['materials']['material'] = products[product]['materials']['material'].split(',')
+
+            # Setting Tempered glass to Screen protectors                
+            if ('screen protector' in products[product]['product_types']['product_type']) and ('tempered glass' in products[product]['name']): 
+                for mat in products[product]['materials']['material']:
+                    if mat == 'glass':
+                        # Remove glass
+                        products[product]['materials']['material'].remove('glass')
+                        # Append so it's last
+                        products[product]['materials']['material'].append('tempered glass')                            
+            
+            if 'glass' in products[product]['materials']['material']:
+                # Remove glass
+                products[product]['materials']['material'].remove('glass')
+                # Append so it's last
+                products[product]['materials']['material'].append('glass')
 
         return products
     

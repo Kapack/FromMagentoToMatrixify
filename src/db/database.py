@@ -1,4 +1,4 @@
-from config.constants import DB_PATH
+from config.constants import DB_PATH, LOCALWORDS
 import sqlite3
 import os
 import csv
@@ -70,15 +70,20 @@ class ProductAttributes(Database):
                 conn.commit()
 
     def create_insert_addjective(self):
-        sql = 'CREATE TABLE if not exists addjectives (id integer primary key not null, material text, product_type text, dk_addjective text, se_addjective text)'
+        sql = 'CREATE TABLE if not exists addjectives (id integer primary key not null, product_type text, material text, addjective)'
         c.execute(sql)
-        with open(DB_PATH + 'csv/attributes/materials_addjectives.csv', 'r') as file: 
-            reader = csv.DictReader(file, delimiter=';')
-            i = 1
-            for row in reader:
-                c.execute('INSERT INTO addjectives VALUES(?, ?, ?, ?, ?)', (i, row['material'].lower().strip(), row['product_type'].lower().strip(), row['dk_addjective'].strip(), row['se_addjective'].strip() ))
-                i += 1
-                conn.commit()                
+
+        base_path = DB_PATH + 'csv/attributes/materials_addjectives.ods'
+        sheet = self.language
+        df = read_ods(base_path , sheet)
+        df = df.fillna("")
+        df = df.to_dict(orient='index')
+        
+        i = 1
+        for row in df:
+            c.execute('INSERT INTO addjectives VALUES(?,?,?,?)', (i, df[row]['product_type'], df[row]['material'], df[row]['addjective'] ))
+            i += 1
+            conn.commit()          
 
     def create_insert_sizes(self):
         sql = 'CREATE TABLE if not exists sizes (id integer primary key not null, size text, ' + self.language + ' text)'
@@ -154,10 +159,10 @@ class ProductTexts(Database):
             conn.commit() 
     
     def create_insert_screen_protector_intros(self):
-        sql = 'CREATE TABLE if not exists screen_protecter_intro_texts (id integer primary key not null, intro text)'
+        sql = 'CREATE TABLE if not exists screen_protector_intro_texts (id integer primary key not null, intro text)'
         c.execute(sql)
         
-        base_path = DB_PATH + '/csv/descriptions/screen_protecter/intros.ods'
+        base_path = DB_PATH + '/csv/descriptions/screen_protector/intros.ods'
         sheet = self.language
         df = read_ods(base_path , sheet)
         df = df.fillna("")
@@ -165,7 +170,7 @@ class ProductTexts(Database):
         
         i = 1
         for row in df:
-            c.execute('INSERT INTO screen_protecter_intro_texts VALUES(?,?)', (i, df[row]['intro']) )
+            c.execute('INSERT INTO screen_protector_intro_texts VALUES(?,?)', (i, df[row]['intro']) )
             i += 1
             conn.commit() 
 
@@ -247,10 +252,19 @@ class Collections(Database):
       with open(DB_PATH + 'csv/collections/collections.csv', 'r') as file:
         reader = csv.DictReader(file, delimiter=';')
         i = 1
-        for row in reader:                      
-          c.execute('INSERT INTO collections VALUES(?,?,?,?,?)', (i, row['name'], row['belongs_to'], row['relationship_type'], row['alternative_names'] ))
-          i += 1
-          conn.commit()
+
+        for row in reader:                 
+            collection_name = row['name']
+            if '[parent_col]' in collection_name.lower():
+                collection_name = collection_name.replace('[PARENT_COL]', LOCALWORDS[self.language]['parent_col'].title())
+            
+            belongs_to = row['belongs_to']
+            if '[parent_col]' in belongs_to.lower():
+                belongs_to = belongs_to.replace('[PARENT_COL]', LOCALWORDS[self.language]['parent_col'].title())
+
+            c.execute('INSERT INTO collections VALUES(?,?,?,?,?)', (i, collection_name, belongs_to, row['relationship_type'], row['alternative_names'] ))
+            i += 1
+            conn.commit()
     
     def create_insert_collection_page_titles(self):
         sql = 'CREATE TABLE if not exists collection_page_title (id integer primary key not null, kw text, cta text)'
@@ -394,14 +408,17 @@ class Collections(Database):
     def create_insert_collection_kw_research(self):
         sql = 'CREATE TABLE if not exists collection_kw_research (id integer primary key not null, device text, keyword text, volume integer)'
         c.execute(sql)
-    
-        with open(DB_PATH + 'csv/collections/collections-kw-research.csv', 'r') as file:
-            reader = csv.DictReader(file, delimiter=';')
-            i = 1
-            for row in reader:
-                c.execute('INSERT INTO collection_kw_research VALUES(?,?,?,?)', (i, row['device'], row['keyword'], row['volume']) )
-                i += 1
-                conn.commit()
+        base_path = DB_PATH + 'csv/collections/collections-kw-research.ods'
+        sheet = self.language
+        df = read_ods(base_path , sheet)
+        df = df.fillna("")
+        df = df.to_dict(orient='index')
+        
+        i = 1
+        for row in df:
+            c.execute('INSERT INTO collection_kw_research VALUES(?,?,?,?)', (i, df[row]['device'], df[row]['keyword'], df[row]['volume']) )
+            i += 1
+            conn.commit()
 
     def create_insert_collection_ads_keywords(self):
         sql = 'CREATE TABLE if not exists collection_ads_kw (id integer primary key not null, keyword text)'

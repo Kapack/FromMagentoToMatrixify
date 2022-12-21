@@ -1,8 +1,9 @@
 from utils.helper import convert_list_to_string
 from config.constants import BGCOLORS
-from db.select import SelectCollection
 from lib.make.product_categories import ProductCategories
 class Make:
+    def __init__(self, language : str) -> None:
+        self.language = language
     """
     Creates handle 
     So shopify knows parent/child relationshop    
@@ -63,7 +64,7 @@ class Make:
         belongsTo refers to the parent
     """
     def create_categories(self, products:dict) -> list:
-        products = ProductCategories().create(products = products)
+        products = ProductCategories(language = self.language).create(products = products)
         return products
     
     """

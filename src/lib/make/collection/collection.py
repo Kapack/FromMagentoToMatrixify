@@ -57,15 +57,15 @@ class Collection:
     description : list = ['']
 
     if relationship_type.lower() == 'grandparent':
-      # description = self.select.collection_description()
       description = self.select.grandparent_description()
     
     if relationship_type.lower() == 'parent':
-      # description = self.select.collection_description()
       description = self.select.parent_description()
 
     if relationship_type.lower() == 'child':
-      # description = self.select.collection_description()
+      description = self.select.child_description()
+    # Default description    
+    else: 
       description = self.select.child_description()
 
     # Pick random
@@ -208,43 +208,119 @@ class UpdateCollection(Collection):
   def __init__(self, language:str) -> None:
     super().__init__()
     self.allCollections : list[dict] = self.select.collections()
-    updateCollections = self.updateCollection()    
-    msg = 'A updated collection list has been created. Be aware of what you\'re overwriting'
+    child_collections = self.childCollection()    
+    parent_collections = self.parentCollection()        
     self.createGoogleAds(collections = self.allCollections, language = language)
-    self.saveCollection(collections = updateCollections, filepath = 'updated-collections/update-'+ language +'-smart-collections.csv', msg = msg, msg_type = 'WARNING')
+    msg = 'Child collection list has been created. Be aware of what you\'re overwriting'
+    self.saveCollection(collections = child_collections, filepath = 'updated-collections/update-child-'+ language +'-smart-collections.csv', msg = msg, msg_type = 'WARNING')
+    msg = 'Parent collection list has been created. Be aware of what you\'re overwriting'
+    self.saveCollection(collections = parent_collections, filepath = 'updated-collections/update-parents-'+ language +'-smart-collections.csv', msg = msg, msg_type = 'WARNING')
 
 
-  def updateCollection(self) -> list[dict]:    
+  def childCollection(self) -> list[dict]:    
     updateCollections : list[dict] = []    
 
-    for collection in self.allCollections:      
-      # We don't want to overwrite custom/unique written text
-      if collection['name'].lower() not in CUSTOM_COLLECTION_BOTTOM_DESCRIPTIONS:
+    for collection in self.allCollections:
+      if collection['relationship_type'].lower() == 'child':      
+        # We don't want to overwrite custom/unique written text
+        if collection['name'].lower() not in CUSTOM_COLLECTION_BOTTOM_DESCRIPTIONS:
 
-        pageTitle = self.collectionPageTitle(collection['name'])
-        metaDesc = self.collectionMetaDesc(collection['name'])
-        description = self.collectionDescription(collection_name = collection['name'],  relationship_type = collection['relationship_type'])
-        templateSuffix = self.collectionTemplate(collection['relationship_type'])
-        bottomDescription = self.bottomDescription(collection=collection)
-        
-        updateCollections.append({
-          'Handle' : slugify(collection['name']),  
-          'Command' : 'Merge',      
-          'Title' : collection['name'],
-          'Body HTML' : description,
-          'Must Match' : 'all conditions', 
-          'Rule: Product Column' : 'Tag', 
-          'Rule: Relation' : 'Equals', 
-          'Rule: Condition' : collection['name'],
-          'Metafield: title_tag [string]' : pageTitle,
-          'Metafield: description_tag [string]' : metaDesc,
-          'Template Suffix' : templateSuffix,
-          'Metafield: custom.belongs_to [single_line_text_field]' : collection['belongs_to'],
-          'Metafield: custom.bottom_description [multi_line_text_field]' : bottomDescription,
-        }        
-        )
+          pageTitle = self.collectionPageTitle(collection['name'])
+          metaDesc = self.collectionMetaDesc(collection['name'])
+          description = self.collectionDescription(collection_name = collection['name'],  relationship_type = collection['relationship_type'])
+          templateSuffix = self.collectionTemplate(collection['relationship_type'])
+          bottomDescription = self.bottomDescription(collection=collection)
+          
+          updateCollections.append({
+            'Handle' : slugify(collection['name']),  
+            'Command' : 'Merge',      
+            'Title' : collection['name'],
+            'Body HTML' : description,
+            'Must Match' : 'all conditions', 
+            'Rule: Product Column' : 'Tag', 
+            'Rule: Relation' : 'Equals', 
+            'Rule: Condition' : collection['name'],
+            'Metafield: title_tag [string]' : pageTitle,
+            'Metafield: description_tag [string]' : metaDesc,
+            'Template Suffix' : templateSuffix,
+            'Metafield: custom.belongs_to [single_line_text_field]' : collection['belongs_to'],
+            'Metafield: custom.bottom_description [multi_line_text_field]' : bottomDescription,
+          })
+          # Adding Variant Inventory condition
+          updateCollections.append({
+            'Handle' : slugify(collection['name']),  
+            'Command' : 'Merge',      
+            'Title' : '',
+            'Body HTML' : '',
+            'Must Match' : '', 
+            'Rule: Product Column' : 'Variant Inventory', 
+            'Rule: Relation' : 'Greater Than', 
+            'Rule: Condition' : '0',
+            'Metafield: title_tag [string]' : '',
+            'Metafield: description_tag [string]' : '',
+            'Template Suffix' : '',
+            'Metafield: custom.belongs_to [single_line_text_field]' : '',
+            'Metafield: custom.bottom_description [multi_line_text_field]' : '',
+          })
+
     
-    return updateCollections    
+    return updateCollections
+
+  def parentCollection(self) -> list[dict]:
+    updateCollections : list[dict] = []    
+    
+    for parent_collection in self.allCollections:
+      if parent_collection['relationship_type'].lower() == 'parent' or parent_collection['relationship_type'].lower() == 'grandparentparent':
+        # We don't want to overwrite custom/unique written text
+        if parent_collection['name'].lower() not in CUSTOM_COLLECTION_BOTTOM_DESCRIPTIONS:
+          
+          pageTitle = self.collectionPageTitle(parent_collection['name'])
+          metaDesc = self.collectionMetaDesc(parent_collection['name'])
+          description = self.collectionDescription(collection_name = parent_collection['name'],  relationship_type = parent_collection['relationship_type'])
+          templateSuffix = self.collectionTemplate(parent_collection['relationship_type'])
+          bottomDescription = self.bottomDescription(collection=parent_collection)
+          
+          updateCollections.append({
+            'Handle' : slugify(parent_collection['name']),  
+            'Command' : 'Merge',      
+            'Title' : parent_collection['name'],
+            'Body HTML' : description,
+            'Must Match' : 'any condition', 
+            'Rule: Product Column' : 'Tag', 
+            'Rule: Relation' : 'Equals', 
+            'Rule: Condition' : parent_collection['name'],
+            'Metafield: title_tag [string]' : pageTitle,
+            'Metafield: description_tag [string]' : metaDesc,
+            'Template Suffix' : templateSuffix,
+            'Metafield: custom.belongs_to [single_line_text_field]' : parent_collection['belongs_to'],
+            'Metafield: custom.bottom_description [multi_line_text_field]' : bottomDescription,
+          })
+          
+          # Appending parent conditions (Child)
+          # Loop through collections and find all where belongsTo, is current name
+          childs = [collection for collection in self.allCollections if collection['belongs_to'].lower() == parent_collection['name'].lower()]
+          for child in childs:            
+            updateCollections.append({
+              'Handle' : slugify(parent_collection['name']),  
+              'Command' : 'Merge',      
+              'Title' : '',
+              'Body HTML' : '',
+              'Must Match' : '', 
+              'Rule: Product Column' : 'Tag', 
+              'Rule: Relation' : 'Equals', 
+              'Rule: Condition' : child['name'],
+              'Metafield: title_tag [string]' : '',
+              'Metafield: description_tag [string]' : '',
+              'Template Suffix' : '',
+              'Metafield: custom.belongs_to [single_line_text_field]' : '',
+              'Metafield: custom.bottom_description [multi_line_text_field]' : '',
+            })
+    
+
+    return updateCollections
+
+  
+  
 
   # Chosing template
   def collectionTemplate(self, relationship_type:str) -> str:

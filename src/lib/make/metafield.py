@@ -49,8 +49,8 @@ class Metafield:
         for product in products:
             if products[product]['parent'] == True:                                
                 # Split material
-                material_split = products[product]['materials']['translated'].split(',')
-                products[product]['materials']['metafield'] = ', '.join(material_split)            
+                # material_split = products[product]['materials']['translated'].split(',')
+                products[product]['materials']['metafield'] = products[product]['materials']['translated']
         return products
     
     def size(self, products:dict) -> dict:        

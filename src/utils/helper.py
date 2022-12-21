@@ -25,8 +25,8 @@ def get_model_name(product : dict, language : str) -> str:
   model_name : str = ''
   product_models : list = product['model']
   product_categories = product['categories']['category']  
-  product_type : str = product['product_types']['translate']
-  
+  # product_type : str = product['product_types']['translate']    
+
   # Deciding on modelname
   if len(product_models) == 1:
     model_name = product_models[0]    
@@ -40,9 +40,9 @@ def get_model_name(product : dict, language : str) -> str:
     # Check if all elements is equal / Every element is the same
     is_same = all_equal(word)    
     if(is_same):
-        model_name = LOCALWORDS[language]['universel'].capitalize() + ' ' + word[0]    
+        model_name = LOCALWORDS[language]['universel'].capitalize() + ' ' + word[0]
     else:
-        model_name = LOCALWORDS[language]['universel'].capitalize() + ' ' + product_type
+        model_name = LOCALWORDS[language]['universel'].capitalize()
    
   return model_name
 

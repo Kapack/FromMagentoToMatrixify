@@ -30,7 +30,11 @@ class Image():
             
         return products
 
-    def create_image_alt_text(self, products:dict) -> dict:
+    """
+    Create alt tags with option_variant name (For image picker)
+    https://archetypethemes.co/blogs/streamline/create-variant-image-sets?_pos=3&_sid=629818927&_ss=r
+    """
+    def create_option_alt_text(self, products:dict) -> dict:
         image_alt_text : str
         for product in products:            
             # Replace special char with -
@@ -39,8 +43,21 @@ class Image():
             image_alt_text_split = image_alt_text.split('-')
             # Remove empty (Because of duouble dashes)             
             str_list = list(filter(None, image_alt_text_split))
-            image_alt_text = '-'.join(str_list)                                    
-            # imageAltText = '#color_' + imageAltText.lower()
+            image_alt_text = '-'.join(str_list)
             image_alt_text = '#serie_' + image_alt_text.lower()            
             products[product]['image_alt_text'] = image_alt_text
+        return products
+    
+    def create_seo_alt_text(self, products:dict) -> dict:
+        for product in products:
+            if products[product]['parent'] == True:   
+                # Only parent has name, so use it's attribute                                             
+                product_name = products[product]['name']                
+            
+            # Variant attributes                        
+            product_color = products[product]['options']['option2_value']            
+            # Building alt text                        
+            alt_text = product_name + ' - ' + product_color
+            # Combine with option_alt_text
+            products[product]['image_alt_text'] = ''.join((alt_text, products[product]['image_alt_text']))
         return products

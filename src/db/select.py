@@ -1,4 +1,4 @@
-from config.constants import DB_PATH
+from config.constants import DB_PATH, LOCALWORDS
 import sqlite3
 
 class Select:
@@ -56,7 +56,7 @@ class Select:
     #     return addjectives
     
     def addjectives(self, language : str) -> dict:
-        sql = 'SELECT product_type, material, ' + language + '_addjective FROM addjectives'
+        sql = 'SELECT product_type, material, addjective FROM addjectives'
         c.execute(sql)
         rows = c.fetchall()
         # addjectives = [{
@@ -169,7 +169,7 @@ class SelectWatchBand(Select):
     
 class SelectScreenProtector(Select):    
     def intro_text(self) -> list:
-      sql = 'SELECT intro FROM screen_protecter_intro_texts'
+      sql = 'SELECT intro FROM screen_protector_intro_texts'
       c.execute(sql)
       rows = c.fetchall()
 
@@ -225,11 +225,12 @@ class SelectCollection(Select):
       rows = c.fetchall()
       collections = []
       
-      for i, key in enumerate(rows):        
+      for i, key in enumerate(rows):
+
         alt_names = []
         if rows[i][3]:
             alt_names = rows[i][3].split(', ')
-            # print(alt_names)
+
         collections.append({'name' : rows[i][0], 'belongs_to': rows[i][1], 'relationship_type' : rows[i][2], 'alternative_names' : alt_names })
       
       return collections

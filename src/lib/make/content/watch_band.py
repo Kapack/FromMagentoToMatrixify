@@ -12,9 +12,12 @@ class WatchBand(ParentContent):
         self.material = material
         super().__init__()
 
-    def name(self, translated_material : str, product_type : str, translated_product_type : str) -> str:
+    def name(self, translated_material : str, product_types : list) -> str:
+        translated_product_type = product_types['translate']
+        product_types = product_types['product_type']
+
         # Adjective according material        
-        mat_addjective = self.give_addjective_from_material(material = self.material, product_type = product_type, language = self.language)
+        mat_addjective = self.give_addjective_from_material(material = self.material, product_type = product_types, language = self.language)
         
         # Replacing comma
         if ',' in translated_material:

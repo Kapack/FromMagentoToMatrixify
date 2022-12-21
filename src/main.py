@@ -29,7 +29,7 @@ class Main:
         
         # Read CSV
         readCsv = ReadCsv()        
-        make = Make()
+        make = Make(language = language)
         metafield = Metafield()
         image = Image()
         parent = ParentProduct()        
@@ -50,7 +50,7 @@ class Main:
         products = image.create_base_image(products = products)
         products = image.create_additonal_images(products = products)        
         # Create Alt tags
-        products = image.create_image_alt_text(products = products)        
+        products = image.create_option_alt_text(products = products)        
         products = metafield.colors(products = products, language = language)        
         products = metafield.size(products = products)
         # Remove content from child
@@ -60,10 +60,10 @@ class Main:
         products = products_and_collections[0]
         missing_collections = products_and_collections[1]        
         
-        # if len(missing_collections) > 0:
-        # # Check for new categories (Collections)                
-        #     CreateCollection(newCollections = missing_collections, language = language)
-        #     exit()
+        if len(missing_collections) > 0:
+        # Check for new categories (Collections)                
+            CreateCollection(newCollections = missing_collections, language = language)
+            exit()
 
         # Add Missing Content to parent products         
         products = parent.correcting_product_types(products = products)
@@ -76,7 +76,8 @@ class Main:
         products = Translate().translate_attributes(products = products, language = language)
         products = metafield.material(products = products)                
         # Create Content
-        products = Content().create(products = products, language = language)        
+        products = Content().create(products = products, language = language)   
+        products = image.create_seo_alt_text(products = products)
         # Currency convert        
         products = prices.get_prices(products = products, currency = 'dkk')
         # Clean attributes
