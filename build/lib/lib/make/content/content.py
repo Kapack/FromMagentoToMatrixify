@@ -33,7 +33,9 @@ class Content:
                 product_model_name = get_model_name(product = products[product], language = language)
 
                 # Product type                
-                product_types = products[product]['product_types']                                                                      
+                product_types = products[product]['product_types']                       
+                # product_types = products[product]['product_types']['product_type']                
+                # translated_product_type = products[product]['product_types']['translate']                                                      
 
                 # Material
                 material = products[product]['materials']['material']
@@ -48,8 +50,8 @@ class Content:
                     product_description = ''
                     
                     # Single product type
-                    if len(product_types['product_type']) == 1:
-                        if product_types['product_type'][0] == 'watch band':                                       
+                    if len(product_types) == 1:
+                        if product_types['product_type'][0] == 'watch band':                        
                             product_name = WatchBand(model = product_model_name, language = language, material = material).name(translated_material = translated_material, product_types = product_types)
                             product_description = WatchBand(model = product_model_name, language = language, material = material).description(original_description = original_description)
 
@@ -61,7 +63,7 @@ class Content:
                         #     product_name = ScreenProtector().name(model = product_model_name, material = translated_material, product_type = translated_product_type)
                     
                     # If double product type (A cover with screen protector)
-                    if len(product_types['product_type']) == 2:
+                    if len(product_types) == 2:
                         if (product_types['product_type'][0] == 'cover' and product_types['product_type'][1] == 'screen protector'):                            
                             product_name = Cover(model = product_model_name, language = language, material = material).name_with_screen_protector(product_types = product_types, translated_material = translated_material)
                             product_description = Cover(model = product_model_name, language = language, material = material).description()                            

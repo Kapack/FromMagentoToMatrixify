@@ -1,9 +1,6 @@
 from db.select import SelectCollection
 
 class ParentProduct:
-    def __init__(self, language : str) -> None:
-        self.language = language
-        
     """
     If product is a child, we don't need name and description
     """
@@ -120,7 +117,7 @@ class ParentProduct:
         product_categories : list
         product_manufacturer : str
         # Collections in DB        
-        collections = SelectCollection().collections(language=self.language)
+        collections = SelectCollection().collections()
                 
         # Remove all child, so we can remove grandparent and parent from name
         parent_collections = []

@@ -1,5 +1,5 @@
 from config.constants import LOCALWORDS
-from utils.helper import replace_last, split_measurements_from_string
+from utils.helper import replace_last
 from lib.make.content.parent_content import ParentContent
 from db.select import SelectWatchBand
 import random
@@ -27,7 +27,7 @@ class WatchBand(ParentContent):
             translated_material = " ".join(translated_material.split())
             
         # Building productname
-        product_name = mat_addjective.capitalize() + ' ' +  self.model +  ' ' + ''.join(translated_material) + ' ' +  ''.join(translated_product_type)
+        product_name = mat_addjective.capitalize() + ' ' +  self.model +  ' ' + translated_material + ' ' +  translated_product_type
         return product_name
     
     def description(self, original_description : str) -> str:
@@ -62,9 +62,7 @@ class WatchBand(ParentContent):
                 material_txt = material_txt.replace('[DEVICE]', self.model) 
                               
         # Check if original text contains anything about sizes
-        # sizes_found = ([ sizes[size]['size'] for size in sizes if(sizes[size]['size'] in original_description.lower() ) ])        
-        # sizes_found = ([ sizes[size]['size'] for size in sizes if(sizes[size]['size'] in original_description.lower() ) ])
-        sizes_found = [size['size'] for size in sizes if size['size'] in original_description.lower()]        
+        sizes_found = ([ sizes[size]['size'] for size in sizes if(sizes[size]['size'] in original_description.lower() ) ])
         if (sizes_found):
             # Get sizes
             size_txt = self.size_text(productDescription = original_description)
@@ -77,81 +75,45 @@ class WatchBand(ParentContent):
         
         return description
     
-    def size_text(self, productDescription : str) -> str:        
+    def size_text(self, productDescription : str):        
         sizes = self.select.sizes(language = self.language)
         size_txt = ''
-
-        # All keys in db sizes, so we wont risk to get double texts
-        all_size_keys = []
-        for size in sizes:
-            all_size_keys.append(size['size'])    
 
         # Split description
         org_desc_split = productDescription.lower().replace('\n', " ").split(' ')
         # Removing empty from a list
         org_desc_split = list(filter(None, org_desc_split))           
         # Loop trough with index and element, so we can get previous and next
-        for index, curr_el in enumerate(org_desc_split):    
-                 
+        for index, curr_el in enumerate(org_desc_split):                            
             # In try so we wont get out of range error
             try:
                 curr_el = str(curr_el).lower()
                 prev_el = str(org_desc_split[index - 1]).lower()
                 next_el = str(org_desc_split[index + 1]).lower()
-                next_next_el = str(org_desc_split[index + 2]).lower()
                 prev_and_current = prev_el + ' ' + curr_el
-                size_number = ''
-
-                for size in sizes:
-                    # If current element is a size, and prev_and_current does not exits in db
-                    if(curr_el == size['size']) and (prev_and_current not in all_size_keys):
-                        translated_size_key = ([size[self.language] for size in sizes if(size['size'] == curr_el)])
-                        # Calculate size if next_el has inch
-                        if 'inch' in next_el:  
-                            # Check if we need convert measurement
-                            size_number = self.convertInchToCm(next_el)
+                                            
+                for size in sizes: 
+                    # if current element is size                                   
+                    if(curr_el == sizes[size]['size'] or prev_and_current == sizes[size]['size']):
+                        # Get previous and current word                        
+                        # Check if prev_and_current exists as a value (eg. Strap length:)
+                        prev_and_current_size_found = ([ sizes[size]['size'] for size in sizes if(sizes[size]['size'] == prev_and_current ) ])
+                        if(prev_and_current_size_found):                            
+                            # Get translation
+                            word = ([sizes[size]['dk'] for size in sizes if(sizes[size]['size'] == prev_and_current)])
+                            if('inch' in next_el):                                
+                                next_el = self.convertInchToCm(next_el)
                             # Append to txt
-                            size_txt += translated_size_key[0].capitalize() + ' ' + size_number + '<br/>'
-
-                    # If only prev_and_current exists in db (Double sizez)
-                    if(prev_and_current == size['size']):                        
-                        # Get translation
-                        translated_size_key = ([size[self.language] for size in sizes if(size['size'] == prev_and_current)])
-                        
-                        # For sizes like: Strap width: 20 inches
-                        if next_el.isnumeric() and 'inch' in next_next_el:                            
-                            size_number = self.convertInchToCm(next_el)                            
-                        
-                        # For sizes like: Wrist circumference: 5.5-8.7 inches                        
-                        if '-' in next_el and 'inch' in next_next_el:                            
-                            next_el_split = next_el.split('-')
-                            sizes_in_cm = []
-                            for el in next_el_split:
-                                # If element is a digigt 
-                                if el.replace('.','',1).isdigit():
-                                    # Convert element to float
-                                    el_as_float = float(el)
-                                    # Calculate in cm Insert into sizes and convert to str
-                                    sizes_in_cm.append(str(round(el_as_float * 2.54, 2)))                            
+                            size_txt += word[0].capitalize() + ' ' + next_el + '<br/>'                                            
                             
-                            # For our text:                            
-                            size_number = '-'.join(sizes_in_cm) + 'cm'
-                        
-                        # For sizes like: Strap length: 89 + 117mm
-                        if '+' in next_next_el :
-                            from_size = next_el
-                            to_size = str(org_desc_split[index + 3]).lower()
-                            to_size_split = split_measurements_from_string(to_size)
-
-                            # Validatiing
-                            if from_size.isdigit() and to_size_split[0].isdigit():
-                                to_size = to_size_split[0]                                
-                                measurement = to_size_split[1]
-                                size_number = from_size + ' + ' + to_size + measurement
-                                                                                                                        
-                        # Building final size_txt
-                        size_txt += translated_size_key[0].capitalize() + ' ' + size_number + '<br/>'
-     
+                        else:
+                            # If Previous and Current word does not exists, it's a single word (Eg. Length:)
+                            word = ([sizes[size]['dk'] for size in sizes if(sizes[size]['size'] == curr_el)])                            
+                            # Calculate size if next_el has inch
+                            if('inch' in next_el):
+                                next_el = self.convertInchToCm(next_el)                                                            
+                            # Append to txt
+                            size_txt += word[0].capitalize() + ' ' + next_el + '<br/>'
             except:
                 pass 
 
@@ -168,7 +130,7 @@ class WatchBand(ParentContent):
             # Convert inches to cm and round
             next_el_float = round(next_el_float * 2.54, 2)
             # cast to string and prepend cm
-            split_next_el[i] = str(next_el_float) + 'cm'
+            split_next_el[i] = str(next_el_float) + ' cm'
 
         # cast back to string
         next_el = ' - '.join(split_next_el)

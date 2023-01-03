@@ -4,7 +4,7 @@ This field will be the same as Tag in ImportToMatrixify.csv
 """
 
 from db.select import SelectCollection
-from config.constants import CONTENT_DIR_IMPORT_TO_MATRIXIFY, BGCOLORS
+from config.constants import CONTENT_DIR_IMPORT_TO_MATRIXIFY, BGCOLORS, CUSTOM_COLLECTION_BOTTOM_DESCRIPTIONS
 from slugify import slugify
 import random
 import pandas as pd
@@ -207,7 +207,7 @@ class CreateCollection(Collection):
 class UpdateCollection(Collection):  
   def __init__(self, language:str) -> None:
     super().__init__()
-    self.allCollections : list[dict] = self.select.collections(language=language)
+    self.allCollections : list[dict] = self.select.collections()
     child_collections = self.childCollection()    
     parent_collections = self.parentCollection()        
     self.createGoogleAds(collections = self.allCollections, language = language)
@@ -220,53 +220,48 @@ class UpdateCollection(Collection):
   def childCollection(self) -> list[dict]:    
     updateCollections : list[dict] = []    
 
-    for collection in self.allCollections:      
-      if collection['relationship_type'].lower() == 'child':                    
-        pageTitle = self.collectionPageTitle(collection['name'])
-        metaDesc = self.collectionMetaDesc(collection['name'])
+    for collection in self.allCollections:
+      if collection['relationship_type'].lower() == 'child':      
+        # We don't want to overwrite custom/unique written text
+        if collection['name'].lower() not in CUSTOM_COLLECTION_BOTTOM_DESCRIPTIONS:
 
-        # We don't want to overwrite custom/unique written text  
-        description = collection['top_custom_content']
-        if collection['top_custom_content'] == '':
+          pageTitle = self.collectionPageTitle(collection['name'])
+          metaDesc = self.collectionMetaDesc(collection['name'])
           description = self.collectionDescription(collection_name = collection['name'],  relationship_type = collection['relationship_type'])
-        
-        bottomDescription = collection['bottom_custom_content']
-        if collection['bottom_custom_content'] == '':
+          templateSuffix = self.collectionTemplate(collection['relationship_type'])
           bottomDescription = self.bottomDescription(collection=collection)
-        
-        templateSuffix = self.collectionTemplate(collection['relationship_type'])
-        
-        updateCollections.append({
-          'Handle' : slugify(collection['name']),  
-          'Command' : 'Merge',      
-          'Title' : collection['name'],
-          'Body HTML' : description,
-          'Must Match' : 'all conditions', 
-          'Rule: Product Column' : 'Tag', 
-          'Rule: Relation' : 'Equals', 
-          'Rule: Condition' : collection['name'],
-          'Metafield: title_tag [string]' : pageTitle,
-          'Metafield: description_tag [string]' : metaDesc,
-          'Template Suffix' : templateSuffix,
-          'Metafield: custom.belongs_to [single_line_text_field]' : collection['belongs_to'],
-          'Metafield: custom.bottom_description [multi_line_text_field]' : bottomDescription,
-        })
-        # Adding Variant Inventory condition
-        updateCollections.append({
-          'Handle' : slugify(collection['name']),  
-          'Command' : 'Merge',      
-          'Title' : '',
-          'Body HTML' : '',
-          'Must Match' : '', 
-          'Rule: Product Column' : 'Variant Inventory', 
-          'Rule: Relation' : 'Greater Than', 
-          'Rule: Condition' : '0',
-          'Metafield: title_tag [string]' : '',
-          'Metafield: description_tag [string]' : '',
-          'Template Suffix' : '',
-          'Metafield: custom.belongs_to [single_line_text_field]' : '',
-          'Metafield: custom.bottom_description [multi_line_text_field]' : '',
-        })
+          
+          updateCollections.append({
+            'Handle' : slugify(collection['name']),  
+            'Command' : 'Merge',      
+            'Title' : collection['name'],
+            'Body HTML' : description,
+            'Must Match' : 'all conditions', 
+            'Rule: Product Column' : 'Tag', 
+            'Rule: Relation' : 'Equals', 
+            'Rule: Condition' : collection['name'],
+            'Metafield: title_tag [string]' : pageTitle,
+            'Metafield: description_tag [string]' : metaDesc,
+            'Template Suffix' : templateSuffix,
+            'Metafield: custom.belongs_to [single_line_text_field]' : collection['belongs_to'],
+            'Metafield: custom.bottom_description [multi_line_text_field]' : bottomDescription,
+          })
+          # Adding Variant Inventory condition
+          updateCollections.append({
+            'Handle' : slugify(collection['name']),  
+            'Command' : 'Merge',      
+            'Title' : '',
+            'Body HTML' : '',
+            'Must Match' : '', 
+            'Rule: Product Column' : 'Variant Inventory', 
+            'Rule: Relation' : 'Greater Than', 
+            'Rule: Condition' : '0',
+            'Metafield: title_tag [string]' : '',
+            'Metafield: description_tag [string]' : '',
+            'Template Suffix' : '',
+            'Metafield: custom.belongs_to [single_line_text_field]' : '',
+            'Metafield: custom.bottom_description [multi_line_text_field]' : '',
+          })
 
     
     return updateCollections
@@ -276,55 +271,50 @@ class UpdateCollection(Collection):
     
     for parent_collection in self.allCollections:
       if parent_collection['relationship_type'].lower() == 'parent' or parent_collection['relationship_type'].lower() == 'grandparentparent':
+        # We don't want to overwrite custom/unique written text
+        if parent_collection['name'].lower() not in CUSTOM_COLLECTION_BOTTOM_DESCRIPTIONS:
           
-        pageTitle = self.collectionPageTitle(parent_collection['name'])
-        metaDesc = self.collectionMetaDesc(parent_collection['name'])
-        templateSuffix = self.collectionTemplate(parent_collection['relationship_type'])
-        
-        # We don't want to overwrite custom/unique written text  
-        description = parent_collection['top_custom_content']
-        if parent_collection['top_custom_content']:
+          pageTitle = self.collectionPageTitle(parent_collection['name'])
+          metaDesc = self.collectionMetaDesc(parent_collection['name'])
           description = self.collectionDescription(collection_name = parent_collection['name'],  relationship_type = parent_collection['relationship_type'])
-        
-        bottomDescription = parent_collection['bottom_custom_content']
-        if parent_collection['bottom_custom_content'] == '':
+          templateSuffix = self.collectionTemplate(parent_collection['relationship_type'])
           bottomDescription = self.bottomDescription(collection=parent_collection)
-        
-        updateCollections.append({
-          'Handle' : slugify(parent_collection['name']),  
-          'Command' : 'Merge',      
-          'Title' : parent_collection['name'],
-          'Body HTML' : description,
-          'Must Match' : 'any condition', 
-          'Rule: Product Column' : 'Tag', 
-          'Rule: Relation' : 'Equals', 
-          'Rule: Condition' : parent_collection['name'],
-          'Metafield: title_tag [string]' : pageTitle,
-          'Metafield: description_tag [string]' : metaDesc,
-          'Template Suffix' : templateSuffix,
-          'Metafield: custom.belongs_to [single_line_text_field]' : parent_collection['belongs_to'],
-          'Metafield: custom.bottom_description [multi_line_text_field]' : bottomDescription,
-        })
-        
-        # Appending parent conditions (Child)
-        # Loop through collections and find all where belongsTo, is current name
-        childs = [collection for collection in self.allCollections if collection['belongs_to'].lower() == parent_collection['name'].lower()]
-        for child in childs:            
+          
           updateCollections.append({
             'Handle' : slugify(parent_collection['name']),  
             'Command' : 'Merge',      
-            'Title' : '',
-            'Body HTML' : '',
-            'Must Match' : '', 
+            'Title' : parent_collection['name'],
+            'Body HTML' : description,
+            'Must Match' : 'any condition', 
             'Rule: Product Column' : 'Tag', 
             'Rule: Relation' : 'Equals', 
-            'Rule: Condition' : child['name'],
-            'Metafield: title_tag [string]' : '',
-            'Metafield: description_tag [string]' : '',
-            'Template Suffix' : '',
-            'Metafield: custom.belongs_to [single_line_text_field]' : '',
-            'Metafield: custom.bottom_description [multi_line_text_field]' : '',
+            'Rule: Condition' : parent_collection['name'],
+            'Metafield: title_tag [string]' : pageTitle,
+            'Metafield: description_tag [string]' : metaDesc,
+            'Template Suffix' : templateSuffix,
+            'Metafield: custom.belongs_to [single_line_text_field]' : parent_collection['belongs_to'],
+            'Metafield: custom.bottom_description [multi_line_text_field]' : bottomDescription,
           })
+          
+          # Appending parent conditions (Child)
+          # Loop through collections and find all where belongsTo, is current name
+          childs = [collection for collection in self.allCollections if collection['belongs_to'].lower() == parent_collection['name'].lower()]
+          for child in childs:            
+            updateCollections.append({
+              'Handle' : slugify(parent_collection['name']),  
+              'Command' : 'Merge',      
+              'Title' : '',
+              'Body HTML' : '',
+              'Must Match' : '', 
+              'Rule: Product Column' : 'Tag', 
+              'Rule: Relation' : 'Equals', 
+              'Rule: Condition' : child['name'],
+              'Metafield: title_tag [string]' : '',
+              'Metafield: description_tag [string]' : '',
+              'Template Suffix' : '',
+              'Metafield: custom.belongs_to [single_line_text_field]' : '',
+              'Metafield: custom.bottom_description [multi_line_text_field]' : '',
+            })
     
 
     return updateCollections

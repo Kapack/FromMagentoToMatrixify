@@ -20,11 +20,10 @@ class ParentContent:
         return translated_material
     
     # Setting an addjective from material (db/csv/attributes/addjective.csv)
-    def give_addjective_from_material(self, material : list, product_type : list, language : str) -> str:
-        product_type = product_type[0]
+    def give_addjective_from_material(self, material : list, product_type : str, language : str) -> str:
         mat_addjective : str = ''
         # Adjective according material
-        addjectives = self.select.addjectives(language = language)
+        addjectives = self.select.addjectives(language = language)                
         # Pick a random material from the list
         material = random.choice(material)
         

@@ -83,7 +83,7 @@ class ProductCategories:
 
     def is_alternative_name(self, product_category_name : str) -> str:
         all_alt_names_in_db : list[dict] = []
-        collections = SelectCollection().collections(language = self.language)        
+        collections = SelectCollection().collections()        
         # Getting all alternative names in DB
         for collection in collections:
             # If collection has alternative names 
@@ -105,7 +105,7 @@ class ProductCategories:
         existing_db_collections : dict = {}
         missing_collection : str = ''
 
-        collections = SelectCollection().collections(language=self.language)
+        collections = SelectCollection().collections()
         
         # Check if product_category_name is in DB, get the object. Returns a list with one item
         db_collection = [collection for collection in collections if str(collection['name']).lower() == product_category_name.lower()]

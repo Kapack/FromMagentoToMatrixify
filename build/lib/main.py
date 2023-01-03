@@ -32,7 +32,7 @@ class Main:
         make = Make(language = language)
         metafield = Metafield()
         image = Image()
-        parent = ParentProduct(language = language)        
+        parent = ParentProduct()        
         prices = Prices()
         save = SaveFiles()
         

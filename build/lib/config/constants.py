@@ -14,3 +14,6 @@ BGCOLORS = { 'HEADER' : '\033[95m', 'OKBLUE' : '\033[94m', 'OKCYAN' : '\033[96m'
 LOCALWORDS = {'dk' : {'and' : 'og', 'universel' : 'universal', 'parent_col' : 'tilbehør', 'with' : 'med', 'in' : 'i'}, 'se' : {'and' : 'och', 'universel' : 'universell', 'parent_col' : 'tillbehör', 'with' : 'med', 'in' : 'i'} }
 
 LOCAL_DICT = {'color' : {'dk' : 'farve', 'se' : 'färg'} }
+
+# DO NOT OVERWRITE THESE TEXT
+CUSTOM_COLLECTION_BOTTOM_DESCRIPTIONS = ['apple watch', 'garmin', 'fitbit', 'samsung', 'tomtom']

@@ -117,21 +117,17 @@ class Select:
         
         return addjectives
     
-    def sizes(self, language : str) -> list[dict]:
+    def sizes(self, language : str) -> dict:
         sql = 'SELECT size, ' + language + ' FROM sizes'
         c.execute(sql)
         rows = c.fetchall()
 
-        # sizes = {}
-        test = []
+        sizes = {}
         i = 0        
         for key in rows:            
-            # sizes[i] = {'size': rows[i][0], language : rows[i][1] }
-            test.append({'size': rows[i][0], language : rows[i][1] })
+            sizes[i] = {'size': rows[i][0], language : rows[i][1] }
             i += 1
-        
-        # print(test)
-        return test                
+        return sizes                
 
 class SelectWatchBand(Select):
 
@@ -223,18 +219,19 @@ class SelectCover(Select):
 
 class SelectCollection(Select):
     # Collections
-    def collections(self, language : str) -> list[dict]:
-      sql = 'SELECT name, belongs_to, relationship_type, alternative_names, ' + language + '_top_custom_content,' + language + '_bottom_custom_content FROM collections'      
+    def collections(self) -> list[dict]:
+      sql = 'SELECT name, belongs_to, relationship_type, alternative_names FROM collections'
       c.execute(sql)
       rows = c.fetchall()
       collections = []
       
       for i, key in enumerate(rows):
+
         alt_names = []
         if rows[i][3]:
             alt_names = rows[i][3].split(', ')
 
-        collections.append({'name' : rows[i][0], 'belongs_to': rows[i][1], 'relationship_type' : rows[i][2], 'alternative_names' : alt_names, 'top_custom_content' : rows[i][4], 'bottom_custom_content' : rows[i][5] })
+        collections.append({'name' : rows[i][0], 'belongs_to': rows[i][1], 'relationship_type' : rows[i][2], 'alternative_names' : alt_names })
       
       return collections
     

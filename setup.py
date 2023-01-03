@@ -8,7 +8,7 @@ setup(
   author="Kasper Kloster",
   author_email='kasper@wepack.se',
   python_requires='>=3, <4', 
-  package_dir = {'' : 'src'}, 
+  # package_dir = {'' : 'src'}, 
   install_requires=[
     'slugify==0.0.1',
     'python-slugify==6.1.2',
@@ -17,7 +17,7 @@ setup(
 
   entry_points={
         'console_scripts': [
-            'cli = main:Main',
+            'cli = FromMagentoToMatrixify.src.main:Main',
         ]
     }
 )

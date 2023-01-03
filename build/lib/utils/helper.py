@@ -46,17 +46,4 @@ def get_model_name(product : dict, language : str) -> str:
    
   return model_name
 
-def split_measurements_from_string(string : str) -> tuple:
-  size : str = ''
-  measurement : str = ''
-  measurements = ['inch', 'inches', 'mm', 'cm']  
-  for item in measurements:
-    # If a measurement is found in string
-    if item in string:
-      # remove it from last part
-      size = string.rstrip(item)
-      measurement = string[len(size):]
-  
-  return size, measurement
-
 

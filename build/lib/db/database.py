@@ -246,7 +246,7 @@ class Collections(Database):
     
 
     def create_insert_collections(self):
-      sql = 'CREATE TABLE if not exists collections (id integer primary key not null, name text, belongs_to text, relationship_type text, alternative_names text,' + self.language + '_top_custom_content text,' + self.language + '_bottom_custom_content text)'
+      sql = 'CREATE TABLE if not exists collections (id integer primary key not null, name text, belongs_to text, relationship_type text, alternative_names text)'
       c.execute(sql)
 
       with open(DB_PATH + 'csv/collections/collections.csv', 'r') as file:
@@ -262,7 +262,7 @@ class Collections(Database):
             if '[parent_col]' in belongs_to.lower():
                 belongs_to = belongs_to.replace('[PARENT_COL]', LOCALWORDS[self.language]['parent_col'].title())
 
-            c.execute('INSERT INTO collections VALUES(?,?,?,?,?,?,?)', (i, collection_name, belongs_to, row['relationship_type'], row['alternative_names'], row[self.language + '_top_custom_content'], row[self.language + '_bottom_custom_content'] ))
+            c.execute('INSERT INTO collections VALUES(?,?,?,?,?)', (i, collection_name, belongs_to, row['relationship_type'], row['alternative_names'] ))
             i += 1
             conn.commit()
     
