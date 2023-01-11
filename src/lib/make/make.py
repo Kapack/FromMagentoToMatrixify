@@ -64,7 +64,7 @@ class Make:
         belongsTo refers to the parent
     """
     def create_categories(self, products:dict) -> list:
-        products = ProductCategories(language = self.language).create(products = products)
+        products = ProductCategories(language = self.language).create(products = products)                                
         return products
     
     """

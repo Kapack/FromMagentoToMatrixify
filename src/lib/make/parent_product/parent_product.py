@@ -27,7 +27,7 @@ class ParentProduct:
 
     def correcting_product_types(self, products:dict) -> dict:
         for product in products:
-            if products[product]['parent'] == True:
+            if products[product]['parent'] == True:                
                 # Correction 2-in-1 products (Cover + Screen protectors) / Screen protector will be the last
                 if products[product]['product_types']['product_type'][0] == 'cover':                    
                     if any(x in products[product]['name'] for x in ['screen film', 'tempered glass', 'screen protector']):
@@ -41,7 +41,7 @@ class ParentProduct:
                 
     def set_shopify_product_types(self, products:dict) -> dict:
         for product in products:
-            if products[product]['parent'] == True:                
+            if products[product]['parent'] == True:                                
                 if products[product]['product_types']['product_type'] == 'watch band':
                     products[product]['types']['type_standard_id'] = '5123'
                     products[product]['types']['type_standard_name'] = 'Watch Bands'
@@ -130,7 +130,7 @@ class ParentProduct:
 
         # Setting models / Only Child                        
         for product in products:
-            if products[product]['parent'] == True:
+            if products[product]['parent'] == True:                                
                 product_categories = products[product]['categories']['category']
                 product_manufacturer = products[product]['manufacturer'] 
                 # Remove manufacturer from categories
@@ -142,6 +142,6 @@ class ParentProduct:
                     if product_category in parent_collections:
                         product_categories.remove(product_category)
                 
-                # Setting models
+                # Setting models                
                 products[product]['model'] = product_categories                
         return products

@@ -1,87 +1,87 @@
 color;eng_color;eng_plural;eng_neutrum;dk_singular;dk_plural;dk_neutrum;se_singular;se_plural;se_neutrum
-all black;;;;helt sort;helt sorte;helt sort;;;
-apricot;;;;aprikos;aprikos;aprikos;;;
-army green;;;;militærgrøn;militærgrønne;militærgrønt;;;
-baby blue;;;;babyblå;babyblå;babyblåt;;;
-black;;;;sort;sorte;sort;;;
-black buckle;;;;;;;;;
-blackish green;;;;sortliggrøn;sortliggrønne;sortliggrønt;;;
-blue;;;;blå;blå;blåt;;;
-blueberry;;;;blåbær;blåbær;blåbær farvet;;;
-bronze;;;;bronze;bronze;;;;
-brown;;;;brun;brune;brunt;;;
-camouflage;;;;camouflage;camouflage;camouflage;;;
-camouflage blue;;;;camouflage blå;camouflage blå;camouflage blåt;;;
-camouflage green;;;;camouflage grøn;camouflage grønne;camouflage grønt;;;
-camouflage grey;;;;camouflage grå;camouflage grå;camouflage gråt;;;
-champagne;;;;champagne;champagne;champagne;;;
-champagne gold;;;;champagne guld;champagne gyldne;champagne gyldent;;;
-clear;;;;klar;klare;klart;;;
-coffee;;;;kaffe;kaffe;;;;
-color contrast;;;;farve kontrast;farve kontraster;farve kontrast;;;
-colorful;;;;farverig;farverige;farverigt;;;
-contrast colors;;;;kontrast farve;kontrast farver;kontrast farvet;;;
-cyan;;;;cyan;cyane;cyant;;;
-dark baby blue;;;;mørk baby blå;mørk baby blå;mørk baby blåt;;;
-dark blue;;;;mørkeblå;mørkeblå;mørkeblåt;;;
-dark brown;;;;mørkebrun;mørkebrune;mørkebrunt;;;
-dark gold;;;;mørkt guld;mørke gyldne;mørkt guldt;;;
-dark green;;;;mørkegrøn;mørkegrønne;mørkegrønt;;;
-dark grey;;;;mørkegrå;mørkegrå;mørkegråt;;;
-dark olive;;;;mørk oliven;mørk oliven;mørkt oliven;;;
-dark purple;;;;mørklilla;mørklilla;mørkelillat;;;
-dark red;;;;mørkerød;mørkerøde;mørkerødt;;;
-dark rose gold;;;;mørk rødguld;mørk rødgyldne;mørk rødguldt;;;
-dark silver;;;;mørk sølv;mørk sølv;mørk sølv;;;
-deep blue;;;;dyb blå;dyb blå;dyb blåt;;;
-deep brown;;;;dyb brun;dyb brune;dyb brunt;;;
-deep pink;;;;dyb pink;dyb pink;dyb pinkt;;;
-dual color;;;;dobbelt farve;dobbelt farver;dobbelt farvet;;;
-dual-color;;;;dobbelt farve;dobbelt farver;dobbelt farvet;;;
-flourescent;;;;fluorescerende;fluorescerende;fluorescerende;;;
-flourescent green;;;;fluorescerende grøn;fluorescerende grønne;fluorescerende grønt;;;
-gold;;;;guld;guld;guld;;;
-golden;;;;gylden;gyldne;gyldent;;;
-green;;;;grøn;grønne;grønt;;;
-grey;;;;grå;grå;gråt;;;
-ice blue;;;;isblå;isblå;isblåt;;;
-khaki;;;;khaki;khaki;khaki;;;
-light blue;;;;lyseblå;lyseblå;lyseblåt;;;
-light brown;;;;lysebrun;lysebrune;lysebrunt;;;
-light green;;;;lysegrøn;lysegrønne;lysegrønt;;;
-light grey;;;;lysegrå;lysegrå;lysegråt;;;
-light pink;;;;lyserød;lyserøde;lyserødt;;;
-light purple;;;;lyselilla;lyselilla;lyselilla;;;
-light yellow;;;;lysegul;lysegule;lysegult;;;
-lime;;;;lime;lime;lime;;;
-matte;;;;mat;matte;mat;;;
-midnight blue;;;;midnatsblå;midnatsblå;midnatsblåt;;;
-mint green;;;;mint grøn;mint grønne;mint grønt;;;
-mintgreen;;;;mint grøn;mint grønne;mint grønt;;;
-multi-color;;;;flerfarvet;flere farver;flerfarvet;;;
-multi-colored;;;;flerfarve;flerfarver;flerfarvet;;;
-multicolor;;;;flerfarve;flerfarver;flerfarvet;;;
-navy blue;;;;marine blå;marine blå;marine blåt;;;
-ocean blue;;;;havblå;havblå;havblåt;;;
-olive green;;;;olivengrøn;olivengrønne;olivengrønt;;;
-olivegreen;;;;olivengrøn;olivengrønne;olivengrønt;;;
-orange;;;;orange;orange;orange;;;
-pale brown;;;;dæmpet brun;dæmpet brune;dæmpet brunt;;;
-pink;;;;lyserød;lyserøde;lyserødt;;;
-plum;;;;blomme;blomme;;;;
-purple;;;;lilla;lilla;lilla;;;
-red;;;;rød;røde;rødt;;;
-rose ;;;;rose ;rose;;;;
-rose gold;;;;rødguld;rødguld;rødguldt;;;
-rose gold buckle;;;;rødguld spænde;;rødguldt spænde;;;
-silver;;;;sølv;sølv;sølv;;;
-silver buckle;;;;sølv spænde;sølv spænde;sølv spænde;;;
-sky blue;;;;himmelblå;himmelblå;himmelblåt;;;
-transparent;;;;transparent;transparente;transparent;;;
-two-color;;;;to-farve;to-farver;to-farvet;;;
-watermelon red;;;;vandmelons rød;vandmelons røde;vandmelons rødt;;;
-white;;;;hvid;hvide;hvidt;;;
-wine red;;;;rødvin;rødvin;rødvin;;;
-yellow;;;;gul;gule;gult;;;
-yellow-green;;;;gul-grøn;gul-grønne;gul-grønt;;;
-yellowgreen;;;;gul grøn;gul grønne;gul grønt;;;
+all black;;;;helt sort;helt sorte;helt sort;helsvart;helsvarta;helsvart
+apricot;;;;aprikos;aprikos;aprikos;aprikos;aprikos;aprikos
+army green;;;;militærgrøn;militærgrønne;militærgrønt;militärgrön;militärgröna;militärgrönt
+baby blue;;;;babyblå;babyblå;babyblåt;babyblå;babyblå;babyblått
+black;;;;sort;sorte;sort;svart;svarta;svart
+black buckle;;;;;;;svart spänne;svart spänne;svart späne
+blackish green;;;;sortliggrøn;sortliggrønne;sortliggrønt;helgrön;helgröna;helgrönt
+blue;;;;blå;blå;blåt;blå;blå;blått
+blueberry;;;;blåbær;blåbær;blåbær farvet;blåbär;blåbär;blåbärsblå
+bronze;;;;bronze;bronze;;brons;brons;
+brown;;;;brun;brune;brunt;brun;bruna;brunt
+camouflage;;;;camouflage;camouflage;camouflage;camouflage;camoflauge;camoflauge
+camouflage blue;;;;camouflage blå;camouflage blå;camouflage blåt;camouflage blå;camoflauge blå;camoflauge blått
+camouflage green;;;;camouflage grøn;camouflage grønne;camouflage grønt;camouflage grön;camouflage gröna;camouflage grönt
+camouflage grey;;;;camouflage grå;camouflage grå;camouflage gråt;camouflage grå;camouflage grå;camouflage grått
+champagne;;;;champagne;champagne;champagne;champagne;champagne;champagne
+champagne gold;;;;champagne guld;champagne gyldne;champagne gyldent;champagne guld;champagne guld;champagne guld
+clear;;;;klar;klare;klart;Klar;Klara;Klart
+coffee;;;;kaffe;kaffe;;Kaffe;Kaffe;
+color contrast;;;;farve kontrast;farve kontraster;farve kontrast;färg kontrast;färg kontraster;färg kontrast
+colorful;;;;farverig;farverige;farverigt;färgrik;färgrika;färgrikt
+contrast colors;;;;kontrast farve;kontrast farver;kontrast farvet;färg kontrast;färg kontraster;färg kontrast
+cyan;;;;cyan;cyane;cyant;turkos;turkosa;turkost
+dark baby blue;;;;mørk baby blå;mørk baby blå;mørk baby blåt;mörk babyblå;mörk babyblå;mörk babyblått
+dark blue;;;;mørkeblå;mørkeblå;mørkeblåt;mörkblå;mörkblå;mörkblått
+dark brown;;;;mørkebrun;mørkebrune;mørkebrunt;mörkbrun;mörkbruna;mörkbrunt
+dark gold;;;;mørkt guld;mørke gyldne;mørkt guldt;mörkguld;mörkguldiga;mörkguld
+dark green;;;;mørkegrøn;mørkegrønne;mørkegrønt;mörkgrön;mörkgröna;mörkgrönt
+dark grey;;;;mørkegrå;mørkegrå;mørkegråt;mörkgrå;mörkgrå;mörkgrått
+dark olive;;;;mørk oliven;mørk oliven;mørkt oliven;mörk olivgrön;mörk olivgröna;mörk olivgrönt
+dark purple;;;;mørklilla;mørklilla;mørkelillat;mörklila;mörklila;mörklila
+dark red;;;;mørkerød;mørkerøde;mørkerødt;mörkröd;mörkröda;mörkrött
+dark rose gold;;;;mørk rødguld;mørk rødgyldne;mørk rødguldt;mörk roséguld;mörk roséguld;mörk roséguld
+dark silver;;;;mørk sølv;mørk sølv;mørk sølv;mörk silver;mörk silver;mörk silver
+deep blue;;;;dyb blå;dyb blå;dyb blåt;djupblå;djupblå;djupblått
+deep brown;;;;dyb brun;dyb brune;dyb brunt;djupbrun;djupbruna;djupbrunt
+deep pink;;;;dyb pink;dyb pink;dyb pinkt;djuprosa;djuprosa;djuprosa
+dual color;;;;dobbelt farve;dobbelt farver;dobbelt farvet;tvåfärgat;tvåfärgade;tvåfärgat
+dual-color;;;;dobbelt farve;dobbelt farver;dobbelt farvet;tvåfärgat;tvåfärgade;tvåfärgat
+flourescent;;;;fluorescerende;fluorescerende;fluorescerende;fluorescerande;fluorescerande;fluorescerande
+flourescent green;;;;fluorescerende grøn;fluorescerende grønne;fluorescerende grønt;fluorescerande grön;fluorescerande gröna;fluorescerande grönt
+gold;;;;guld;guld;guld;guld;guld;guld
+golden;;;;gylden;gyldne;gyldent;gyllene;gyllene;gyllene
+green;;;;grøn;grønne;grønt;grön;gröna;grönt
+grey;;;;grå;grå;gråt;grå;grå;grått
+ice blue;;;;isblå;isblå;isblåt;isblå;isblå;isblått
+khaki;;;;khaki;khaki;khaki;khaki;khaki;khaki
+light blue;;;;lyseblå;lyseblå;lyseblåt;ljusblå;ljusblå;ljusblått
+light brown;;;;lysebrun;lysebrune;lysebrunt;ljusbrun;ljusbruna;ljusbrunt
+light green;;;;lysegrøn;lysegrønne;lysegrønt;ljusgrön;ljusgröna;ljusgrönt
+light grey;;;;lysegrå;lysegrå;lysegråt;ljusgrå;ljusgrå;ljusgrått
+light pink;;;;lyserød;lyserøde;lyserødt;ljusröd;ljusröda;ljusrött
+light purple;;;;lyselilla;lyselilla;lyselilla;ljuslila;ljuslila;ljuslila
+light yellow;;;;lysegul;lysegule;lysegult;ljusgul;ljudgula;ljusgult
+lime;;;;lime;lime;lime;lime;lime;lime
+matte;;;;mat;matte;mat;matt;matt;matt
+midnight blue;;;;midnatsblå;midnatsblå;midnatsblåt;midnattsblå;midnattsblåa;midnattsblått
+mint green;;;;mint grøn;mint grønne;mint grønt;mint grön;mint gröna;mint grönt
+mintgreen;;;;mint grøn;mint grønne;mint grønt;mintgrön;mintgröna;mintgrönt
+multi-color;;;;flerfarvet;flere farver;flerfarvet;flerfärgat;flerfärgade;flerfärgat
+multi-colored;;;;flerfarve;flerfarver;flerfarvet;flerfärgat;flerfärgade;flerfärgat
+multicolor;;;;flerfarve;flerfarver;flerfarvet;flerfärgat;tvåfärgade;tvåfärgat
+navy blue;;;;marine blå;marine blå;marine blåt;marinblå;marinblåa;marinblått
+ocean blue;;;;havblå;havblå;havblåt;havsblå;havsblåa;havsblått
+olive green;;;;olivengrøn;olivengrønne;olivengrønt;olivgrön;olivgröna;olivgrönt
+olivegreen;;;;olivengrøn;olivengrønne;olivengrønt;olivgrön;olivgröna;olivgrönt
+orange;;;;orange;orange;orange;orange;orangea;oranget
+pale brown;;;;dæmpet brun;dæmpet brune;dæmpet brunt;ljusbrun;ljusbruna;ljusbrunt
+pink;;;;lyserød;lyserøde;lyserødt;ljudröd;ljudröda;ljusrött
+plum;;;;blomme;blomme;;plommon;plommon;plommon
+purple;;;;lilla;lilla;lilla;lila;lila;lila
+red;;;;rød;røde;rødt;röd;röda;rött
+rose ;;;;rose ;rose;;rosé;rosé;rosé
+rose gold;;;;rødguld;rødguld;rødguldt;roséguld;roséguld;roséguld
+rose gold buckle;;;;rødguld spænde;;rødguldt spænde;roséguld spänne;roségulds pänne;roségulds pänne 
+silver;;;;sølv;sølv;sølv;silver;silver;silver
+silver buckle;;;;sølv spænde;sølv spænde;sølv spænde;silver spänne;silver spänne;silver spänne
+sky blue;;;;himmelblå;himmelblå;himmelblåt;himmelsblå;himmelsblåa;himmelsblått
+transparent;;;;transparent;transparente;transparent;transparent;transparenta;transparent
+two-color;;;;to-farve;to-farver;to-farvet;tvåfärgat;tvåfärgade;tvåfärgat
+watermelon red;;;;vandmelons rød;vandmelons røde;vandmelons rødt;vattenmelonröd;vattenmelonröda;vattenmelonrött
+white;;;;hvid;hvide;hvidt;vit;vita;vitt
+wine red;;;;rødvin;rødvin;rødvin;vinröd;vinröda;vinrött
+yellow;;;;gul;gule;gult;gul;gula;gult
+yellow-green;;;;gul-grøn;gul-grønne;gul-grønt;gulgrön;gulgröna;gulgrönt
+yellowgreen;;;;gul grøn;gul grønne;gul grønt;gulgrön;gulgröna;gulgrönt

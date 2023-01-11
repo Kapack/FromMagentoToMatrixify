@@ -54,7 +54,7 @@ class SaveFiles:
             writer = csv.DictWriter(file, fieldnames=fieldnames, delimiter=',')
             writer.writeheader()            
 
-            for product in products:                                               
+            for product in products:                            
                 writer.writerow({
                     'Handle' : products[product]['handle'], 
                     'Variant SKU' : products[product]['sku'], 
@@ -104,7 +104,7 @@ class SaveFiles:
                     # 'Variant Metafield: color.string [single_line_text_field]' : products[product]['colors']['string'],
                     'Metafield: mm-google-shopping.custom_product [string]' : 'false',
                     })
-        print(BGCOLORS['SUCCESS'] + 'Import file is saved' + BGCOLORS['ENDC'])
+        print(BGCOLORS['SUCCESS'] + 'Default Import file is saved' + BGCOLORS['ENDC'])        
     
     def additional_image_file(self, products:dict, language : str) -> None:
         with open(CONTENT_DIR_IMPORT_TO_MATRIXIFY + '2-import-'+ language +'-product-add-images.csv', 'w') as file:

@@ -34,14 +34,14 @@ class ProductAttributes(Database):
         self.create_insert_sizes()
 
     def create_insert_color(self):
-        sql = 'CREATE TABLE if not exists colors (id integer primary key not null, color text, dk_singular text, dk_plural text, dk_neutrum text)'
+        sql = 'CREATE TABLE if not exists colors (id integer primary key not null, color text, dk_singular text, dk_plural text, dk_neutrum text, se_singular text, se_plural text, se_neutrum text)'
         c.execute(sql)
 
         with open(DB_PATH + 'csv/attributes/colors.csv', 'r') as file: 
             reader = csv.DictReader(file, delimiter=';')
             i = 1
             for row in reader:
-                c.execute('INSERT INTO colors VALUES(?, ?, ?, ?, ?)', (i, row['color'], row['dk_singular'], row['dk_plural'], row['dk_neutrum']))
+                c.execute('INSERT INTO colors VALUES(?,?,?,?,?,?,?,?)', (i, row['color'], row['dk_singular'], row['dk_plural'], row['dk_neutrum'], row['se_singular'], row['se_plural'], row['se_neutrum']))
                 i += 1
                 conn.commit()
 

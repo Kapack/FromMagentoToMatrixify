@@ -48,7 +48,7 @@ class ProductCategories:
                 product_categories.append(collection['name'])                
                 # Append Series / Parent
                 if collection['belongs_to']:
-                    product_categories.append(collection['belongs_to'])
+                    product_categories.append(collection['belongs_to'])                    
 
                 # Append to metafield
                 if collection['relationship_type'].lower() == 'child':
@@ -59,12 +59,12 @@ class ProductCategories:
                 product_categories.insert(0, current_product['manufacturer'])      
             
             # Remove duplicates                        
-            product_categories = list(dict.fromkeys(product_categories))               
+            product_categories = list(dict.fromkeys(product_categories))                
             missing_collections = list(dict.fromkeys(missing_collections))  
             product_metafield = list(dict.fromkeys(product_metafield))  
             
-            # Asigning categories / Tags
-            current_product['categories']['category'] = product_categories
+            # Asigning categories / Tags            
+            current_product['categories']['category'] = product_categories            
             # Asigning metafield
             current_product['categories']['metafield_compatible_with'] = ', '.join(product_metafield)
 

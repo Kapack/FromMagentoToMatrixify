@@ -1,22 +1,22 @@
 size;eng;dk;se
-width:;width:;bredde:;
-wrist:;wrist:;håndled:;
-wrist circumference:;wrist circumference:;Håndledsomkreds:;
-wrist size:;wrist size:;håndledsstørrelse:;
-adjustable length:;adjustable length:;justerbar længde:;
-length:;length:;længde:;
-lug width:;lug width:;luge bredde:;
-lugs width:;lugs width:;luge bredde:;
-lug size:;lug size:;luge bredde:;
-lugs size:;lugs size:;luge bredde:;
-product size:;product size:;produktstørrelse:;
-frame width:;frame width:;rammens bredde:;
-strap length:;strap length:;rem længde:;
-band length:;band length:;rem længde:;
-dial diameter:;dial diameter:;skivens diameter:;
-dial size:;dial size:;skivestørrelse:;
-size:;size:;størrelse:;
-watchband length:;watchband length:;urremmens længde:;
-watchband width:;watchband width:;urremmens bredde:;
-spring width:;spring width:;fjeder bredde:;
-strap width:;strap width:;rem bredde:;
+width:;width:;bredde:;bredd:
+wrist:;wrist:;håndled:;handled:
+wrist circumference:;wrist circumference:;Håndledsomkreds:;handledsomkrets:
+wrist size:;wrist size:;håndledsstørrelse:;handledsstrolek: 
+adjustable length:;adjustable length:;justerbar længde:;Justerbar längd:
+length:;length:;længde:;längd:
+lug width:;lug width:;luge bredde:;skänkel bredd: 
+lugs width:;lugs width:;luge bredde:;skänklarnas bredd: 
+lug size:;lug size:;luge bredde:;skänkel storlek:
+lugs size:;lugs size:;luge bredde:;skänklarnas storlek:
+product size:;product size:;produktstørrelse:;produktstorlek: 
+frame width:;frame width:;rammens bredde:;ram bredd: 
+strap length:;strap length:;rem længde:;klockarmbands längd:
+band length:;band length:;rem længde:;armbandslängd: 
+dial diameter:;dial diameter:;skivens diameter:;boette diameter: 
+dial size:;dial size:;skivestørrelse:;boette storlek: 
+size:;size:;størrelse:;storlek: 
+watchband length:;watchband length:;urremmens længde:;klockarmbands längd:
+watchband width:;watchband width:;urremmens bredde:;klockarmbands bredd:
+spring width:;spring width:;fjeder bredde:;fjäder bredd: 
+strap width:;strap width:;rem bredde:;rem bredd: 
